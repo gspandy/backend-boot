@@ -77,7 +77,7 @@ spring:
     cluster:
       max-redirects: 5
       # nodes: localhost:6379
-      nodes: 10.82.12.30:6379,10.82.12.30:6479,10.82.12.31:6379
+      nodes: localhost:6379
 
 
 #文件上传路径 空为系统默认配置

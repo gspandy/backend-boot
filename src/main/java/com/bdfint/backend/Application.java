@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @EnableScheduling
 @SpringBootApplication
-@MapperScan(basePackages = "com.bdfint.backend.modules.sys.mappings", annotationClass = Repository.class)
+@MapperScan(basePackages = "com.bdfint.backend.modules.sys.mapper", annotationClass = Repository.class)
 public class Application extends SpringBootServletInitializer {
 
 	@Override

@@ -208,11 +208,11 @@ public class DruidProperties {
         this.useGlobalDataSourceStat = useGlobalDataSourceStat;
     }
 
-    public DruidProperties.StatView getStatView() {
+    public StatView getStatView() {
         return statView;
     }
 
-    public void setStatView(DruidProperties.StatView statView) {
+    public void setStatView(StatView statView) {
         this.statView = statView;
     }
 
@@ -221,6 +221,9 @@ public class DruidProperties {
         private String deny;
         private String loginUsername;
         private String loginPassword;
+
+        public StatView() {
+        }
 
         public String getAllow() {
             return allow;
