@@ -3,11 +3,6 @@ package com.bdfint.backend.framework.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -18,8 +13,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -34,8 +27,6 @@ import java.sql.SQLException;
 @ConditionalOnProperty(prefix = "druid", name = "url")
 @AutoConfigureBefore(DataSourceAutoConfiguration.class)
 public class DruidAutoConfiguration {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private final DruidProperties properties;
 
@@ -66,8 +57,9 @@ public class DruidAutoConfiguration {
         datasource.setMaxPoolPreparedStatementPerConnectionSize(properties.getMaxPoolPreparedStatementPerConnectionSize());
         try {
             datasource.setFilters(properties.getFilters());
+            datasource.init();
         } catch (SQLException e) {
-            logger.error("druid configuration initialization filter", e);
+            throw new RuntimeException(e);
         }
         return datasource;
     }
@@ -79,7 +71,7 @@ public class DruidAutoConfiguration {
         reg.setServlet(new StatViewServlet());
         reg.addUrlMappings("/druid/*");
         reg.addInitParameter("allow", properties.getStatView().getAllow());
-        reg.addInitParameter("deny",properties.getStatView().getDeny());
+        reg.addInitParameter("deny", properties.getStatView().getDeny());
         reg.addInitParameter("loginUsername", properties.getStatView().getLoginUsername());
         reg.addInitParameter("loginPassword", properties.getStatView().getLoginPassword());
         return reg;
@@ -91,27 +83,11 @@ public class DruidAutoConfiguration {
         filterRegistrationBean.setFilter(new WebStatFilter());
         filterRegistrationBean.addUrlPatterns("/*");
         filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
-        filterRegistrationBean.addInitParameter("sessionStatMaxCount","1000");
-        filterRegistrationBean.addInitParameter("sessionStatEnable","false");
-        filterRegistrationBean.addInitParameter("principalSessionName","userInfo");
-        filterRegistrationBean.addInitParameter("profileEnable","true");
+        filterRegistrationBean.addInitParameter("sessionStatMaxCount", "1000");
+        filterRegistrationBean.addInitParameter("sessionStatEnable", "false");
+        filterRegistrationBean.addInitParameter("principalSessionName", "userInfo");
+        filterRegistrationBean.addInitParameter("profileEnable", "true");
         return filterRegistrationBean;
     }
 
-    @Bean
-    public SqlSessionFactory sqlSessionFactory() throws Exception {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource());
-        return sqlSessionFactoryBean.getObject();
-    }
-
-    @Bean
-    public SqlSessionTemplate sqlSession() throws Exception {
-        return new SqlSessionTemplate(sqlSessionFactory());
-    }
-
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
-    }
 }
