@@ -85,14 +85,14 @@
             <!-- 查询条件 -->
             <div class="row">
                 <div class="col-sm-12">
-                    <form:form id="searchForm" modelAttribute="sysUser" action="${ctx}/sys/user/list" method="post" class="form-inline">
-                        <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
+                    <form:form id="searchForm" modelAttribute="user" action="${ctx}/sys/user/list" method="post" class="form-inline">
+                        <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNum}"/>
                         <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-                        <table:sortColumn id="orderBy" name="orderBy" value="${page.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
+                        <table:sortColumn id="orderBy" name="orderBy" value="" callback="sortOrRefresh();"/><!-- 支持排序 -->
                         <div class="form-group">
-                            <span>用户名：<form:input path="username" htmlEscape="false" maxlength="50" class="form-control"/></span>
+                            <span>用户名：<form:input path="loginName" htmlEscape="false" maxlength="50" class="form-control"/></span>
 
-                            <span>姓名：<form:input path="realName" htmlEscape="false" maxlength="50" class="form-control"/></span>
+                            <span>姓名：<form:input path="name" htmlEscape="false" maxlength="50" class="form-control"/></span>
 
                             <span>手机号：<form:input path="mobile" htmlEscape="false" maxlength="50" class="form-control"/></span>
 
@@ -136,27 +136,27 @@
                 <thead>
                     <tr>
                         <th><input type="checkbox" class="i-checks"></th>
-                        <th class="sort-column username">用户名</th>
-                        <th class="sort-column real_name">姓名</th>
+                        <th class="sort-column loginName">用户名</th>
+                        <th class="sort-column name">姓名</th>
                         <th class="sort-column mobile">手机号</th>
                         <th class="sort-column email">邮箱</th>
-                        <th class="sort-column status">用户状态</th>
-                        <th class="sort-column type">用户类型</th>
+                        <th class="sort-column loginFlag">用户状态</th>
+                        <th class="sort-column userType">用户类型</th>
                         <shiro:hasPermission name="sys:user:edit"><th>操作</th></shiro:hasPermission>
                     </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${page.list}" var="bean">
                     <tr>
-                        <td><input type="checkbox" id="${bean.id}" class="i-checks" statusid="${bean.status}"></td>
+                        <td><input type="checkbox" id="${bean.id}" class="i-checks" statusid="${bean.loginFlag}"></td>
                         <td><a href="#" onclick="openDialogView('查看', '${ctx}/sys/user/form?id=${bean.id}','800px', '650px')">
-                            ${bean.username}</a>
+                            ${bean.loginName}</a>
                         </td>
-                        <td>${bean.realName}</td>
+                        <td>${bean.name}</td>
                         <td>${bean.mobile}</td>
                         <td>${bean.email}</td>
-                        <td>${fns:getDictLabel(bean.status, "status", "")}</td>
-                        <td>${fns:getDictLabel(bean.type, "sys_user_type", "")}</td>
+                        <td>${fns:getDictLabel(bean.loginFlag, "status", "")}</td>
+                        <td>${fns:getDictLabel(bean.userType, "sys_user_type", "")}</td>
                         <shiro:hasPermission name="sys:user:edit">
                         <td>
                             <a href="#"

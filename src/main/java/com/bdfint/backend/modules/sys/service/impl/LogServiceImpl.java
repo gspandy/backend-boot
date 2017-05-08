@@ -6,6 +6,7 @@ package com.bdfint.backend.modules.sys.service.impl;
 
 import com.bdfint.backend.framework.cache.JedisUtils;
 import com.bdfint.backend.framework.common.BaseServiceImpl;
+import com.bdfint.backend.framework.util.Encodes;
 import com.bdfint.backend.framework.util.Exceptions;
 import com.bdfint.backend.framework.util.StringUtils;
 import com.bdfint.backend.modules.sys.bean.Log;
@@ -76,6 +77,7 @@ public class LogServiceImpl extends BaseServiceImpl<Log> implements LogService {
         User user = UserUtils.getUser();
         if (user != null && user.getId() != null) {
             Log log = new Log();
+            log.setId(Encodes.uuid());
             log.setTitle(title);
             log.setType(ex == null ? Log.TYPE_ACCESS : Log.TYPE_EXCEPTION);
             log.setRemoteAddr(StringUtils.getRemoteAddr(request));

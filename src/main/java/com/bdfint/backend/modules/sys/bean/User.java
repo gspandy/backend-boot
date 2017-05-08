@@ -57,6 +57,11 @@ public class User extends DataEntity<User> {
     @Transient
     private List<Role> roleList = Lists.newArrayList(); // 拥有角色列表
 
+    @Transient
+    private String officeName;
+    @Transient
+    private String companyName;
+
     public User() {
         super();
         this.loginFlag = Global.YES;
@@ -277,6 +282,22 @@ public class User extends DataEntity<User> {
 
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
+    }
+
+    public String getOfficeName() {
+        return officeName;
+    }
+
+    public void setOfficeName(String officeName) {
+        this.officeName = officeName;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     @JsonIgnore

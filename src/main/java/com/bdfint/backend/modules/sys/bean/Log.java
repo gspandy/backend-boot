@@ -41,7 +41,7 @@ public class Log extends DataEntity<Log> {
     public static final String TYPE_EXCEPTION = "2";
 
     public Log() {
-        super();
+        this.delFlag = null;
     }
 
     public Log(String id) {
