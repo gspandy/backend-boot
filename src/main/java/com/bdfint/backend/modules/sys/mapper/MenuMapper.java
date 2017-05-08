@@ -2,6 +2,7 @@ package com.bdfint.backend.modules.sys.mapper;
 
 import com.bdfint.backend.framework.common.CommonMapper;
 import com.bdfint.backend.modules.sys.bean.Menu;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,9 +14,9 @@ import java.util.List;
 @Repository
 public interface MenuMapper extends CommonMapper<Menu> {
 
-    void deleteRoleMenuByMenuId(String menuId);
-
     List<Menu> selectMenuByUserId(String userId);
 
     List<Menu> selectMenuByRoleId(String roleId);
+
+    void deleteRoleMenuByMenuIds(@Param("array") String [] ids);
 }

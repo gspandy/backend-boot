@@ -5,6 +5,7 @@ package com.bdfint.backend.modules.sys.bean;
 
 import com.bdfint.backend.framework.common.TreeEntity;
 
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @author ThinkGem
  * @version 2013-05-15
  */
+@Table(name = "sys_office")
 public class Office extends TreeEntity<Office> {
 
     private static final long serialVersionUID = 1L;

@@ -7,6 +7,7 @@ package com.bdfint.backend.modules.sys.bean;
 import com.bdfint.backend.framework.common.DataEntity;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAttribute;
 
@@ -16,6 +17,7 @@ import javax.xml.bind.annotation.XmlAttribute;
  * @author lufengc
  * @version 2016/1/16 9:41
  */
+@Table(name = "sys_dict")
 public class Dict extends DataEntity<Dict> {
 
     private static final long serialVersionUID = 1L;

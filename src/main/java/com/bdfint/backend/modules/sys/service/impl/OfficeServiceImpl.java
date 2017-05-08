@@ -66,7 +66,7 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
     @Override
     public List<Office> getByParentIdsLike(String parentIds) {
         Example example = new Example(Office.class);
-        example.createCriteria().andLike("ParentIds", "%parentIds%");
+        example.createCriteria().andLike("ParentIds", parentIds);
         return officeMapper.selectByExample(example);
     }
 
@@ -123,7 +123,7 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
             object.setParentIds(Menu.getRootId());
         }
         if (StringUtils.isNotEmpty(object.getId())) {
-            officeMapper.updateByPrimaryKeySelective(object);
+            super.update(object);
             // 更新子节点parentIds
             Example example = new Example(Office.class);
             example.createCriteria().andLike("parentId", "," + object.getId() + ",");
@@ -131,12 +131,12 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
             if (officeList != null && officeList.size() > 0) {
                 for (Office p : officeList) {
                     p.setParentIds(p.getParentIds().replace(oldParentIds, object.getParentIds()));
-                    officeMapper.updateByPrimaryKeySelective(p);
+                    super.update(p);
                 }
             }
         } else {
             object.setId(Encodes.uuid());
-            officeMapper.insertSelective(object);
+            super.insert(object);
         }
         UserUtils.removeCache(UserUtils.CACHE_OFFICE_LIST);
         UserUtils.removeCache(UserUtils.CACHE_OFFICE_ALL_LIST);
@@ -161,10 +161,8 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
         }
         //删除该机构及所有子机构项
         super.delete(ids.toString());
-
         //删除角色机构关联表
-        String sql = "delete from sys_role_office where office_id in (" + StringUtils.idsToString(ids.toString()) + ")";
-        officeMapper.deleteRoleOfficeByOfficeIds(ids.toString());
+        officeMapper.deleteRoleOfficeByOfficeIds(ids.toString().split(","));
 
         UserUtils.removeCache(UserUtils.CACHE_OFFICE_LIST);
         UserUtils.removeCache(UserUtils.CACHE_OFFICE_ALL_LIST);

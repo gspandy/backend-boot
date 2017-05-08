@@ -9,6 +9,7 @@ import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
  * @author ThinkGem
  * @version 2013-12-05
  */
+@Table(name = "sys_role")
 public class Role extends DataEntity<Role> {
 	
 	private static final long serialVersionUID = 1L;

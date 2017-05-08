@@ -7,6 +7,7 @@ import com.bdfint.backend.framework.common.DataEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
  * @author ThinkGem
  * @version 2013-05-15
  */
+@Table(name = "sys_menu")
 public class Menu extends DataEntity<Menu> {
 
     private static final long serialVersionUID = 1L;

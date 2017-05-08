@@ -14,8 +14,6 @@ import com.bdfint.backend.framework.servlet.ValidateCodeServlet;
 import com.bdfint.backend.framework.util.CookieUtils;
 import com.bdfint.backend.framework.util.Encodes;
 import com.bdfint.backend.framework.util.StringUtils;
-import com.bdfint.backend.modules.sys.bean.User;
-import com.bdfint.backend.modules.sys.service.UserService;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import com.google.common.collect.Maps;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -26,14 +24,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Map;
 
@@ -58,9 +54,6 @@ public class LoginAction {
     @Autowired
     private SessionDAO sessionDAO;
 
-    @Autowired
-    private UserService userService;
-
     /**
      * 登录页面
      *
@@ -79,34 +72,12 @@ public class LoginAction {
     /**
      * 登录(登录失败执行，真正的登录由过滤器完成)
      *
-     * @param user    object
-     * @param result  数据结果集
      * @param model   Model
      * @param request HttpServletRequest
      * @return view
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@Valid User user, BindingResult result, Model model, HttpServletRequest request) {
-        /*try {
-            Subject subject = UserUtils.getSubject();
-            // 已登陆则 跳到首页
-            if (subject.isAuthenticated()) {
-                return "redirect:/";
-            }
-            if (result.hasErrors()) {
-                model.addAttribute("error", "参数错误！");
-                return "sys/login";
-            }
-            //验证登陆
-            UserUtils.verifyLogin(user);
-            request.getSession().setAttribute("userInfo", UserUtils.getByLoginName(user.getUsername()));
-        	request.getSession().setAttribute("beanList", UserUtils.getMenuList());
-        } catch (AuthenticationException e) {
-            // 身份验证失败
-            model.addAttribute("error", "用户名或密码错误 ！");
-            return "sys/login";
-        }*/
-
+    public String login(Model model, HttpServletRequest request) {
         SecurityRealm.Principal principal = UserUtils.getPrincipal();
         // 如果已经登录，则跳转到首页
         if (principal != null) {
@@ -120,7 +91,6 @@ public class LoginAction {
         if (StringUtils.isBlank(message) || StringUtils.equals(message, "null")) {
             message = "用户或密码错误, 请重试.";
         }
-
         model.addAttribute(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM, username);
         model.addAttribute(FormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM, rememberMe);
         model.addAttribute(FormAuthenticationFilter.DEFAULT_MOBILE_PARAM, mobile);
@@ -130,30 +100,24 @@ public class LoginAction {
             logger.debug("login fail, active session size: {}, message: {}, exception: {}",
                     sessionDAO.getActiveSessions(false).size(), message, exception);
         }
-
         // 非授权异常，登录失败，验证码加1。
         if (!UnauthorizedException.class.getName().equals(exception)) {
             model.addAttribute("isValidateCodeLogin", isValidateCodeLogin(username, true, false));
         }
-
         // 验证失败清空验证码
         request.getSession().setAttribute(ValidateCodeServlet.VALIDATE_CODE, Encodes.uuid());
-
         return "modules/sys/login";
     }
 
     /**
      * 管理登录
-     *
-     * @throws IOException
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout() throws IOException {
+    public String logout() {
         SecurityRealm.Principal principal = UserUtils.getPrincipal();
         // 如果已经登录，则跳转到管理首页
         if (principal != null) {
             UserUtils.getSubject().logout();
-
         }
         return "redirect:" + adminPath + "/login";
     }
@@ -168,11 +132,9 @@ public class LoginAction {
         SecurityRealm.Principal principal = UserUtils.getPrincipal();
         // 登录成功后，验证码计算器清零
         isValidateCodeLogin(principal.getLoginName(), false, true);
-
         if (logger.isDebugEnabled()) {
             logger.debug("show index, active session size: {}", sessionDAO.getActiveSessions(false).size());
         }
-
         // 如果已登录，再次访问主页，则退出原账号。
         if (systemProperties.isNotAllowRefreshIndex()) {
             String logined = CookieUtils.getCookie(request, "LOGINED");
@@ -183,7 +145,6 @@ public class LoginAction {
                 return "redirect:" + adminPath + "/login";
             }
         }
-
         return "modules/sys/index-ins";
     }
 
@@ -196,7 +157,6 @@ public class LoginAction {
     public String home() throws IOException {
         return "modules/sys/home";
     }
-
 
     /**
      * 是否是验证码登录
@@ -235,7 +195,7 @@ public class LoginAction {
         if (StringUtils.isNotBlank(theme)) {
             CookieUtils.setCookie(response, "theme", theme);
         } else {
-            theme = CookieUtils.getCookie(request, "theme");
+            CookieUtils.getCookie(request, "theme");
         }
         return "redirect:" + request.getParameter("url");
     }

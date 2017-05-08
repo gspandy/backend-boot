@@ -95,7 +95,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
             object.setParentIds(Menu.getRootId());
         }
         if (object.getId() != null) {
-            menuMapper.updateByPrimaryKeySelective(object);
+            super.update(object);
             // 更新子节点parentIds
             Example example = new Example(Menu.class);
             example.createCriteria().andLike("parentId", "%," + object.getId() + ",%");
@@ -135,9 +135,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
         //删除该菜单及所有子菜单
         super.delete(ids.toString());
         //删除角色权限关联表
-        for (String menuId : ids.toString().split(",")) {
-            menuMapper.deleteRoleMenuByMenuId(menuId);
-        }
+        menuMapper.deleteRoleMenuByMenuIds(ids.toString().split(","));
         // 清除用户菜单缓存
         UserUtils.removeCache(UserUtils.CACHE_MENU_LIST);
         // 清除日志相关缓存

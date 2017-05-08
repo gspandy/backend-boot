@@ -7,6 +7,7 @@ import com.bdfint.backend.framework.common.DataEntity;
 import com.bdfint.backend.framework.util.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.Date;
 import java.util.Map;
@@ -17,6 +18,7 @@ import java.util.Map;
  * @author lufengc
  * @version 2016/1/16 9:41
  */
+@Table(name = "sys_log")
 public class Log extends DataEntity<Log> {
 
     private static final long serialVersionUID = 1L;

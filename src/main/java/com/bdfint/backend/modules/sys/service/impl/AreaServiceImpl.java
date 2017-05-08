@@ -47,7 +47,7 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
             object.setParentIds(Menu.getRootId());
         }
         if (StringUtils.isNotEmpty(object.getId())) {
-            areaMapper.updateByPrimaryKeySelective(object);
+            super.update(object);
             // 更新子节点parentIds
             Example example = new Example(Area.class);
             example.createCriteria().andLike("parentId", ",object.getId(),");
@@ -55,7 +55,7 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
             if (list != null && list.size() > 0) {
                 for (Area p : list) {
                     p.setParentIds(p.getParentIds().replace(oldParentIds, object.getParentIds()));
-                    areaMapper.updateByPrimaryKeySelective(p);
+                    super.update(object);
                 }
             }
         } else {
@@ -68,7 +68,7 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
             }
             object.setSort(sort);
             object.setId(Encodes.uuid());
-            areaMapper.insertSelective(object);
+            super.insert(object);
         }
         UserUtils.removeCache(UserUtils.CACHE_AREA_LIST);
         return object.getId();

@@ -2,6 +2,7 @@ package com.bdfint.backend.modules.sys.mapper;
 
 import com.bdfint.backend.framework.common.CommonMapper;
 import com.bdfint.backend.modules.sys.bean.Office;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,5 +12,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OfficeMapper extends CommonMapper<Office> {
 
-    void deleteRoleOfficeByOfficeIds(String ids);
+    void deleteRoleOfficeByOfficeIds(@Param("array") String [] ids);
 }
