@@ -1,7 +1,7 @@
 server:
   port: 8888
   address: localhost
-# log
+
 logging:
   file: logs/backend-boot.log
   level:
@@ -10,30 +10,23 @@ logging:
 
 druid:
   driver-class-name: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/platform_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
+  url: jdbc:mysql://localhost:3306/platform_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=true
   username: root
   password: root
-  #DataSource Global Setting
   initialSize: 1
   minIdle: 1
   maxActive: 20
   maxWait: 60000
   timeBetweenEvictionRunsMillis: 60000
   minEvictableIdleTimeMillis: 300000
-  validationQuery: SELECT 1 FROM DUAL
+  validationQuery: SELECT 'x'
   testWhileIdle: true
   testOnBorrow: false
   testOnReturn: false
-  removeAbandoned: true
-  removeAbandonedTimeout: 1800
-  logAbandoned: true
   poolPreparedStatements: true
   maxPoolPreparedStatementPerConnectionSize: 20
   filters: stat
-  connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-  useGlobalDataSourceStat: false
-  # druid StatView
-  statView:
+  stat-view:
     allow: 127.0.0.1
     deny:
     loginUsername: admin
@@ -56,13 +49,11 @@ pagehelper:
   params: count=countSql
 
 spring:
-  #mvc
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
 
-    # REDIS (RedisProperties)
   redis:
     key-prefix: backend-boot
     host: localhost
@@ -76,8 +67,7 @@ spring:
       min-idle: 0
     cluster:
       max-redirects: 5
-      # nodes: localhost:6379
-      nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005,127.0.0.1:7006
+      nodes: 10.82.12.30:6379,10.82.12.30:6479,10.82.12.31:6379
 
 
 #文件上传路径 空为系统默认配置

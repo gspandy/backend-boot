@@ -22,14 +22,9 @@ public class DruidProperties {
     private boolean testWhileIdle;
     private boolean testOnBorrow;
     private boolean testOnReturn;
-    private boolean removeAbandoned;
-    private long removeAbandonedTimeout;
-    private boolean logAbandoned;
     private boolean poolPreparedStatements;
     private int maxPoolPreparedStatementPerConnectionSize;
     private String filters;
-    private String connectionProperties;
-    private String useGlobalDataSourceStat;
     private DruidProperties.StatView statView;
 
     public String getUrl() {
@@ -144,29 +139,6 @@ public class DruidProperties {
         this.testOnReturn = testOnReturn;
     }
 
-    public boolean isRemoveAbandoned() {
-        return removeAbandoned;
-    }
-
-    public void setRemoveAbandoned(boolean removeAbandoned) {
-        this.removeAbandoned = removeAbandoned;
-    }
-
-    public long getRemoveAbandonedTimeout() {
-        return removeAbandonedTimeout;
-    }
-
-    public void setRemoveAbandonedTimeout(long removeAbandonedTimeout) {
-        this.removeAbandonedTimeout = removeAbandonedTimeout;
-    }
-
-    public boolean isLogAbandoned() {
-        return logAbandoned;
-    }
-
-    public void setLogAbandoned(boolean logAbandoned) {
-        this.logAbandoned = logAbandoned;
-    }
 
     public boolean isPoolPreparedStatements() {
         return poolPreparedStatements;
@@ -190,22 +162,6 @@ public class DruidProperties {
 
     public void setFilters(String filters) {
         this.filters = filters;
-    }
-
-    public String getConnectionProperties() {
-        return connectionProperties;
-    }
-
-    public void setConnectionProperties(String connectionProperties) {
-        this.connectionProperties = connectionProperties;
-    }
-
-    public String getUseGlobalDataSourceStat() {
-        return useGlobalDataSourceStat;
-    }
-
-    public void setUseGlobalDataSourceStat(String useGlobalDataSourceStat) {
-        this.useGlobalDataSourceStat = useGlobalDataSourceStat;
     }
 
     public StatView getStatView() {
