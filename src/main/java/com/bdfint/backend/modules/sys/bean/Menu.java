@@ -33,8 +33,6 @@ public class Menu extends DataEntity<Menu> {
 
     public Menu() {
         super();
-        this.sort = 30;
-        this.isShow = "1";
     }
 
     public Menu(String id) {

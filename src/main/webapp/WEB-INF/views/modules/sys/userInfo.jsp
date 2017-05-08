@@ -143,7 +143,7 @@
                                         <tbody>
                                             <tr>
                                                 <td><strong>用户名</strong></td>
-                                                <td>${sysUser.username}</td>
+                                                <td>${sysUser.loingName}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>用户角色</strong></td>

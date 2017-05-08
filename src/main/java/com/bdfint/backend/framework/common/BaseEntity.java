@@ -6,6 +6,7 @@ package com.bdfint.backend.framework.common;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.io.Serializable;
 
@@ -22,6 +23,7 @@ public abstract class BaseEntity<T> implements Serializable {
     /**
      * 实体编号（唯一标识）
      */
+    @Id
     protected String id;
 
     @Transient

@@ -887,4 +887,23 @@ public class JedisUtils {
         return ObjectUtils.unserialize(bytes);
     }
 
+    /**
+     * 清空所有缓存
+     *
+     * @return long
+     */
+    public static long delAll() {
+        long result = 0;
+        JedisCluster jedis = null;
+        try {
+            jedis = getResource();
+            Set<String> keys = keys("*");
+            for (String key : keys) {
+                jedis.del(key);
+            }
+        } finally {
+            returnResource(jedis);
+        }
+        return result;
+    }
 }

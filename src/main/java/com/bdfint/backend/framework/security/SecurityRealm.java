@@ -79,10 +79,10 @@ public class SecurityRealm extends AuthorizingRealm {
         // 校验用户名密码
         User user = userService.getByLoginName(token.getUsername());
         if (user != null) {
-            if (Objects.equals(user.getLoginFlag(), User.DEL_FLAG_DELETE)) {
+            if (Objects.equals(user.getDelFlag(), User.DEL_FLAG_DELETE)) {
                 throw new AuthenticationException("msg:该帐号不存在.");
             }
-            if (Objects.equals(user.getLoginFlag(), User.DEL_FLAG_AUDIT)) {
+            if (Objects.equals(user.getDelFlag(), User.DEL_FLAG_AUDIT)) {
                 throw new AuthenticationException("msg:该帐号还未审核通过，请耐心等待或联系管理员.");
             }
             byte[] salt = Encodes.decodeHex(user.getPassword().substring(0, 16));

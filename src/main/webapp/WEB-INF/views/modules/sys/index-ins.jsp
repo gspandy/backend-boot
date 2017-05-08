@@ -27,7 +27,7 @@
                                        <c:if test="${not empty fns:getUser().photo}">${fns:getFileAccessPath()}/${fns:getUser().photo}</c:if>" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                                    <span class="block m-t-xs"><strong class="font-bold">${fns:getUser().username}</strong></span>
+                                    <span class="block m-t-xs"><strong class="font-bold">${fns:getUser().loginName}</strong></span>
                                     <span class="text-muted text-xs block">${fns:getUser().roleNames}<b class="caret"></b></span>
                                 </span>
                             </a>
@@ -42,20 +42,20 @@
                         </div>
                     </li>
                     <c:forEach items="${fns:getMenuList()}" var="bean">
-                        <c:if test="${bean.parentId == 0}">
+                        <c:if test="${bean.parentId eq '1'}">
                             <li>
                                 <a href="#">
-                                    <i class="fa ${bean.thumbImg}"></i>
-                                    <span class="nav-label"> ${bean.permissionName} </span>
+                                    <i class="fa ${bean.icon}"></i>
+                                    <span class="nav-label"> ${bean.name} </span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <c:forEach items="${fns:getMenuList()}" var="bean1">
                                         <c:if test="${bean1.parentId == bean.id}">
                                             <li>
-                                                <a class="J_menuItem" href="${ctx}${bean1.funUrl}">
+                                                <a class="J_menuItem" href="${ctx}${bean1.href}">
                                                     <i class="fa "></i>
-                                                    <span class="nav-label">${bean1.permissionName}</span>
+                                                    <span class="nav-label">${bean1.name}</span>
                                                 </a>
                                             </li>
                                         </c:if>
