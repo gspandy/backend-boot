@@ -37,7 +37,7 @@
 	</script>
 </head>
 <body>
-	<form:form id="inputForm" modelAttribute="sysPermission" action="${ctx}/sys/permission/save" method="post" class="form-horizontal">
+	<form:form id="inputForm" modelAttribute="menu" action="${ctx}/sys/permission/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
 		<table class="table table-bordered table-condensed dataTables-example dataTable no-footer">

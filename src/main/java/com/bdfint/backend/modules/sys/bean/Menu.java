@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -30,6 +31,9 @@ public class Menu extends DataEntity<Menu> {
     private Integer sort;    // 排序
     private String isShow;    // 是否在菜单中显示（1：显示；0：不显示）
     private String permission; // 权限标识
+
+    @Transient
+    private String parentName;
 
     public Menu() {
         super();
@@ -119,6 +123,13 @@ public class Menu extends DataEntity<Menu> {
         this.permission = permission;
     }
 
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
 
     @JsonIgnore
     public static void sortList(List<Menu> list, List<Menu> sourcelist, String parentId, boolean cascade) {
