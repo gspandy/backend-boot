@@ -42,7 +42,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         User user = new User();
         user.setLoginName(loginName);
         user = userMapper.selectOne(user);
-        user.setRoleList(roleService.getRoleByUserId(user.getId()));
+        if (user != null) {
+            user.setRoleList(roleService.getRoleByUserId(user.getId()));
+        }
         return user;
     }
 

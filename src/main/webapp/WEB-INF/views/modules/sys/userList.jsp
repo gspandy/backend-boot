@@ -86,7 +86,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <form:form id="searchForm" modelAttribute="user" action="${ctx}/sys/user/list" method="post" class="form-inline">
-                        <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNum}"/>
+                        <input id="pageNum" name="pageNum" type="hidden" value="${page.pageNum}"/>
                         <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
                         <table:sortColumn id="orderBy" name="orderBy" value="" callback="sortOrRefresh();"/><!-- 支持排序 -->
                         <div class="form-group">

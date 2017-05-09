@@ -12,17 +12,17 @@
                 //do something
                 //导出之前备份
                 var url = $("#searchForm").attr("action");
-                var pageNo = $("#pageNo").val();
+                var pageNum = $("#pageNum").val();
                 var pageSize = $("#pageSize").val();
                 //导出excel
                 $("#searchForm").attr("action", "${url}");
-                $("#pageNo").val(-1);
+                $("#pageNum").val(-1);
                 $("#pageSize").val(-1);
                 $("#searchForm").submit();
 
                 //导出excel之后还原
                 $("#searchForm").attr("action", url);
-                $("#pageNo").val(pageNo);
+                $("#pageNum").val(pageNum);
                 $("#pageSize").val(pageSize);
                 top.layer.close(index);
             });

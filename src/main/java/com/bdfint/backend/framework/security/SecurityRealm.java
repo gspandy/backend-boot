@@ -89,7 +89,7 @@ public class SecurityRealm extends AuthorizingRealm {
             return new SimpleAuthenticationInfo(new Principal(user, token.isMobileLogin()),
                     user.getPassword().substring(16), ByteSource.Util.bytes(salt), getName());
         } else {
-            return null;
+            throw new AuthenticationException("msg:该帐号不存在.");
         }
     }
 
