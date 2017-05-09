@@ -476,7 +476,7 @@ function sortOrRefresh() {//刷新或者排序，页码不清零
     return false;
 }
 function page(n, s) {//翻页
-    if(n) $("#pageNo").val(n);
+    if(n) $("#pageNum").val(n);
     if(s) $("#pageSize").val(s);
     $("#searchForm").submit();
     //$("span.page-size").text(s);

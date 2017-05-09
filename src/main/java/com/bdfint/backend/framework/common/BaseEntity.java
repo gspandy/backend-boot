@@ -27,9 +27,9 @@ public abstract class BaseEntity<T> implements Serializable {
     protected String id;
 
     @Transient
-    protected int pageNum;
+    protected int pageNum = 1;
     @Transient
-    protected int pageSize;
+    protected int pageSize = 10;
 
 
     public BaseEntity() {

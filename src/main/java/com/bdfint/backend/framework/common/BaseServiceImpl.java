@@ -104,6 +104,9 @@ public abstract class BaseServiceImpl<T extends DataEntity<T>> implements BaseSe
     public PageInfo<T> getPage(T object) throws Exception {
         PageHelper.startPage(object.getPageNum(), object.getPageSize());
         List<T> list = mapper.select(object);
-        return new PageInfo<>(list);
+        PageInfo<T> page = new PageInfo<>(list);
+        page.setPageNum(object.getPageNum());
+        page.setPageSize(object.getPageSize());
+        return page;
     }
 }

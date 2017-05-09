@@ -90,11 +90,11 @@
                         <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
                         <table:sortColumn id="orderBy" name="orderBy" value="" callback="sortOrRefresh();"/><!-- 支持排序 -->
                         <div class="form-group">
-                            <span>用户名：<form:input path="loginName" htmlEscape="false" maxlength="50" class="form-control"/></span>
+                            <%--<span>用户名：<form:input path="loginName" htmlEscape="false" maxlength="50" class="form-control"/></span>--%>
 
-                            <span>姓名：<form:input path="name" htmlEscape="false" maxlength="50" class="form-control"/></span>
+                            <%--<span>姓名：<form:input path="name" htmlEscape="false" maxlength="50" class="form-control"/></span>--%>
 
-                            <span>手机号：<form:input path="mobile" htmlEscape="false" maxlength="50" class="form-control"/></span>
+                            <%--<span>手机号：<form:input path="mobile" htmlEscape="false" maxlength="50" class="form-control"/></span>--%>
 
                             <button  class="btn btn-primary btn-outline btn-sm " onclick="searchAll()" ><i class="fa fa-search"></i> 查询</button>
                             <button  class="btn btn-primary btn-outline btn-sm " onclick="resetAll()" ><i class="fa fa-refresh"></i> 重置</button>

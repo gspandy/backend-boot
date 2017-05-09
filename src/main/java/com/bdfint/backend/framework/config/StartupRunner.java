@@ -22,7 +22,7 @@ public class StartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        JedisUtils.delAll();
+        //JedisUtils.delAll();
         logger.info("所有缓存数据已清除");
     }
 }
