@@ -88,13 +88,13 @@
                     <form:form id="searchForm" modelAttribute="user" action="${ctx}/sys/user/list" method="post" class="form-inline">
                         <input id="pageNum" name="pageNum" type="hidden" value="${page.pageNum}"/>
                         <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-                        <table:sortColumn id="orderBy" name="orderBy" value="" callback="sortOrRefresh();"/><!-- 支持排序 -->
+                        <table:sortColumn id="orderBy" name="orderBy" value="${user.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                         <div class="form-group">
-                            <%--<span>用户名：<form:input path="loginName" htmlEscape="false" maxlength="50" class="form-control"/></span>--%>
+                            <span>登录名：<form:input path="loginName" htmlEscape="false" maxlength="50" class="form-control"/></span>
 
-                            <%--<span>姓名：<form:input path="name" htmlEscape="false" maxlength="50" class="form-control"/></span>--%>
+                            <span>姓名：<form:input path="name" htmlEscape="false" maxlength="50" class="form-control"/></span>
 
-                            <%--<span>手机号：<form:input path="mobile" htmlEscape="false" maxlength="50" class="form-control"/></span>--%>
+                            <span>手机号：<form:input path="mobile" htmlEscape="false" maxlength="50" class="form-control"/></span>
 
                             <button  class="btn btn-primary btn-outline btn-sm " onclick="searchAll()" ><i class="fa fa-search"></i> 查询</button>
                             <button  class="btn btn-primary btn-outline btn-sm " onclick="resetAll()" ><i class="fa fa-refresh"></i> 重置</button>
@@ -136,12 +136,12 @@
                 <thead>
                     <tr>
                         <th><input type="checkbox" class="i-checks"></th>
-                        <th class="sort-column loginName">用户名</th>
+                        <th class="sort-column login_name">用户名</th>
                         <th class="sort-column name">姓名</th>
                         <th class="sort-column mobile">手机号</th>
                         <th class="sort-column email">邮箱</th>
-                        <th class="sort-column loginFlag">用户状态</th>
-                        <th class="sort-column userType">用户类型</th>
+                        <th class="sort-column login_flag">用户状态</th>
+                        <th class="sort-column user_type">用户类型</th>
                         <shiro:hasPermission name="sys:user:edit"><th>操作</th></shiro:hasPermission>
                     </tr>
                 </thead>

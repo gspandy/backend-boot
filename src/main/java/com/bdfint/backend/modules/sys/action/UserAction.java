@@ -27,6 +27,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import tk.mybatis.mapper.entity.Condition;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -111,19 +113,34 @@ public class UserAction extends BaseAction<User> {
     @RequiresPermissions("sys:user:view")
     public String list(Model model, User object, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        //String conditions = "status <> 0";
+
+        Condition condition = new Condition(User.class);
+        Example.Criteria criteria = condition.createCriteria();
+        if (object.getLoginName() != null) {
+            criteria.andLike("loginName", "%" + object.getLoginName() + "%");
+        }
+        if (object.getName() != null) {
+            criteria.andLike("name", "%" + object.getName() + "%");
+        }
+        if (object.getMobile() != null) {
+            criteria.andLike("mobile", "%" + object.getMobile() + "%");
+        }
         //根据当前组织机构ID查询数据
+        List<String> ids = Lists.newArrayList();
         if (StringUtils.isNotEmpty(object.getOfficeId())) {
-            String ids = object.getOfficeId();
+            ids.add(object.getOfficeId());
             List<Office> offices = officeService.getByParentIdsLike(object.getOfficeId());
             if (offices != null && offices.size() > 0) {
                 for (Office office : offices) {
-                    ids += "," + office.getId();
+                    ids.add(office.getId());
                 }
             }
         }
-        object.setOfficeId(null);
-        PageInfo<User> page = userService.getPage(object);
+        if (ids.size() > 0) {
+            criteria.andIn("officeId", ids);
+        }
+
+        PageInfo<User> page = userService.getPage(object, condition);
         model.addAttribute("page", page);
         return "modules/sys/userList";
     }
@@ -235,7 +252,7 @@ public class UserAction extends BaseAction<User> {
     public String exportFile(User user, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         try {
             String fileName = "用户数据" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
-            PageInfo<User> page = userService.getPage(user);
+            PageInfo<User> page = userService.getPage(user, new Condition(User.class));
             new ExportExcel("用户数据", User.class).setDataList(page.getList()).write(response, fileName).dispose();
             return null;
         } catch (Exception e) {

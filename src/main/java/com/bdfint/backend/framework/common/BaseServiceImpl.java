@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.entity.Condition;
 
 import java.util.List;
 
@@ -101,9 +102,10 @@ public abstract class BaseServiceImpl<T extends DataEntity<T>> implements BaseSe
      * @return Page<T>
      */
     @Override
-    public PageInfo<T> getPage(T object) throws Exception {
+    public PageInfo<T> getPage(T object, Condition condition) throws Exception {
+        condition.setOrderByClause(object.getOrderBy());
         PageHelper.startPage(object.getPageNum(), object.getPageSize());
-        List<T> list = mapper.select(object);
+        List<T> list = mapper.selectByExample(condition);
         PageInfo<T> page = new PageInfo<>(list);
         page.setPageNum(object.getPageNum());
         page.setPageSize(object.getPageSize());

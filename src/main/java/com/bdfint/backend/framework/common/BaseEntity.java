@@ -30,6 +30,8 @@ public abstract class BaseEntity<T> implements Serializable {
     protected int pageNum = 1;
     @Transient
     protected int pageSize = 10;
+    @Transient
+    protected String orderBy;
 
 
     public BaseEntity() {
@@ -63,6 +65,14 @@ public abstract class BaseEntity<T> implements Serializable {
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public String getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
     }
 
     @Override

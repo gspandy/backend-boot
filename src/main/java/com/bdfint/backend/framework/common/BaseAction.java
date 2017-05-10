@@ -30,6 +30,7 @@ import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -249,13 +250,19 @@ public abstract class BaseAction<T> {
         binder.registerCustomEditor(String.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
-                setValue(text == null ? null : StringEscapeUtils.escapeHtml4(text.trim()));
+                if (text != null) {
+                    if (Objects.equals(text.trim(), "")) {
+                        setValue(null);
+                    } else {
+                        setValue(StringEscapeUtils.escapeHtml4(text.trim()));
+                    }
+                }
             }
 
             @Override
             public String getAsText() {
                 Object value = getValue();
-                return value != null ? value.toString() : "";
+                return value != null ? value.toString() : null;
             }
         });
         // Date 类型转换

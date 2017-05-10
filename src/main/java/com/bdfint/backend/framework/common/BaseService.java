@@ -6,7 +6,7 @@ package com.bdfint.backend.framework.common;
 
 
 import com.github.pagehelper.PageInfo;
-import org.springframework.data.domain.Page;
+import tk.mybatis.mapper.entity.Condition;
 
 import java.util.List;
 
@@ -67,9 +67,8 @@ public interface BaseService<T> {
 
 
     /**
-     *
      * @param object 要查询的对象
      * @return PageInfo<T>
      */
-    PageInfo<T> getPage(T object) throws Exception;
+    PageInfo<T> getPage(T object, Condition condition) throws Exception;
 }
