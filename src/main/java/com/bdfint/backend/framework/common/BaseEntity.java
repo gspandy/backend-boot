@@ -29,7 +29,7 @@ public abstract class BaseEntity<T> implements Serializable {
     @Transient
     protected int pageNum = 1;
     @Transient
-    protected int pageSize = 10;
+    protected int pageSize;
     @Transient
     protected String orderBy;
 

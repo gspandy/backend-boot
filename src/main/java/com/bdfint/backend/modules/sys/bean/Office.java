@@ -35,10 +35,17 @@ public class Office extends TreeEntity<Office> {
 
     @Transient
     private List<String> childDeptList;//快速添加子部门
+    @Transient
+    private String parentName;
+    @Transient
+    private String areaName;
+    @Transient
+    private String primaryPersonName;
+    @Transient
+    private String deputyPersonName;
 
     public Office() {
         super();
-        this.type = "2";
     }
 
     public String getAreaId() {
@@ -151,6 +158,38 @@ public class Office extends TreeEntity<Office> {
 
     public void setChildDeptList(List<String> childDeptList) {
         this.childDeptList = childDeptList;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public String getPrimaryPersonName() {
+        return primaryPersonName;
+    }
+
+    public void setPrimaryPersonName(String primaryPersonName) {
+        this.primaryPersonName = primaryPersonName;
+    }
+
+    public String getDeputyPersonName() {
+        return deputyPersonName;
+    }
+
+    public void setDeputyPersonName(String deputyPersonName) {
+        this.deputyPersonName = deputyPersonName;
     }
 
     @Override

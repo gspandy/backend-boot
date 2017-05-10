@@ -21,7 +21,7 @@ import java.util.Objects;
  * 用户工具类
  *
  * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 public class UserUtils {
 
@@ -82,8 +82,18 @@ public class UserUtils {
      * @param loginName 登录名
      * @return 取不到返回null
      */
-    public static User getByLoginName(String loginName) {
-        return userService.getByLoginName(loginName);
+    public static User getUserByLoginName(String loginName) {
+        return userService.getUserByLoginName(loginName);
+    }
+
+    /**
+     * 根据姓名获取用户
+     *
+     * @param name 登录名
+     * @return 取不到返回null
+     */
+    public static List<User> getUserByName(String name) {
+        return userService.getUserByName(name);
     }
 
 
@@ -135,16 +145,6 @@ public class UserUtils {
             menuList = new ArrayList<>();
         }
         List<Menu> list = Lists.newArrayList();
-        menuList.sort((o1, o2) -> {
-            // 按sortId升序排序
-            if (o1.getSort() > o2.getSort()) {
-                return 1;
-            } else if (Objects.equals(o1.getSort(), o2.getSort())) {
-                return 0;
-            } else {
-                return -1;
-            }
-        });
         Menu.sortList(list, menuList, Menu.getRootId(), true);
         return list;
     }
@@ -170,8 +170,6 @@ public class UserUtils {
 
     /**
      * 获取当前用户有权限访问的部门
-     *
-     * @return
      */
     public static List<Office> getOfficeList() {
         @SuppressWarnings("unchecked")
@@ -195,8 +193,6 @@ public class UserUtils {
 
     /**
      * 获取所有部门列表
-     *
-     * @return
      */
     public static List<Office> getOfficeAllList() {
         @SuppressWarnings("unchecked")

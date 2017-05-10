@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 菜单Entity
@@ -133,6 +134,16 @@ public class Menu extends DataEntity<Menu> {
 
     @JsonIgnore
     public static void sortList(List<Menu> list, List<Menu> sourcelist, String parentId, boolean cascade) {
+        sourcelist.sort((o1, o2) -> {
+            // 按sortId升序排序
+            if (o1.getSort() > o2.getSort()) {
+                return 1;
+            } else if (Objects.equals(o1.getSort(), o2.getSort())) {
+                return 0;
+            } else {
+                return -1;
+            }
+        });
         for (int i = 0; i < sourcelist.size(); i++) {
             Menu e = sourcelist.get(i);
             if (e.getParentId() != null && e.getParentId().equals(parentId)) {

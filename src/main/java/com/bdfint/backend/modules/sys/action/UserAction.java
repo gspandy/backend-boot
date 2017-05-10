@@ -161,7 +161,6 @@ public class UserAction extends BaseAction<User> {
      * 保存
      *
      * @return ModelAndView
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "save")
@@ -222,17 +221,17 @@ public class UserAction extends BaseAction<User> {
     /**
      * 验证用户名是否有效
      *
-     * @param oldUsername 用户id
-     * @param username    用户名
+     * @param oldLoginName 旧用户名
+     * @param loginName    用户名
      * @return String
      */
     @ResponseBody
     @RequiresPermissions("sys:user:edit")
     @RequestMapping(value = "checkUsername")
-    public String checkLoginName(String oldUsername, String username) {
-        if (username != null && username.equals(oldUsername)) {
+    public String checkLoginName(String oldLoginName, String loginName) {
+        if (loginName != null && loginName.equals(oldLoginName)) {
             return "true";
-        } else if (username != null && userService.getByLoginName(username) == null) {
+        } else if (loginName != null && userService.getUserByLoginName(loginName) == null) {
             return "true";
         }
         return "false";

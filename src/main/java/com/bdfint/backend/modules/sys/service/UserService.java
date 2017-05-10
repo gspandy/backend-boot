@@ -25,7 +25,14 @@ public interface UserService extends BaseService<User> {
      * @param username 用户名
      * @return User
      */
-    User getByLoginName(String username);
+    User getUserByLoginName(String username);
+
+    /**
+     * 根据用户姓名查询
+     * @param name 姓名
+     * @return User
+     */
+    List<User> getUserByName(String name);
 
     /**
      * 根据角色ID查询用户列表
@@ -53,5 +60,6 @@ public interface UserService extends BaseService<User> {
     int updateStatus(String ids, User user) throws Exception;
 
     int initPassword(String ids, String password) throws Exception;
+
 
 }

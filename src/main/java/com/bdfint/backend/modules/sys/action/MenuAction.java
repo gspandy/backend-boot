@@ -79,16 +79,6 @@ public class MenuAction extends BaseAction<Menu> {
             sourcelist = menuService.getMenuByUserId(user.getId());
         }
         List<Menu> list = Lists.newArrayList();
-        sourcelist.sort((o1, o2) -> {
-            // 按sortId升序排序
-            if (o1.getSort() > o2.getSort()) {
-                return 1;
-            } else if (Objects.equals(o1.getSort(), o2.getSort())) {
-                return 0;
-            } else {
-                return -1;
-            }
-        });
         Menu.sortList(list, sourcelist, Menu.getRootId(), true);
         model.addAttribute("list", list);
         return "modules/sys/menuList";

@@ -20,7 +20,6 @@ public abstract class TreeEntity<T> extends DataEntity<T> {
 
     public TreeEntity() {
         super();
-        this.sort = 30;
     }
 
     public TreeEntity(String id) {

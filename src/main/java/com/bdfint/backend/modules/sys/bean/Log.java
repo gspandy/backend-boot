@@ -32,9 +32,9 @@ public class Log extends DataEntity<Log> {
     private String exception;    // 异常信息
 
     @Transient
-    private Date beginDate;        // 开始日期
+    private String createTimeRange;
     @Transient
-    private Date endDate;        // 结束日期
+    private String createName;
 
     // 日志类型（1：接入日志；2：错误日志）
     public static final String TYPE_ACCESS = "1";
@@ -112,20 +112,20 @@ public class Log extends DataEntity<Log> {
         this.exception = exception;
     }
 
-    public Date getBeginDate() {
-        return beginDate;
+    public String getCreateTimeRange() {
+        return createTimeRange;
     }
 
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
+    public void setCreateTimeRange(String createTimeRange) {
+        this.createTimeRange = createTimeRange;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public String getCreateName() {
+        return createName;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setCreateName(String createName) {
+        this.createName = createName;
     }
 
     /**

@@ -66,7 +66,7 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
     @Override
     public List<Office> getByParentIdsLike(String parentIds) {
         Example example = new Example(Office.class);
-        example.createCriteria().andLike("ParentIds", parentIds);
+        example.createCriteria().andLike("parentIds", parentIds);
         return officeMapper.selectByExample(example);
     }
 
@@ -75,7 +75,6 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
      *
      * @param parentId 父id
      * @return List<Office>
-     * @throws Exception
      */
     @Override
     public List<Office> getByParentId(String parentId) throws Exception {

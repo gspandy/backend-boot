@@ -12,7 +12,6 @@ import com.bdfint.backend.modules.sys.action.LoginAction;
 import com.bdfint.backend.modules.sys.bean.Menu;
 import com.bdfint.backend.modules.sys.bean.Role;
 import com.bdfint.backend.modules.sys.bean.User;
-import com.bdfint.backend.modules.sys.service.UserService;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -49,8 +48,6 @@ public class SecurityRealm extends AuthorizingRealm {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private UserService userService;
-    @Autowired
     private SessionDAO sessionDao;
 
     /**
@@ -77,7 +74,7 @@ public class SecurityRealm extends AuthorizingRealm {
             }
         }
         // 校验用户名密码
-        User user = userService.getByLoginName(token.getUsername());
+        User user = UserUtils.getUserByLoginName(token.getUsername());
         if (user != null) {
             if (Objects.equals(user.getDelFlag(), User.DEL_FLAG_DELETE)) {
                 throw new AuthenticationException("msg:该帐号不存在.");
@@ -114,7 +111,7 @@ public class SecurityRealm extends AuthorizingRealm {
 				}
 			}
 		}*/
-        final User user = userService.getByLoginName(principal.getLoginName());
+        final User user = UserUtils.getUserByLoginName(principal.getLoginName());
         if (user != null) {
             SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
             // 添加基于Permission的权限信息
@@ -201,7 +198,7 @@ public class SecurityRealm extends AuthorizingRealm {
      * 清空所有关联认证
      * @Deprecated 不需要清空，授权缓存保存到session中
      */
-	/*@Deprecated
+    /*@Deprecated
 	public void clearAllCachedAuthorizationInfo() {
 		Cache<Object, AuthorizationInfo> cache = getAuthorizationCache();
 		if (cache != null) {

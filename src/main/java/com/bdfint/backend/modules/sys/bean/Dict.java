@@ -8,6 +8,7 @@ import com.bdfint.backend.framework.common.DataEntity;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAttribute;
 
@@ -27,6 +28,9 @@ public class Dict extends DataEntity<Dict> {
     private String description;// 描述
     private Integer sort;	// 排序
     private String parentId;//父Id
+
+    @Transient
+    private Integer actionType;
 
     public Dict() {
         super();
@@ -96,6 +100,14 @@ public class Dict extends DataEntity<Dict> {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
+    }
+
+    public Integer getActionType() {
+        return actionType;
+    }
+
+    public void setActionType(Integer actionType) {
+        this.actionType = actionType;
     }
 
     @Override

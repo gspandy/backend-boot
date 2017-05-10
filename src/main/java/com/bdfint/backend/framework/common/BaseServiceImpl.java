@@ -104,11 +104,12 @@ public abstract class BaseServiceImpl<T extends DataEntity<T>> implements BaseSe
     @Override
     public PageInfo<T> getPage(T object, Condition condition) throws Exception {
         condition.setOrderByClause(object.getOrderBy());
-        PageHelper.startPage(object.getPageNum(), object.getPageSize());
+        int pageSize = object.getPageSize() == 0 ? Global.PAGE_SIZE : object.getPageSize();
+        PageHelper.startPage(object.getPageNum(), pageSize);
         List<T> list = mapper.selectByExample(condition);
         PageInfo<T> page = new PageInfo<>(list);
         page.setPageNum(object.getPageNum());
-        page.setPageSize(object.getPageSize());
+        page.setPageSize(pageSize);
         return page;
     }
 }

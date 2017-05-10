@@ -21,7 +21,7 @@ import java.util.List;
  * 用户service实现类
  *
  * @author lufengcheng
- * @date 2016-01-15 09:53:27
+ * @version 2016-01-15 09:53:27
  */
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
@@ -38,7 +38,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
      * @return User
      */
     @Override
-    public User getByLoginName(String loginName) {
+    public User getUserByLoginName(String loginName) {
         User user = new User();
         user.setLoginName(loginName);
         user = userMapper.selectOne(user);
@@ -46,6 +46,13 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
             user.setRoleList(roleService.getRoleByUserId(user.getId()));
         }
         return user;
+    }
+
+    @Override
+    public List<User> getUserByName(String name) {
+        User user = new User();
+        user.setName(name);
+        return userMapper.select(user);
     }
 
 
@@ -98,9 +105,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
     /**
      * 密码初始化
-     * @param ids 需要初始化的id
+     *
+     * @param ids      需要初始化的id
      * @param password 需要初始化的密码
-     * @return
      */
     @Override
     public int initPassword(String ids, String password) throws Exception {
@@ -120,7 +127,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
      * 保存用户信息
      *
      * @param object User
-     * @throws Exception
      */
     @Override
     public String save(User object) throws Exception {
@@ -137,7 +143,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         } else {
             if (StringUtils.isNotBlank(object.getPassword())) {
                 object.setPassword(Encodes.encryptPassword(object.getPassword()));
-            }else{
+            } else {
                 object.setPassword(Encodes.encryptPassword("123456"));
             }
             object.setId(Encodes.uuid());
@@ -154,7 +160,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
      * 删除用户信息（逻辑删除）
      *
      * @param ids 要删除的ID
-     * @throws Exception
      */
     @Override
     public int delete(String ids) throws Exception {
