@@ -79,6 +79,7 @@ public class MenuAction extends BaseAction<Menu> {
             sourcelist = menuService.getMenuByUserId(user.getId());
         }
         List<Menu> list = Lists.newArrayList();
+        Menu.sort(sourcelist);
         Menu.sortList(list, sourcelist, Menu.getRootId(), true);
         model.addAttribute("list", list);
         return "modules/sys/menuList";
@@ -102,6 +103,7 @@ public class MenuAction extends BaseAction<Menu> {
         if (object.getId() == null) {
             List<Menu> list = Lists.newArrayList();
             List<Menu> sourcelist = menuService.getList(new Menu());
+            Menu.sort(sourcelist);
             Menu.sortList(list, sourcelist, object.getParentId(), false);
             if (list.size() > 0) {
                 if (Objects.equals(object.getParentId(), "1")) {

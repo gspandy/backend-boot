@@ -133,7 +133,7 @@ public class Menu extends DataEntity<Menu> {
     }
 
     @JsonIgnore
-    public static void sortList(List<Menu> list, List<Menu> sourcelist, String parentId, boolean cascade) {
+    public static void sort(List<Menu> sourcelist) {
         sourcelist.sort((o1, o2) -> {
             // 按sortId升序排序
             if (o1.getSort() > o2.getSort()) {
@@ -144,6 +144,10 @@ public class Menu extends DataEntity<Menu> {
                 return -1;
             }
         });
+    }
+
+    @JsonIgnore
+    public static void sortList(List<Menu> list, List<Menu> sourcelist, String parentId, boolean cascade) {
         for (int i = 0; i < sourcelist.size(); i++) {
             Menu e = sourcelist.get(i);
             if (e.getParentId() != null && e.getParentId().equals(parentId)) {

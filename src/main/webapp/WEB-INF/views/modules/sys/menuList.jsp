@@ -7,7 +7,7 @@
     <%@include file="/WEB-INF/views/include/treetable.jsp" %>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#treeTable").treeTable({expandLevel : 3,column:0}).show();
+            $("#treeTable").treeTable({expandLevel : 4,column:0}).show();
         });
         function updateSort() {
             loading('正在提交，请稍等...');

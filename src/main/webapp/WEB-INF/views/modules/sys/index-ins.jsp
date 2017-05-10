@@ -109,7 +109,7 @@
                 <span class="roll-nav roll-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             </div>
             <div class="row J_mainContent" id="content-main">
-                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="${ctx}/home" frameborder="0" data-id="${ctx}/home" seamless></iframe>
+                <iframe class="J_iframe" name="iframe0" width="100%" height="98%" src="${ctx}/home" frameborder="0" data-id="${ctx}/home" seamless></iframe>
             </div>
             <div class="footer">
                 <div class="pull-left"><a href="http://www.zlgx.vip">http://www.zsteel.cc</a> &copy; 2016-2026</div>

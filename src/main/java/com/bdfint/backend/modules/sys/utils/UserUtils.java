@@ -145,6 +145,7 @@ public class UserUtils {
             menuList = new ArrayList<>();
         }
         List<Menu> list = Lists.newArrayList();
+        Menu.sort(menuList);
         Menu.sortList(list, menuList, Menu.getRootId(), true);
         return list;
     }
