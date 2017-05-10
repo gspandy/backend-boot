@@ -22,7 +22,7 @@ import java.util.List;
  * @author lufengcheng
  * @date 2016-01-15 09:56:22
  */
-public abstract class BaseServiceImpl<T extends DataEntity<T>> implements BaseService<T> {
+public abstract class BaseServiceImpl<T extends BaseEntity<T>> implements BaseService<T> {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 

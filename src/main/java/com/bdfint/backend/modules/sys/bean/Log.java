@@ -3,7 +3,7 @@
  */
 package com.bdfint.backend.modules.sys.bean;
 
-import com.bdfint.backend.framework.common.DataEntity;
+import com.bdfint.backend.framework.common.BaseEntity;
 import com.bdfint.backend.framework.util.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
@@ -19,7 +19,7 @@ import java.util.Map;
  * @version 2016/1/16 9:41
  */
 @Table(name = "sys_log")
-public class Log extends DataEntity<Log> {
+public class Log extends BaseEntity<Log> {
 
     private static final long serialVersionUID = 1L;
     private String type;        // 日志类型（1：接入日志；2：错误日志）
@@ -31,6 +31,9 @@ public class Log extends DataEntity<Log> {
     private String userAgent;    // 操作用户代理信息
     private String exception;    // 异常信息
 
+    protected String createBy;    // 创建者
+    protected Date createDate;    // 创建日期
+
     @Transient
     private String createTimeRange;
     @Transient
@@ -41,7 +44,6 @@ public class Log extends DataEntity<Log> {
     public static final String TYPE_EXCEPTION = "2";
 
     public Log() {
-        this.delFlag = null;
     }
 
     public Log(String id) {
@@ -126,6 +128,22 @@ public class Log extends DataEntity<Log> {
 
     public void setCreateName(String createName) {
         this.createName = createName;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     /**

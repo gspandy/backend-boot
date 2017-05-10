@@ -99,7 +99,9 @@ public class LogAction extends BaseAction<Log> {
             conditions += "create_time >= '" + start + "' and create_time <= '" + end + "'";
         }
 
-        criteria.andCondition(conditions);
+        if(StringUtils.isNotEmpty(conditions)){
+            criteria.andCondition(conditions);
+        }
         PageInfo<Log> page = logService.getPage(object, condition);
         model.addAttribute("page", page);
         return "modules/sys/logList";

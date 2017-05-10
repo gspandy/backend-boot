@@ -26,16 +26,16 @@
             <!-- 查询条件 -->
             <div class="row">
                 <div class="col-sm-12">
-                    <form:form id="searchForm" modelAttribute="sysLog" action="${ctx}/sys/log/" method="post" class="form-inline">
+                    <form:form id="searchForm" modelAttribute="log" action="${ctx}/sys/log/" method="post" class="form-inline">
                         <input id="pageNum" name="pageNum" type="hidden" value="${page.pageNum}"/>
                         <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-                        <table:sortColumn id="orderBy" name="orderBy" value="${page.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
+                        <table:sortColumn id="orderBy" name="orderBy" value="${log.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                         <div class="form-group">
                             <label>操作菜单：<form:input path="title" htmlEscape="false" maxlength="50" class="form-control"/></label>
                             <label>用户ID：<form:input path="createName" htmlEscape="false" maxlength="50" class="form-control"/></label>
                             <label>URI：<form:input path="requestUri" htmlEscape="false" maxlength="50" class="form-control"/></label>
                             <label>操作日期：<form:input path="createTimeRange" htmlEscape="false" maxlength="50" class="form-control" readonly="true"/></label>
-                            <label><input id="type" name="type" class="i-checks" type="checkbox"${sysLog.type eq '1'?' checked':''} value="1"/>只查询异常信息</label>
+                            <label><input id="type" name="type" class="i-checks" type="checkbox"${log.type eq '1'?' checked':''} value="1"/>只查询异常信息</label>
                             <button class="btn btn-primary btn-outline btn-sm" onclick="searchAll()" ><i class="fa fa-search"></i> 查询</button>
                             <button class="btn btn-primary btn-outline btn-sm" onclick="resetAll()" ><i class="fa fa-refresh"></i> 重置</button>
                         </div>
@@ -76,11 +76,11 @@
                     <tr>
                         <td> <input type="checkbox" id="${log.id}" class="i-checks"></td>
                         <td>${log.title}</td>
-                        <td>${fns:getUserById(log.createBy).realName}</td>
+                        <td>${fns:getUserById(log.createBy).name}</td>
                         <td><strong>${log.requestUri}</strong></td>
                         <td>${log.method}</td>
                         <td>${log.remoteAddr}</td>
-                        <td><fmt:formatDate value="${log.createTime}" type="both"/></td>
+                        <td><fmt:formatDate value="${log.createDate}" type="both"/></td>
                     </tr>
                     <c:if test="${not empty log.exception}">
                     <tr>
