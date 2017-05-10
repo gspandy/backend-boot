@@ -27,11 +27,13 @@ public class Role extends DataEntity<Role> {
 	private String enname;	// 英文名称
 	private String roleType;// 权限类型
 	private String dataScope;// 数据范围
-	
-	private String oldName; 	// 原角色名称
+	private String isSys; 		//是否是系统数据
+    private String useable; 		//是否是可用
+
+    @Transient
+    private String oldName; 	// 原角色名称
+	@Transient
 	private String oldEnname;	// 原英文名称
-	private String sysData; 		//是否是系统数据
-	private String useable; 		//是否是可用
 
 	@Transient
 	private User user;		// 根据用户ID查询角色列表
@@ -51,8 +53,6 @@ public class Role extends DataEntity<Role> {
 	
 	public Role() {
 		super();
-		this.dataScope = DATA_SCOPE_SELF;
-		this.useable= Global.YES;
 	}
 	
 	public Role(String id){
@@ -72,15 +72,15 @@ public class Role extends DataEntity<Role> {
 		this.useable = useable;
 	}
 
-	public String getSysData() {
-		return sysData;
-	}
+    public String getIsSys() {
+        return isSys;
+    }
 
-	public void setSysData(String sysData) {
-		this.sysData = sysData;
-	}
+    public void setIsSys(String isSys) {
+        this.isSys = isSys;
+    }
 
-	public String getOfficeId() {
+    public String getOfficeId() {
 		return officeId;
 	}
 

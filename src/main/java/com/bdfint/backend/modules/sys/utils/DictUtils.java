@@ -21,7 +21,7 @@ import java.util.Map;
  * 字典工具类
  *
  * @author lufengc
- * @date 2016/1/16 9:37
+ * @version 2016/1/16 9:37
  */
 public class DictUtils {
 
@@ -33,14 +33,14 @@ public class DictUtils {
      * 根据多个字典值和字典名获取对应的标签
      *
      * @param value        字典名对应的值
-     * @param enName       字典名
+     * @param type         字典名
      * @param defaultValue 默认值
      * @return 字典标签
      */
-    public static String getDictLabel(String value, String enName, String defaultValue) {
-        if (StringUtils.isNotBlank(enName) && StringUtils.isNotBlank(value)) {
-            for (Dict dict : getDictList(enName)) {
-                if (enName.equals(dict.getType()) && value.equals(dict.getValue())) {
+    public static String getDictLabel(String value, String type, String defaultValue) {
+        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(value)) {
+            for (Dict dict : getDictList(type)) {
+                if (type.equals(dict.getType()) && value.equals(dict.getValue())) {
                     return dict.getLabel();
                 }
             }
@@ -52,15 +52,15 @@ public class DictUtils {
      * 根据多个字典值和字典名获取对应的标签（多个以逗号分隔）
      *
      * @param values       字典名对应的值（多个以逗号分隔）
-     * @param enName       字典名
+     * @param type       字典名
      * @param defaultValue 默认值
      * @return 字典标签
      */
-    public static String getDictLabels(String values, String enName, String defaultValue) {
-        if (StringUtils.isNotBlank(enName) && StringUtils.isNotBlank(values)) {
+    public static String getDictLabels(String values, String type, String defaultValue) {
+        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(values)) {
             List<String> valueList = Lists.newArrayList();
             for (String value : StringUtils.split(values, ",")) {
-                valueList.add(getDictLabel(value, enName, defaultValue));
+                valueList.add(getDictLabel(value, type, defaultValue));
             }
             return StringUtils.join(valueList, ",");
         }
@@ -71,14 +71,14 @@ public class DictUtils {
      * 根据某个字典label和字典类型获取值
      *
      * @param label        字典名对应的标签
-     * @param enName       字典名
+     * @param type       字典名
      * @param defaultLabel 默认标签
      * @return 字典值
      */
-    public static String getDictValue(String label, String enName, String defaultLabel) {
-        if (StringUtils.isNotBlank(enName) && StringUtils.isNotBlank(label)) {
-            for (Dict dict : getDictList(enName)) {
-                if (enName.equals(dict.getType()) && label.equals(dict.getLabel())) {
+    public static String getDictValue(String label, String type, String defaultLabel) {
+        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(label)) {
+            for (Dict dict : getDictList(type)) {
+                if (type.equals(dict.getType()) && label.equals(dict.getLabel())) {
                     return dict.getValue();
                 }
             }
@@ -89,15 +89,15 @@ public class DictUtils {
     /**
      * 根据字典名获取字典列表
      *
-     * @param enName 字典名 为空查询所有
+     * @param type 字典名 为空查询所有
      * @return List
      */
-    public static List<Dict> getDictList(String enName) {
+    public static List<Dict> getDictList(String type) {
         List<Dict> dictList = null;
         Map<String, List<Dict>> dictMap = getDictMap();
         if (dictMap != null) {
-            if (enName != null) {
-                dictList = dictMap.get(enName);
+            if (type != null) {
+                dictList = dictMap.get(type);
             } else {
                 dictList = new ArrayList<>();
                 for (List<Dict> sysDicts : dictMap.values()) {
@@ -114,11 +114,11 @@ public class DictUtils {
     /**
      * 返回字典列表（JSON）
      *
-     * @param enName 字典名
+     * @param type 字典名
      * @return json
      */
-    public static String getDictListJson(String enName) {
-        return JSON.toJSONString(getDictList(enName));
+    public static String getDictListJson(String type) {
+        return JSON.toJSONString(getDictList(type));
     }
 
     /**

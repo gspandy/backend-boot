@@ -16,7 +16,7 @@
         }
 
         $(document).ready(function () {
-            $("#roleName").focus();
+            $("#name").focus();
             //设置了远程验证，在初始化时必须预先调用一次。
             validateForm = $("#inputForm").validate({
                 submitHandler: function (form) {
@@ -37,22 +37,22 @@
     </script>
 </head>
 <body>
-<form:form id="inputForm" modelAttribute="sysRole" action="${ctx}/sys/role/save" method="post" class="form-horizontal">
+<form:form id="inputForm" modelAttribute="role" action="${ctx}/sys/role/save" method="post" class="form-horizontal">
     <form:hidden path="id"/>
     <sys:message content="${message}"/>
     <table class="table">
         <tbody>
         <tr>
             <td class="active"><label class="pull-right"><span style="color: red; ">*</span>角色名称:</label></td>
-            <td><form:input path="roleName" htmlEscape="false" maxlength="50" class="form-control required"/></td>
+            <td><form:input path="name" htmlEscape="false" maxlength="50" class="form-control required"/></td>
         </tr>
         <tr>
             <td class="active"><label class="pull-right"><span style="color: red; ">*</span>角色标记:</label></td>
-            <td><form:input path="roleSign" htmlEscape="false" maxlength="50" class="form-control required"/></td>
+            <td><form:input path="enname" htmlEscape="false" maxlength="50" class="form-control required"/></td>
         </tr>
         <tr>
             <td class="active"><label class="pull-right">描述:</label></td>
-            <td colspan="3"><form:textarea path="description" htmlEscape="false" rows="3" maxlength="200" class="form-control"/></td>
+            <td colspan="3"><form:textarea path="remarks" htmlEscape="false" rows="3" maxlength="200" class="form-control"/></td>
         </tr>
         </tbody>
     </table>

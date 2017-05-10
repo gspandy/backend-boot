@@ -18,15 +18,15 @@
             <!-- 查询条件 -->
             <div class="row">
                 <div class="col-sm-12">
-                    <form:form id="searchForm" modelAttribute="sysDict" action="${ctx}/sys/dict/" method="post" class="form-inline">
+                    <form:form id="searchForm" modelAttribute="dict" action="${ctx}/sys/dict/" method="post" class="form-inline">
                         <input id="pageNum" name="pageNum" type="hidden" value="${page.pageNum}"/>
                         <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-                        <table:sortColumn id="orderBy" name="orderBy" value="${page.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
+                        <table:sortColumn id="orderBy" name="orderBy" value="${dict.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                         <div class="form-group">
                             <span>名称：</span>
-                            <form:input path="name" htmlEscape="false" maxlength="50" class="form-control"/>
+                            <form:input path="description" htmlEscape="false" maxlength="50" class="form-control"/>
                             <span>英文名称：</span>
-                            <form:select id="type" path="enName" class="form-control m-b">
+                            <form:select id="type" path="type" class="form-control m-b">
                                 <form:option value="" label=""/>
                                 <form:options items="${typeList}" htmlEscape="false"/>
                             </form:select>
@@ -57,11 +57,11 @@
                 <thead>
                 <tr>
                     <th><input type="checkbox" class="i-checks"></th>
-                    <th class="sort-column name">字典名称</th>
-                    <th class="sort-column enName">字典英文名</th>
+                    <th class="sort-column description">字典名称</th>
+                    <th class="sort-column type">字典英文名</th>
                     <th>类型名</th>
                     <th class="sort-column value">类型值</th>
-                    <th class="sort-column sort_id">排序</th>
+                    <th class="sort-column sort">排序</th>
                     <shiro:hasPermission name="sys:dict:edit">
                         <th>操作</th>
                     </shiro:hasPermission>
@@ -71,11 +71,11 @@
                 <c:forEach items="${page.list}" var="bean">
                     <tr>
                         <td><input type="checkbox" id="${bean.id}" class="i-checks"></td>
-                        <td>${bean.name}</td>
-                        <td>${bean.enName}</td>
+                        <td>${bean.description}</td>
+                        <td>${bean.type}</td>
                         <td><a href="#" onclick="openDialogView('查看字典', '${ctx}/sys/dict/form?id=${bean.id}','800px', '500px')">${bean.label}</a></td>
                         <td>${bean.value}</td>
-                        <td>${bean.sortId}</td>
+                        <td>${bean.sort}</td>
                         <shiro:hasPermission name="sys:dict:edit">
                         <td>
                             <a href="#"

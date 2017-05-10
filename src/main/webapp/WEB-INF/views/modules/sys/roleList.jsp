@@ -16,7 +16,7 @@
         <div class="ibox-content">
             <sys:message content="${message}"/>
 
-            <form:form id="searchForm" modelAttribute="sysRole" action="${ctx}/sys/role/list" method="post" class="form-inline">
+            <form:form id="searchForm" modelAttribute="role" action="${ctx}/sys/role/list" method="post" class="form-inline">
             </form:form>
             <!-- 工具栏 -->
             <div class="row">
@@ -54,11 +54,11 @@
                     <tr>
                         <td><input type="checkbox" id="${bean.id}" class="i-checks"></td>
                         <td><a href="#" onclick="openDialogView('查看角色', '${ctx}/sys/role/form?id=${bean.id}','800px', '500px')">
-                                ${bean.roleName}</a></td>
-                        <td>${bean.roleSign}</td>
-                        <td>${bean.description}</td>
-                        <td>${fns:getUserById(bean.createBy).realName}</td>
-                        <td>${bean.createTime}</td>
+                                ${bean.name}</a></td>
+                        <td>${bean.enname}</td>
+                        <td>${bean.remarks}</td>
+                        <td>${fns:getUserById(bean.createBy).name}</td>
+                        <td>${bean.createDate}</td>
                         <shiro:hasPermission name="sys:role:edit">
                         <td>
                                 <a href="#"

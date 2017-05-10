@@ -1,7 +1,9 @@
 server:
-  port: 8889
+  port: 9999
   address: localhost
-
+  jsp-servlet:
+    init-parameters:
+      development: true
 logging:
   file: logs/backend-boot.log
   level:
@@ -10,7 +12,7 @@ logging:
 
 druid:
   driver-class-name: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/platform_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=true
+  url: jdbc:mysql://localhost:3306/platform_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
   username: root
   password: root
   initialSize: 1
@@ -67,7 +69,8 @@ spring:
       min-idle: 0
     cluster:
       max-redirects: 5
-      nodes: 10.82.12.30:6379,10.82.12.30:6479,10.82.12.31:6379
+      #nodes: 10.82.12.30:6379,10.82.12.30:6479,10.82.12.31:6379
+      nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005,127.0.0.1:7006
 
 
 #文件上传路径 空为系统默认配置

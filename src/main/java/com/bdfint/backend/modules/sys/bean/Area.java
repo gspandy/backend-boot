@@ -26,7 +26,6 @@ public class Area extends TreeEntity<Area> {
 
     public Area() {
         super();
-        this.sort = 30;
     }
 
     public Area(String id) {

@@ -33,16 +33,16 @@
     </script>
 </head>
 <body>
-<form:form id="inputForm" modelAttribute="sysArea" action="${ctx}/sys/area/save" method="post" class="form-horizontal">
+<form:form id="inputForm" modelAttribute="area" action="${ctx}/sys/area/save" method="post" class="form-horizontal">
     <form:hidden path="id"/>
     <sys:message content="${message}"/>
     <table class="table">
         <tbody>
         <tr>
             <td class="width-15 active"><label class="pull-right"><span style="color: red; ">*</span>上级区域:</label></td>
-            <td class="width-35"><sys:treeselect id="parentId" name="parentId" value="${sysArea.parentId}"
-                                                 labelName="parentName" labelValue="${sysArea.parentName}"
-                                                 title="区域" url="/sys/area/treeData" extId="${sysArea.id}"
+            <td class="width-35"><sys:treeselect id="parentId" name="parentId" value="${area.parentId}"
+                                                 labelName="parentName" labelValue="${area.parentName}"
+                                                 title="区域" url="/sys/area/treeData" extId="${area.id}"
                                                  cssClass="form-control required" allowClear="true"/></td>
             <td class="width-15 active"><label class="pull-right"><span style="color: red; ">*</span>区域名称:</label></td>
             <td class="width-35"><form:input path="name" htmlEscape="false" maxlength="50" class="form-control required"/></td>
@@ -59,7 +59,7 @@
         </tr>
         <tr>
             <td class="width-15 active"><label class="pull-right">备注:</label></td>
-            <td class="width-35"><form:textarea path="description" htmlEscape="false" rows="3" maxlength="200" class="form-control"/></td>
+            <td class="width-35"><form:textarea path="remarks" htmlEscape="false" rows="3" maxlength="200" class="form-control"/></td>
             <td class="width-15 active"><label class="pull-right"></label></td>
             <td class="width-35"></td>
         </tr>

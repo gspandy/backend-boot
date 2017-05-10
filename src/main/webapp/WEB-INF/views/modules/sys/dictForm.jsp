@@ -34,16 +34,16 @@
     </script>
 </head>
 <body>
-<form:form id="inputForm" modelAttribute="sysDict" action="${ctx}/sys/dict/save" method="post" class="form-horizontal">
+<form:form id="inputForm" modelAttribute="dict" action="${ctx}/sys/dict/save" method="post" class="form-horizontal">
     <form:hidden path="id"/>
     <sys:message content="${message}"/>
     <table class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
         <tbody>
         <tr>
             <td class="width-15 active"><label class="pull-right">字典名:</label></td>
-            <td class="width-35"><form:input path="name" htmlEscape="false" maxlength="50" class="form-control required"/></td>
+            <td class="width-35"><form:input path="description" htmlEscape="false" maxlength="50" class="form-control required"/></td>
             <td class="width-15 active"><label class="pull-right">英文名:</label></td>
-            <td class="width-35"><form:input path="enName" htmlEscape="false" maxlength="50" class="form-control required"/></td>
+            <td class="width-35"><form:input path="type" htmlEscape="false" maxlength="50" class="form-control required"/></td>
         </tr>
         <tr>
             <td class="active"><label class="pull-right">类型名:</label></td>
@@ -53,9 +53,9 @@
         </tr>
         <tr>
             <td class="active"><label class="pull-right">排序ID:</label></td>
-            <td><form:input path="sortId" htmlEscape="false" maxlength="11" class="form-control required digits"/></td>
+            <td><form:input path="sort" htmlEscape="false" maxlength="11" class="form-control required digits"/></td>
             <td class="active"><label class="pull-right">描述:</label></td>
-            <td><form:textarea path="description" htmlEscape="false" rows="3" maxlength="200" class="form-control "/></td>
+            <td><form:textarea path="remarks" htmlEscape="false" rows="3" maxlength="200" class="form-control "/></td>
         </tr>
         </tbody>
     </table>
