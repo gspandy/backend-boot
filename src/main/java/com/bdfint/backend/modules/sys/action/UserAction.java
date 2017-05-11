@@ -57,8 +57,6 @@ public class UserAction extends BaseAction<User> {
     @Autowired
     private OfficeService officeService;
 
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
     /**
      * 数据绑定
      *
@@ -72,13 +70,7 @@ public class UserAction extends BaseAction<User> {
         if (StringUtils.isNotEmpty(id)) {
             User = userService.get(id);
             if (User != null) {
-                List<Role> roleList = roleService.getRoleByUserId(id);
-                User.setRoleList(roleList);
-                List<String> roleIdList = Lists.newArrayList();
-                for (Role role : roleList) {
-                    roleIdList.add(role.getId());
-                }
-                User.setRoleIdList(roleIdList);
+                User.setRoleList(roleService.getRoleByUserId(id));
                 Office office = officeService.get(User.getOfficeId());
                 User.setOfficeName(office.getName());
                 Office company = officeService.get(User.getCompanyId());
@@ -369,7 +361,7 @@ public class UserAction extends BaseAction<User> {
             // 文件保存路径
             String path = Global.getFileUploadPath();
             String realPath = "userid_" + UserUtils.getPrincipal() + "/images/"
-                    + simpleDateFormat.format(new Date()) + "/";
+                    + DateUtils.formatDate(new Date()) + "/";
             String fileName = UUID.randomUUID().toString().replace("-", "") + "." + filetype;
             // 转存文件
             FileUtils.createDirectory(path + realPath);

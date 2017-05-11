@@ -96,29 +96,14 @@ public class SecurityRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         Principal principal = (Principal) getAvailablePrincipal(principals);
-
-    	/*if (!Global.TRUE.equals(SysConfigManager.getInstance().getConfig("user.multiAccountLogin"))){
-            Collection<Session> sessions = sessionDao.getActiveSessions(true, principal, UserUtils.getSession());
-			if (sessions.size() > 0){
-				// 如果是登录进来的，则踢出已在线用户
-				if (UserUtils.getSubject().isAuthenticated()){
-					for (Session session : sessions){
-						sessionDao.delete(session);
-					}
-				}else{// 记住我进来的，并且当前用户已登录，则退出当前用户提示信息。
-					UserUtils.getSubject().logout();
-					throw new AuthenticationException("msg:账号已在其它地方登录，请重新登录。");
-				}
-			}
-		}*/
         final User user = UserUtils.getUserByLoginName(principal.getLoginName());
         if (user != null) {
             SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
             // 添加基于Permission的权限信息
             List<Menu> list = UserUtils.getMenuList();
-            for (Menu permission : list) {
-                if (StringUtils.isNotBlank(permission.getPermission())) {
-                    for (String sign : StringUtils.split(permission.getPermission(), ",")) {
+            for (Menu menu : list) {
+                if (StringUtils.isNotBlank(menu.getPermission())) {
+                    for (String sign : StringUtils.split(menu.getPermission(), ",")) {
                         authorizationInfo.addStringPermission(sign);
                     }
                 }
@@ -170,7 +155,6 @@ public class SecurityRealm extends AuthorizingRealm {
     /**
      * 授权验证方法
      *
-     * @param permission
      */
     private void authorizationValidate(Permission permission) {
         // 模块授权预留接口

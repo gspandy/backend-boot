@@ -83,7 +83,7 @@
                                class="btn btn-link btn-xs"><i class="fa fa-edit"></i> 修改
                             </a>
                             <a href="#"
-                               onclick="return confirmx('确认要删除该字典吗？', '${ctx}/sys/dict/delete?ids=${bean.id}&type=${bean.enName}')"
+                               onclick="return confirmx('确认要删除该字典吗？', '${ctx}/sys/dict/delete?ids=${bean.id}&type=${bean.type}')"
                                class="btn btn-link btn-xs"><i class="fa fa-trash"></i> 删除
                             </a>
                             <a href="#" onclick="openDialog('添加键值', '${ctx}/sys/dict/form?id=${bean.id}&actionType=2','800px', '500px')"

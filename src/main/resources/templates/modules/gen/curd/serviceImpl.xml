@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>serviceImpl</name>
+	<filePath>src/main/java/${packageName}/${moduleName}/service/impl/${subModuleName}</filePath>
+	<fileName>${ClassName}ServiceImpl.java</fileName>
+	<content><![CDATA[
+/**
+ * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ */
+package ${packageName}.${moduleName}.service.impl<#if subModuleName != "">.${subModuleName}</#if>;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.platform.framework.common.BaseServiceImpl;
+import com.platform.framework.common.MybatisDao;
+import com.platform.framework.util.Encodes;
+import com.platform.framework.util.StringUtils;
+import ${packageName}.${moduleName}.bean<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
+import ${packageName}.${moduleName}.service<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Service;
+
+/**
+ * ${functionName}Service实现类
+ *
+ * @author ${functionAuthor}
+ * @version ${functionVersion}
+ */
+@Service
+public class ${ClassName}ServiceImpl extends BaseServiceImpl<${ClassName}> implements ${ClassName}Service {
+
+	@Autowired
+    private MybatisDao mybatisDao;
+
+    @Override
+	public String save(${ClassName} object) throws Exception {
+        if (StringUtils.isBlank(object.getId())) {
+            object.setId(Encodes.uuid());
+            mybatisDao.insert(object);
+        } else {
+            mybatisDao.update(object);
+        }
+        return object.getId().toString();
+	}
+	
+}]]>
+	</content>
+</template>

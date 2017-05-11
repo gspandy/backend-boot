@@ -53,10 +53,10 @@ public class User extends DataEntity<User> {
     private Date oldLoginDate;    // 上次登陆日期
 
     @Transient
-    private Role role;    // 根据角色查询用户条件
-    @Transient
     private List<Role> roleList = Lists.newArrayList(); // 拥有角色列表
 
+    @Transient
+    private String roleName;
     @Transient
     private String officeName;
     @Transient
@@ -78,7 +78,6 @@ public class User extends DataEntity<User> {
 
     public User(Role role) {
         super();
-        this.role = role;
     }
 
     public String getPhoto() {
@@ -267,14 +266,6 @@ public class User extends DataEntity<User> {
         this.oldLoginDate = oldLoginDate;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
     @JsonIgnore
     public List<Role> getRoleList() {
         return roleList;
@@ -298,6 +289,14 @@ public class User extends DataEntity<User> {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     @JsonIgnore

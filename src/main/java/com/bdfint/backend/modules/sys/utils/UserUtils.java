@@ -134,7 +134,6 @@ public class UserUtils {
                 User user = getUser();
                 if (user.isAdmin()) {
                     Menu Menu = new Menu();
-                    Menu.setIsShow("1");
                     menuList = menuService.getList(Menu);
                 } else {
                     menuList = menuService.getMenuByUserId(getUserId());

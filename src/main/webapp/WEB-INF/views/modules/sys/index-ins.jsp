@@ -8,7 +8,7 @@
     <meta name="renderer" content="webkit">
     <meta name="keywords" content="首页">
     <meta name="description" content="首页">
-    <title>集采后台系统</title>
+    <title>后台管理系统</title>
     <%@ include file="/WEB-INF/views/include/head-ins.jsp"%>
     <script src="${ctxStatic}/static/app/js/index-ins.js"></script>
 </head>

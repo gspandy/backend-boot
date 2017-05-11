@@ -73,8 +73,7 @@ public class MenuAction extends BaseAction<Menu> {
         List<Menu> sourcelist;
         User user = UserUtils.getUser();
         if (user.isAdmin()) {
-            Menu menu = new Menu();
-            sourcelist = menuService.getList(menu);
+            sourcelist = menuService.getList(new Menu());
         } else {
             sourcelist = menuService.getMenuByUserId(user.getId());
         }

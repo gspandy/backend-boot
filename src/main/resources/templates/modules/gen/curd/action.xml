@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>action</name>
+	<filePath>src/main/java/${packageName}/${moduleName}/web/${subModuleName}</filePath>
+	<fileName>${ClassName}Action.java</fileName>
+	<content><![CDATA[
+/**
+ * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ */
+package ${packageName}.${moduleName}.web<#if subModuleName != "">.${subModuleName}</#if>;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.platform.framework.util.StringUtils;
+import com.platform.modules.sys.bean.Param;
+import com.platform.framework.common.Page;
+import com.platform.framework.common.BaseAction;
+import ${packageName}.${moduleName}.bean<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
+import ${packageName}.${moduleName}.service<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Service;
+
+/**
+ * ${functionName}Controller
+ *
+ * @author ${functionAuthor}
+ * @version ${functionVersion}
+ */
+@Controller
+@RequestMapping(value = "${r"${adminPath}"}/${urlPrefix}")
+public class ${ClassName}Action extends BaseAction<${ClassName}> {
+
+	@Autowired
+	private ${ClassName}Service ${className}Service;
+
+    /**
+     * 数据绑定
+     *
+     * @param id id
+     * @return SysDict
+     * @throws Exception
+     */
+	@Override
+	@ModelAttribute
+	public ${ClassName} get(@RequestParam(required=false) String id) throws Exception {
+		${ClassName} entity = null;
+		if (StringUtils.isNotBlank(id)){
+			entity = ${className}Service.get(id);
+		}
+		if (entity == null){
+			entity = new ${ClassName}();
+		}
+		return entity;
+	}
+
+	/**
+     * 分页列表
+     *
+     * @return view
+     * @throws Exception
+     */
+	@RequestMapping(value = {"list", ""})
+	public String list(Model model, ${ClassName} object, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Page<${ClassName}> page = ${className}Service.getPage(new Page<${ClassName}>(request, response), object, "");
+		model.addAttribute("page", page);
+		return "${lastPackageName}/${viewPrefix}List";
+	}
+
+    /**
+     * 表单页面
+     *
+     * @return String
+     * @throws Exception
+     */
+    @Override
+	@RequestMapping(value = "form")
+	public String form(Model model, ${ClassName} object) throws Exception {
+		return "${lastPackageName}/${viewPrefix}Form";
+	}
+
+    /**
+     * 保存
+     *
+     * @return String
+     * @throws Exception
+     */
+	@Override
+	@RequestMapping(value = "save")
+	@RequiresPermissions("${permissionPrefix}:edit")
+	public String save(Model model, ${ClassName} object, RedirectAttributes redirectAttributes) throws Exception {
+		if (!beanValidator(model, object)){
+			return form(model, object);
+		}
+		${className}Service.save(object);
+		addMessage(redirectAttributes, "保存${functionNameSimple}成功");
+		return "redirect:" + adminPath + "/${viewPrefix}/?repage";
+	}
+
+	/**
+     * 删除
+     *
+     * @return String
+     * @throws Exception
+     */
+    @Override
+	@RequestMapping(value = "delete")
+	@RequiresPermissions("${permissionPrefix}:edit")
+	public String delete(Model model, ${ClassName} object, Param param, RedirectAttributes redirectAttributes) throws Exception {
+		${className}Service.delete(param.getIds());
+		addMessage(redirectAttributes, "删除${functionNameSimple}成功");
+		return "redirect:" + adminPath + "/${viewPrefix}/?repage";
+	}
+
+}]]>
+	</content>
+</template>

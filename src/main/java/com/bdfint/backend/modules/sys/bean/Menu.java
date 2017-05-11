@@ -148,15 +148,13 @@ public class Menu extends DataEntity<Menu> {
 
     @JsonIgnore
     public static void sortList(List<Menu> list, List<Menu> sourcelist, String parentId, boolean cascade) {
-        for (int i = 0; i < sourcelist.size(); i++) {
-            Menu e = sourcelist.get(i);
-            if (e.getParentId() != null && e.getParentId().equals(parentId)) {
+        for (Menu e : sourcelist) {
+            if (e.getParentId().equals(parentId)) {
                 list.add(e);
                 if (cascade) {
                     // 判断是否还有子节点, 有则继续获取子节点
-                    for (int j = 0; j < sourcelist.size(); j++) {
-                        Menu child = sourcelist.get(j);
-                        if (child.getParentId() != null && child.getParentId().equals(e.getId())) {
+                    for (Menu child : sourcelist) {
+                        if (child.getParentId().equals(e.getId())) {
                             sortList(list, sourcelist, e.getId(), true);
                             break;
                         }
@@ -168,7 +166,7 @@ public class Menu extends DataEntity<Menu> {
 
     @JsonIgnore
     public static String getRootId() {
-        return "1";
+        return "0";
     }
 
     @Override
