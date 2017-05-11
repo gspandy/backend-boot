@@ -6,6 +6,10 @@ package com.bdfint.backend.framework.common;
 
 import com.bdfint.backend.framework.config.SystemProperties;
 import com.bdfint.backend.framework.util.StringUtils;
+import org.springframework.core.io.DefaultResourceLoader;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 全局常量
@@ -140,5 +144,31 @@ public class Global {
         return systemProperties.getUrlSuffix();
     }
 
-
+    /**
+     * 获取工程路径
+     */
+    public static String getProjectPath() {
+        // 如果配置了工程路径，则直接返回，否则自动获取。
+        String projectPath = "";
+        try {
+            File file = new DefaultResourceLoader().getResource("").getFile();
+            if (file != null) {
+                while (true) {
+                    File f = new File(file.getPath() + File.separator + "src" + File.separator + "main");
+                    if (f.exists()) {
+                        break;
+                    }
+                    if (file.getParentFile() != null) {
+                        file = file.getParentFile();
+                    } else {
+                        break;
+                    }
+                }
+                projectPath = file.toString();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return projectPath;
+    }
 }
