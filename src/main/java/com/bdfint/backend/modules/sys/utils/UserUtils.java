@@ -4,6 +4,7 @@
 
 package com.bdfint.backend.modules.sys.utils;
 
+import com.bdfint.backend.framework.cache.JedisUtils;
 import com.bdfint.backend.framework.common.SpringContextHolder;
 import com.bdfint.backend.framework.security.SecurityRealm;
 import com.bdfint.backend.modules.sys.bean.*;
@@ -31,6 +32,10 @@ public class UserUtils {
     private static AreaService areaService = SpringContextHolder.getBean(AreaService.class);
     private static OfficeService officeService = SpringContextHolder.getBean(OfficeService.class);
 
+    public static final String USER_CACHE = "userCache";
+    public static final String USER_CACHE_ID_ = "id_";
+    public static final String USER_CACHE_LOGIN_NAME_ = "ln";
+
     public static final String CACHE_ROLE_LIST = "roleList";
     public static final String CACHE_MENU_LIST = "menuList";
     public static final String CACHE_AREA_LIST = "areaList";
@@ -45,6 +50,7 @@ public class UserUtils {
      * @return 取不到返回null
      */
     public static User get(String id) {
+        //User user = (User) JedisUtils.getObject(USER_CACHE, USER_CACHE_ID_ + id);
         User user = null;
         if (id != null) {
             try {
@@ -53,7 +59,7 @@ public class UserUtils {
                     user.setRoleList(roleService.getRoleByUserId(id));
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                new User();
             }
         }
         return user;
