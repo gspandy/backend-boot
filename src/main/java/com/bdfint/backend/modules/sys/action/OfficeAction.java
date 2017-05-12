@@ -76,7 +76,6 @@ public class OfficeAction extends BaseAction<Office> {
      * @param request  HttpServletRequest
      * @param response HttpServletRequest
      * @return String
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "list")
@@ -96,7 +95,6 @@ public class OfficeAction extends BaseAction<Office> {
      * @param model  Model
      * @param office Office
      * @return String
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "form")
@@ -156,7 +154,6 @@ public class OfficeAction extends BaseAction<Office> {
      * @param office             Office
      * @param redirectAttributes RedirectAttributes
      * @return String
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "save")
@@ -191,7 +188,6 @@ public class OfficeAction extends BaseAction<Office> {
      * @param param              参数接收器
      * @param redirectAttributes RedirectAttributes
      * @return String
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "delete")

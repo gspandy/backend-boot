@@ -209,10 +209,10 @@ public class RoleAction extends BaseAction<Role> {
      */
     @RequestMapping(value = "outRole")
     @RequiresPermissions("sys:role:edit")
-    public String outRole(Long userId, Long roleId, RedirectAttributes redirectAttributes) throws Exception {
-        User user = userService.get(userId.toString());
-        Role role = roleService.get(roleId.toString());
-        if (UserUtils.getUser().getId().equals(userId.intValue())) {
+    public String outRole(String userId, String roleId, RedirectAttributes redirectAttributes) throws Exception {
+        User user = userService.get(userId);
+        Role role = roleService.get(roleId);
+        if (UserUtils.getUser().getId().equals(userId)) {
             addMessage(redirectAttributes, "无法从角色【" + role.getName() + "】中移除用户【" + user.getName() + "】自己！");
         } else {
             boolean flag = roleService.outUserInRole(role, user);

@@ -198,8 +198,6 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 
     /**
      * 获取字符串长度
-     *
-     * @return
      */
     public String getDataLength() {
         String[] ss = StringUtils.split(StringUtils.substringBetween(getJdbcType(), "(", ")"), ",");
@@ -211,8 +209,6 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 
     /**
      * 获取简写Java类型
-     *
-     * @return
      */
     public String getSimpleJavaType() {
         if ("This".equals(getJavaType())) {
@@ -225,8 +221,6 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 
     /**
      * 获取简写Java字段
-     *
-     * @return
      */
     public String getSimpleJavaField() {
         return StringUtils.substringBefore(getJavaField(), ".");
@@ -243,8 +237,6 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 
     /**
      * 获取Java字段，如果是对象，则获取对象.附加属性2
-     *
-     * @return
      */
     public String getJavaFieldName() {
         String[][] ss = getJavaFieldAttrs();
@@ -253,8 +245,6 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 
     /**
      * 获取Java字段，所有属性名
-     *
-     * @return
      */
     public String[][] getJavaFieldAttrs() {
         String[] ss = StringUtils.split(StringUtils.substringAfter(getJavaField(), "|"), "|");
@@ -268,8 +258,6 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 
     /**
      * 获取列注解列表
-     *
-     * @return
      */
     public List<String> getAnnotationList() {
         List<String> list = Lists.newArrayList();
@@ -295,8 +283,6 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 
     /**
      * 获取简写列注解列表
-     *
-     * @return
      */
     public List<String> getSimpleAnnotationList() {
         List<String> list = Lists.newArrayList();
@@ -308,8 +294,6 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 
     /**
      * 是否是基类字段
-     *
-     * @return
      */
     public Boolean getIsNotBaseField() {
         return !StringUtils.equals(getSimpleJavaField(), "createBy")

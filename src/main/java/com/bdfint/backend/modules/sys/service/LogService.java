@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 系统日志service
  *
  * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 public interface LogService extends BaseService<Log> {
 

@@ -34,7 +34,7 @@ import java.util.Objects;
  * 系统日志service实现类
  *
  * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 @Service
 public class LogServiceImpl extends BaseServiceImpl<Log> implements LogService {
@@ -56,7 +56,6 @@ public class LogServiceImpl extends BaseServiceImpl<Log> implements LogService {
      *
      * @param request HttpServletRequest
      * @param title   日志标题
-     * @throws Exception
      */
     @Override
     public void save(HttpServletRequest request, String title) throws Exception {
@@ -70,7 +69,6 @@ public class LogServiceImpl extends BaseServiceImpl<Log> implements LogService {
      * @param handler Object
      * @param ex      Exception
      * @param title   日志标题
-     * @throws Exception
      */
     @Override
     public void save(HttpServletRequest request, Object handler, Exception ex, String title) throws Exception {
@@ -198,7 +196,6 @@ public class LogServiceImpl extends BaseServiceImpl<Log> implements LogService {
      * 删除日志信息
      *
      * @param ids 删除的ID
-     * @throws Exception
      */
     @Override
     public int delete(String ids) throws Exception {

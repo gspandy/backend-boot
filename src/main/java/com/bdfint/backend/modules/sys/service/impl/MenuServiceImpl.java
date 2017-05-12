@@ -22,7 +22,7 @@ import java.util.List;
  * 系统权限sevice实现类
  *
  * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 @Service
 public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuService {
@@ -83,7 +83,6 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
      *
      * @param object object
      * @return 保存的ID
-     * @throws Exception
      */
     @Override
     public String save(Menu object) throws Exception {

@@ -164,7 +164,6 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTable> implements Ge
      *
      * @param genScheme GenScheme
      * @return String
-     * @throws Exception
      */
     public String genCode(GenScheme genScheme) throws Exception {
         StringBuilder result = new StringBuilder();

@@ -25,13 +25,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
- * 权限管理
+ * 菜单管理
  *
  * @author lufengc
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/menu")
@@ -45,7 +47,6 @@ public class MenuAction extends BaseAction<Menu> {
      *
      * @param id ID
      * @return Menu
-     * @throws Exception
      */
     @Override
     @ModelAttribute
@@ -64,7 +65,6 @@ public class MenuAction extends BaseAction<Menu> {
      * @param object   object
      * @param request  HttpServletRequest
      * @param response HttpServletResponse
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = {"list", ""})
@@ -90,7 +90,6 @@ public class MenuAction extends BaseAction<Menu> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "form")
@@ -130,7 +129,6 @@ public class MenuAction extends BaseAction<Menu> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "save")
@@ -150,7 +148,6 @@ public class MenuAction extends BaseAction<Menu> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "delete")

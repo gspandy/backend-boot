@@ -35,7 +35,6 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
      *
      * @param object Object
      * @return 主键ID
-     * @throws Exception
      */
     @Override
     public String save(Area object) throws Exception {
@@ -79,7 +78,6 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
      *
      * @param ids 删除的ID
      * @return String
-     * @throws Exception
      */
     @Override
     public int delete(String ids) throws Exception {

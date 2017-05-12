@@ -13,7 +13,7 @@ import java.util.List;
  * 系统权限sevice
  *
  * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 public interface MenuService extends BaseService<Menu> {
 

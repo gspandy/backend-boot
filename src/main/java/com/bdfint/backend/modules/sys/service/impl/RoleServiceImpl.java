@@ -21,7 +21,7 @@ import java.util.List;
  * 系统角色service实现类
  *
  * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 @Service
 public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService {
@@ -42,8 +42,9 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 
     /**
      * 给角色分配用户
+     *
      * @param role Role
-     * @param ids 要分配的用户ids
+     * @param ids  要分配的用户ids
      */
     @Override
     public void assignUserToRole(Role role, String ids) {
@@ -52,6 +53,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 
     /**
      * 移除角色中的用户
+     *
      * @param role Role
      * @param user SysUser
      * @return boolean
@@ -68,7 +70,6 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
      *
      * @param object object
      * @return 保存的ID
-     * @throws Exception
      */
     @Override
     public String save(Role object) throws Exception {
@@ -93,7 +94,6 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
      * 删除角色
      *
      * @param ids 删除的ID
-     * @throws Exception
      */
     @Override
     public int delete(String ids) throws Exception {

@@ -30,7 +30,7 @@ import java.util.List;
  * 业务表Action
  *
  * @author lufengc
- * @date 2016/7/28 23:29
+ * @version 2016/7/28 23:29
  */
 @Controller
 @RequestMapping(value = "${adminPath}/gen/genTable")

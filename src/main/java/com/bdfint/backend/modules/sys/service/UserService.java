@@ -14,7 +14,7 @@ import java.util.List;
  * 用户service实现类
  *
  * @author lufengcheng
- * @date 2016-01-13 09:41:50
+ * @version 2016-01-13 09:41:50
  */
 public interface UserService extends BaseService<User> {
 
@@ -29,6 +29,7 @@ public interface UserService extends BaseService<User> {
 
     /**
      * 根据用户姓名查询
+     *
      * @param name 姓名
      * @return User
      */
@@ -57,8 +58,18 @@ public interface UserService extends BaseService<User> {
      */
     List<User> getUserByOfficeId(String officeId);
 
+    /**
+     * 更新用户状态
+     * @param ids 用户ids
+     * @param user User
+     */
     int updateStatus(String ids, User user) throws Exception;
 
+    /**
+     * 初始化密码
+     * @param ids 用户ids
+     * @param password 密码
+     */
     int initPassword(String ids, String password) throws Exception;
 
 

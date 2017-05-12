@@ -110,7 +110,6 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
      *
      * @param object Office
      * @return 主键id
-     * @throws Exception
      */
     @Override
     public String save(Office object) throws Exception {
@@ -147,7 +146,6 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
      *
      * @param id 需要删除的主键id
      * @return 处理的结果数量
-     * @throws Exception
      */
     @Override
     public int delete(String id) throws Exception {

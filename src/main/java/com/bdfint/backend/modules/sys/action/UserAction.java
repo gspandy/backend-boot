@@ -11,7 +11,6 @@ import com.bdfint.backend.framework.util.*;
 import com.bdfint.backend.framework.util.excel.ExportExcel;
 import com.bdfint.backend.framework.util.excel.ImportExcel;
 import com.bdfint.backend.modules.sys.bean.Office;
-import com.bdfint.backend.modules.sys.bean.Role;
 import com.bdfint.backend.modules.sys.bean.User;
 import com.bdfint.backend.modules.sys.service.OfficeService;
 import com.bdfint.backend.modules.sys.service.RoleService;
@@ -34,7 +33,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +42,7 @@ import java.util.UUID;
  * 用户管理
  *
  * @author lufengc
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/user")
@@ -192,7 +190,7 @@ public class UserAction extends BaseAction<User> {
     @RequiresPermissions("sys:user:edit")
     public String initPassword(User user, Param param, RedirectAttributes redirectAttributes) throws Exception {
         userService.initPassword(param.getIds(), user.getPassword());
-        addMessage(redirectAttributes, "操作成功");
+        addMessage(redirectAttributes, "操作成功，数量：");
         return "redirect:" + adminPath + "/sys/user/list?repage";
     }
 

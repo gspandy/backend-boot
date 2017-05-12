@@ -11,7 +11,7 @@ import com.bdfint.backend.modules.sys.bean.Dict;
  * 字典service
  *
  * @author lufengc
- * @date 2016/1/16 14:03
+ * @version 2016/1/16 14:03
  */
 public interface DictService extends BaseService<Dict> {
 

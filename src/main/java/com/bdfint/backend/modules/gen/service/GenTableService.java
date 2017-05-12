@@ -15,7 +15,7 @@ import java.util.List;
  * 业务表Service
  *
  * @author lufengc
- * @date 2016/7/29 0:33
+ * @version 2016/7/29 0:33
  */
 public interface GenTableService extends BaseService<GenTable> {
 

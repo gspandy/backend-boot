@@ -15,7 +15,7 @@ import java.util.List;
  * 系统角色service
  *
  * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 public interface RoleService extends BaseService<Role> {
 
@@ -29,15 +29,17 @@ public interface RoleService extends BaseService<Role> {
 
     /**
      * 给角色分配用户
-     * @param role
-     * @param ids
+     *
+     * @param role Role
+     * @param ids  用户ids
      */
     void assignUserToRole(Role role, String ids);
 
     /**
      * 给角色移除用户
-     * @param role
-     * @param user
+     *
+     * @param role Role
+     * @param user 用户ids
      */
     boolean outUserInRole(Role role, User user);
 }
