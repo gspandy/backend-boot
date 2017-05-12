@@ -6,7 +6,7 @@ package com.bdfint.backend.framework.common;
 
 
 import com.github.pagehelper.PageInfo;
-import tk.mybatis.mapper.entity.Condition;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -55,7 +55,7 @@ public interface BaseService<T> {
      * @param id 主键ID
      * @return T
      */
-    T get(String id) throws Exception;
+    T get(Object id) throws Exception;
 
     /**
      * 获取列表
@@ -68,7 +68,8 @@ public interface BaseService<T> {
 
     /**
      * @param object 要查询的对象
+     * @param example
      * @return PageInfo<T>
      */
-    PageInfo<T> getPage(T object, Condition condition) throws Exception;
+    PageInfo<T> getPage(T object, Example example) throws Exception;
 }

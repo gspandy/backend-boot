@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,8 +62,8 @@ public class LogAction extends BaseAction<Log> {
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("sys:log:view")
     public String list(Model model, Log object, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Condition condition = new Condition(Log.class);
-        Example.Criteria criteria = condition.createCriteria();
+        Example example = new Example(Log.class);
+        Example.Criteria criteria = example.createCriteria();
 
         String conditions = "";
 
@@ -99,10 +98,10 @@ public class LogAction extends BaseAction<Log> {
             conditions += "create_time >= '" + start + "' and create_time <= '" + end + "'";
         }
 
-        if(StringUtils.isNotEmpty(conditions)){
+        if (StringUtils.isNotEmpty(conditions)) {
             criteria.andCondition(conditions);
         }
-        PageInfo<Log> page = logService.getPage(object, condition);
+        PageInfo<Log> page = logService.getPage(object, example);
         model.addAttribute("page", page);
         return "modules/sys/logList";
     }

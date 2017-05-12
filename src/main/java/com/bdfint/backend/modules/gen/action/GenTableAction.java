@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import tk.mybatis.mapper.entity.Condition;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,7 +51,7 @@ public class GenTableAction extends BaseAction<GenTable> {
     @Override
     @RequestMapping(value = {"list", ""})
     public String list(Model model, GenTable genTable, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        PageInfo<GenTable> page = genTableService.getPage(genTable, new Condition(GenTable.class));
+        PageInfo<GenTable> page = genTableService.getPage(genTable, new Example(GenTable.class));
         model.addAttribute("page", page);
         return "modules/gen/genTableList";
     }

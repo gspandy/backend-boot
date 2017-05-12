@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import tk.mybatis.mapper.entity.Condition;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -178,7 +178,7 @@ public class RoleAction extends BaseAction<Role> {
     @RequiresPermissions("sys:role:edit")
     public String selectUser(User user, Model model) throws Exception {
         user.setId(null);
-        PageInfo<User> page = userService.getPage(user, new Condition(User.class));
+        PageInfo<User> page = userService.getPage(user, new Example(User.class));
         model.addAttribute("page", page);
         return "modules/sys/selectUser";
     }

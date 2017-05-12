@@ -26,7 +26,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
@@ -104,8 +103,8 @@ public class UserAction extends BaseAction<User> {
     public String list(Model model, User object, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        Condition condition = new Condition(User.class);
-        Example.Criteria criteria = condition.createCriteria();
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
         if (object.getLoginName() != null) {
             criteria.andLike("loginName", "%" + object.getLoginName() + "%");
         }
@@ -130,7 +129,7 @@ public class UserAction extends BaseAction<User> {
             criteria.andIn("officeId", ids);
         }
 
-        PageInfo<User> page = userService.getPage(object, condition);
+        PageInfo<User> page = userService.getPage(object, example);
         model.addAttribute("page", page);
         return "modules/sys/userList";
     }
@@ -190,7 +189,7 @@ public class UserAction extends BaseAction<User> {
     @RequiresPermissions("sys:user:edit")
     public String initPassword(User user, Param param, RedirectAttributes redirectAttributes) throws Exception {
         userService.initPassword(param.getIds(), user.getPassword());
-        addMessage(redirectAttributes, "操作成功，数量：");
+        addMessage(redirectAttributes, "操作成功，属两个");
         return "redirect:" + adminPath + "/sys/user/list?repage";
     }
 
@@ -241,7 +240,7 @@ public class UserAction extends BaseAction<User> {
     public String exportFile(User user, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         try {
             String fileName = "用户数据" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
-            PageInfo<User> page = userService.getPage(user, new Condition(User.class));
+            PageInfo<User> page = userService.getPage(user, new Example(User.class));
             new ExportExcel("用户数据", User.class).setDataList(page.getList()).write(response, fileName).dispose();
             return null;
         } catch (Exception e) {

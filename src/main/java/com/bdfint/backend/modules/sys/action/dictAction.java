@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import tk.mybatis.mapper.entity.Condition;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -72,9 +72,9 @@ public class dictAction extends BaseAction<Dict> {
             typeList.add(dict.getType());
         }
         model.addAttribute("typeList", typeList);
-        Condition condition = new Condition(Dict.class);
+        Example example = new Example(Dict.class);
 
-        PageInfo<Dict> page = dictService.getPage(object, condition);
+        PageInfo<Dict> page = dictService.getPage(object, example);
         model.addAttribute("page", page);
         return "modules/sys/dictList";
     }

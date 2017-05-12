@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
-import tk.mybatis.mapper.entity.Condition;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -70,7 +70,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<T>> implements BaseSe
      * @param id 对象id
      * @return Object
      */
-    public T get(String id) throws Exception {
+    public T get(Object id) throws Exception {
         T entity = mapper.selectByPrimaryKey(id);
         if (entity == null) {
             @SuppressWarnings("unchecked")
@@ -99,14 +99,20 @@ public abstract class BaseServiceImpl<T extends BaseEntity<T>> implements BaseSe
      * 分页查询
      *
      * @param object 分页对象
+     * @param example
      * @return Page<T>
      */
     @Override
-    public PageInfo<T> getPage(T object, Condition condition) throws Exception {
-        condition.setOrderByClause(object.getOrderBy());
+    public PageInfo<T> getPage(T object, Example example) throws Exception {
+        if (example.getOredCriteria().size() > 0) {
+            example.getOredCriteria().get(0).andNotEqualTo("delFlag", BaseEntity.DEL_FLAG_DELETE);
+        } else {
+            example.createCriteria().andNotEqualTo("delFlag", BaseEntity.DEL_FLAG_DELETE);
+        }
+        example.setOrderByClause(object.getOrderBy());
         int pageSize = object.getPageSize() == 0 ? Global.PAGE_SIZE : object.getPageSize();
         PageHelper.startPage(object.getPageNum(), pageSize);
-        List<T> list = mapper.selectByExample(condition);
+        List<T> list = mapper.selectByExample(example);
         PageInfo<T> page = new PageInfo<>(list);
         page.setPageNum(object.getPageNum());
         page.setPageSize(pageSize);

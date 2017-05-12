@@ -36,7 +36,7 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTable> implements Ge
     private GenTableColumnMapper genTableColumnMapper;
 
     @Override
-    public GenTable get(String id) throws Exception {
+    public GenTable get(Object id) throws Exception {
         GenTable genTable = super.get(id);
         Example example = new Example(GenTableColumn.class);
         example.orderBy("sort").asc();
