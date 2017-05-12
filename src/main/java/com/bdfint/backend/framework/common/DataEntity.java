@@ -3,6 +3,11 @@
  */
 package com.bdfint.backend.framework.common;
 
+
+import com.bdfint.backend.framework.util.Encodes;
+import com.bdfint.backend.framework.util.StringUtils;
+import com.bdfint.backend.modules.sys.utils.UserUtils;
+
 import java.util.Date;
 
 /**
@@ -25,6 +30,31 @@ public abstract class DataEntity<T> extends BaseEntity<T> {
     public DataEntity() {
         super();
         this.delFlag = DEL_FLAG_NORMAL;
+    }
+
+    /**
+     * 插入之前执行方法，需要手动调用
+     */
+    public void preInsert() {
+        setId(Encodes.uuid());
+        String userId = UserUtils.getUserId();
+        if (StringUtils.isNotBlank(userId)) {
+            this.updateBy = userId;
+            this.createBy = userId;
+        }
+        this.updateDate = new Date();
+        this.createDate = this.updateDate;
+    }
+
+    /**
+     * 更新之前执行方法，需要手动调用
+     */
+    public void preUpdate() {
+        String userId = UserUtils.getUserId();
+        if (StringUtils.isNotBlank(userId)) {
+            this.updateBy = userId;
+        }
+        this.updateDate = new Date();
     }
 
     public DataEntity(String id) {

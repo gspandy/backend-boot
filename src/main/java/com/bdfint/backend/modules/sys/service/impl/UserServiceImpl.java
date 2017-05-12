@@ -15,6 +15,7 @@ import com.bdfint.backend.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -138,6 +139,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
             } else {
                 object.setPassword(null);
             }
+            object.preUpdate();
             super.update(object);
             userMapper.deleteUserRoleByUserId(object.getId());
         } else {
@@ -146,7 +148,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
             } else {
                 object.setPassword(Encodes.encryptPassword("123456"));
             }
-            object.setId(Encodes.uuid());
+            object.preInsert();
             super.insert(object);
         }
         //更新用户角色关联

@@ -102,9 +102,14 @@ public class UserAction extends BaseAction<User> {
     @RequiresPermissions("sys:user:view")
     public String list(Model model, User object, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
         Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
+        if (object.getOrderBy() != null) {
+            example.setOrderByClause(object.getOrderBy());
+        } else {
+            example.setOrderByClause("create_date DESC");
+        }
+
         if (object.getLoginName() != null) {
             criteria.andLike("loginName", "%" + object.getLoginName() + "%");
         }
@@ -128,7 +133,6 @@ public class UserAction extends BaseAction<User> {
         if (ids.size() > 0) {
             criteria.andIn("officeId", ids);
         }
-
         PageInfo<User> page = userService.getPage(object, example);
         model.addAttribute("page", page);
         return "modules/sys/userList";
@@ -226,14 +230,13 @@ public class UserAction extends BaseAction<User> {
      * 导出用户数据
      *
      * @param user               User
-     * @param request            HttpServletRequest
      * @param response           HttpServletResponse
      * @param redirectAttributes RedirectAttributes
      * @return ModelAndView
      */
     @RequiresPermissions("sys:user:edit")
     @RequestMapping(value = "export", method = RequestMethod.POST)
-    public String exportFile(User user, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+    public String exportFile(User user, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         try {
             String fileName = "用户数据" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
             PageInfo<User> page = userService.getPage(user, new Example(User.class));

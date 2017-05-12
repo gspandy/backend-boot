@@ -10,7 +10,7 @@
     </sql>
 
     <!-- 删除用户和角色关联表数据 -->
-    <delete id="deleteUserRole">
+    <delete id="deleteUserRoleByUserId">
         DELETE FROM sys_user_role WHERE user_id = #{userId}
     </delete>
 

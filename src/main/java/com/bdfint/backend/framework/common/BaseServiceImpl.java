@@ -109,9 +109,10 @@ public abstract class BaseServiceImpl<T extends BaseEntity<T>> implements BaseSe
         } else {
             example.createCriteria().andNotEqualTo("delFlag", BaseEntity.DEL_FLAG_DELETE);
         }
-        example.setOrderByClause(object.getOrderBy());
         int pageSize = object.getPageSize() == 0 ? Global.PAGE_SIZE : object.getPageSize();
-        PageHelper.startPage(object.getPageNum(), pageSize);
+        if (pageSize != -1) {
+            PageHelper.startPage(object.getPageNum(), pageSize);
+        }
         List<T> list = mapper.selectByExample(example);
         PageInfo<T> page = new PageInfo<>(list);
         page.setPageNum(object.getPageNum());
