@@ -159,10 +159,6 @@ public class UserAction extends BaseAction<User> {
             return form(model, user);
         }
         userService.save(user);
-        // 清除当前用户缓存
-        if (user.getLoginName().equals(UserUtils.getUser().getLoginName())) {
-            UserUtils.clearCache();
-        }
         addMessage(redirectAttributes, "保存用户'" + user.getName() + "'成功");
         return "redirect:" + adminPath + "/sys/user/list?repage";
     }

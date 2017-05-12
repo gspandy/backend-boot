@@ -20,7 +20,7 @@
 			var $inputForm = $("#inputForm");
 			validateForm = $inputForm.validate({
 				rules: {
-					loginName: {remote: "${ctx}/sys/user/checkUsername?oldUsername=" + encodeURIComponent('${user.loginName}')}
+					loginName: {remote: "${ctx}/sys/user/checkUsername?oldLoginName=" + encodeURIComponent('${user.loginName}')}
 				},
 				messages: {
 					loginName: {remote: "用户名已存在"},

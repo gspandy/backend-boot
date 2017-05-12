@@ -7,6 +7,7 @@ import com.bdfint.backend.framework.common.DataEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -149,7 +150,7 @@ public class Menu extends DataEntity<Menu> {
     @JsonIgnore
     public static void sortList(List<Menu> list, List<Menu> sourcelist, String parentId, boolean cascade) {
         for (Menu e : sourcelist) {
-            if (e.getParentId().equals(parentId)) {
+            if (Objects.equals(e.getParentId(), parentId)) {
                 list.add(e);
                 if (cascade) {
                     // 判断是否还有子节点, 有则继续获取子节点

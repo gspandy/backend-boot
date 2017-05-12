@@ -68,6 +68,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     @Override
     public void updateUserInfo(User currentUser) throws Exception {
         super.update(currentUser);
+        UserUtils.clearCache();
+        UserUtils.clearCache(currentUser);
     }
 
     /**
@@ -92,6 +94,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         for (String id : split) {
             user.setId(id);
             super.update(user);
+            user.setLoginName(get(id).getLoginName());
+            // 清除用户缓存
+            UserUtils.clearCache(user);
         }
         return ids.length();
     }
@@ -112,6 +117,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
             user.setId(id);
             user.setPassword(entryptPassword);
             super.update(user);
+            user.setLoginName(get(id).getLoginName());
+            // 清除用户缓存
+            UserUtils.clearCache(user);
         }
         return ids.length();
     }
@@ -131,7 +139,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
                 object.setPassword(null);
             }
             super.update(object);
-            //删除用户角色关联
             userMapper.deleteUserRoleByUserId(object.getId());
         } else {
             if (StringUtils.isNotBlank(object.getPassword())) {
@@ -144,8 +151,12 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         }
         //更新用户角色关联
         userMapper.insertUserRole(object);
-        // 清除用户角色缓存
-        UserUtils.removeCache(UserUtils.CACHE_ROLE_LIST);
+        // 清除当前用户缓存
+        if (object.getLoginName().equals(UserUtils.getUser().getLoginName())){
+            UserUtils.clearCache();
+        }
+        // 清除用户缓存
+        UserUtils.clearCache(object);
         return object.getId();
     }
 
@@ -163,9 +174,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
             user.setId(id);
             user.setDelFlag(User.DEL_FLAG_DELETE);
             super.update(user);
+            user.setLoginName(get(id).getLoginName());
+            // 清除用户缓存
+            UserUtils.clearCache(user);
         }
-        // 清除用户角色缓存
-        UserUtils.removeCache(UserUtils.CACHE_ROLE_LIST);
         return ids.length();
     }
 

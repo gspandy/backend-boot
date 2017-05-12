@@ -3,11 +3,11 @@
 <mapper namespace="com.bdfint.backend.modules.sys.mapper.MenuMapper">
 
     <sql id="Base_Column_List">
-        id, parent_id, parent_ids, name, sort, href, target, icon, is_show, permission, create_by,
+        id, parent_id AS parentId, parent_ids, name, sort, href, target, icon, is_show, permission, create_by,
         create_date, update_by, update_date, remarks, del_flag
     </sql>
 
-    <select id="selectMenuByUserId" resultType="Menu">
+    <select id="selectMenuByUserId" resultType="com.bdfint.backend.modules.sys.bean.Menu">
         SELECT DISTINCT
         <include refid="Base_Column_List"/>
         FROM sys_menu a
