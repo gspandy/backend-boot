@@ -11,6 +11,7 @@ import com.bdfint.backend.framework.util.StringUtils;
 import com.bdfint.backend.modules.sys.bean.Log;
 import com.bdfint.backend.modules.sys.bean.User;
 import com.bdfint.backend.modules.sys.service.LogService;
+import com.bdfint.backend.modules.sys.service.UserService;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -39,6 +40,8 @@ public class LogAction extends BaseAction<Log> {
 
     @Autowired
     private LogService logService;
+    @Autowired
+    private UserService userService;
 
     @Override
     @ModelAttribute
@@ -62,7 +65,7 @@ public class LogAction extends BaseAction<Log> {
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("sys:log:view")
     public String list(Model model, Log object, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Example example = new Example(Log.class);
+        Example example = new Example(Log.class, false);
         Example.Criteria criteria = example.createCriteria();
 
         String conditions = "";
@@ -70,7 +73,7 @@ public class LogAction extends BaseAction<Log> {
         //用户名称查询条件
         String createName = object.getCreateName();
         if (StringUtils.isNotEmpty(createName)) {
-            List<User> userList = UserUtils.getUserByName(createName);
+            List<User> userList = userService.getUserByName(createName);
             if (userList != null && userList.size() > 0) {
                 String ids = "";
                 for (User user : userList) {

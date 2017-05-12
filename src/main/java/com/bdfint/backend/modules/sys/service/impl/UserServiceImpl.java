@@ -28,8 +28,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
     @Autowired
     private UserMapper userMapper;
-    @Autowired
-    private RoleService roleService;
 
     /**
      * 根据登录名查询
@@ -41,11 +39,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     public User getUserByLoginName(String loginName) {
         User user = new User();
         user.setLoginName(loginName);
-        user = userMapper.selectOne(user);
-        if (user != null) {
-            user.setRoleList(roleService.getRoleByUserId(user.getId()));
-        }
-        return user;
+        return userMapper.selectOne(user);
     }
 
     @Override
@@ -54,7 +48,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         user.setName(name);
         return userMapper.select(user);
     }
-
 
     /**
      * 根据角色ID获取用户信息

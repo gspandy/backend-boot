@@ -32,9 +32,9 @@ public class UserUtils {
     private static AreaService areaService = SpringContextHolder.getBean(AreaService.class);
     private static OfficeService officeService = SpringContextHolder.getBean(OfficeService.class);
 
-    public static final String USER_CACHE = "userCache";
+    public static final String USER_CACHE_ = "userCache_";
     public static final String USER_CACHE_ID_ = "id_";
-    public static final String USER_CACHE_LOGIN_NAME_ = "ln";
+    public static final String USER_CACHE_LOGIN_NAME_ = "loginName_";
 
     public static final String CACHE_ROLE_LIST = "roleList";
     public static final String CACHE_MENU_LIST = "menuList";
@@ -50,19 +50,38 @@ public class UserUtils {
      * @return 取不到返回null
      */
     public static User get(String id) {
-        //User user = (User) JedisUtils.getObject(USER_CACHE, USER_CACHE_ID_ + id);
-        User user = null;
-        if (id != null) {
+        User user = (User) JedisUtils.getObject(USER_CACHE_ + USER_CACHE_ID_ + id);
+        if (user == null) {
             try {
                 user = userService.get(id);
                 if (user != null) {
                     user.setRoleList(roleService.getRoleByUserId(id));
+                    JedisUtils.setObject(USER_CACHE_ + USER_CACHE_ID_ + id, user, 0);
                 }
             } catch (Exception e) {
-                new User();
+                return null;
             }
         }
         return user;
+    }
+
+    /**
+     * 根据登录名获取用户
+     *
+     * @param loginName 登录名
+     * @return 取不到返回null
+     */
+    public static User getUserByLoginName(String loginName) {
+        User user = (User) JedisUtils.getObject(USER_CACHE_ + USER_CACHE_LOGIN_NAME_ + loginName);
+        if (user == null) {
+            user = userService.getUserByLoginName(loginName);
+            if (user == null) {
+                return null;
+            }
+            user.setRoleList(roleService.getRoleByUserId(user.getId()));
+            JedisUtils.setObject(USER_CACHE_ + USER_CACHE_LOGIN_NAME_ + loginName, user, 0);
+        }
+        return userService.getUserByLoginName(loginName);
     }
 
     /**
@@ -81,27 +100,6 @@ public class UserUtils {
         }
         return new User();
     }
-
-    /**
-     * 根据登录名获取用户
-     *
-     * @param loginName 登录名
-     * @return 取不到返回null
-     */
-    public static User getUserByLoginName(String loginName) {
-        return userService.getUserByLoginName(loginName);
-    }
-
-    /**
-     * 根据姓名获取用户
-     *
-     * @param name 登录名
-     * @return 取不到返回null
-     */
-    public static List<User> getUserByName(String name) {
-        return userService.getUserByName(name);
-    }
-
 
     /**
      * 获取当前用户角色列表
@@ -186,26 +184,9 @@ public class UserUtils {
                 if (user.isAdmin()) {
                     officeList = officeService.getList(new Office());
                 } else {
-                    officeList = officeService.getList(new Office());
-                    //officeList = officeService.getByUserId(getUserId());
+                    officeList = officeService.getOfficeByUserId(getUserId());
                 }
                 putCache(CACHE_OFFICE_LIST, officeList);
-            }
-        } catch (Exception e) {
-            officeList = new ArrayList<>();
-        }
-        return officeList;
-    }
-
-    /**
-     * 获取所有部门列表
-     */
-    public static List<Office> getOfficeAllList() {
-        @SuppressWarnings("unchecked")
-        List<Office> officeList = (List<Office>) getCache(CACHE_OFFICE_ALL_LIST);
-        try {
-            if (officeList == null) {
-                officeList = officeService.getList(new Office());
             }
         } catch (Exception e) {
             officeList = new ArrayList<>();
@@ -264,6 +245,17 @@ public class UserUtils {
         removeCache(CACHE_OFFICE_LIST);
         removeCache(CACHE_OFFICE_ALL_LIST);
     }
+
+    /**
+     * 清除指定用户缓存
+     * @param user 当前用户
+     */
+    public static void clearCache(User user){
+        JedisUtils.delObject(USER_CACHE_ + USER_CACHE_ID_ + user.getId());
+        JedisUtils.delObject(USER_CACHE_ + USER_CACHE_LOGIN_NAME_ + user.getLoginName());
+        JedisUtils.delObject(USER_CACHE_ + USER_CACHE_LOGIN_NAME_ + user.getOldLoginName());
+    }
+
 
     public static Object getCache(String key) {
         return getCache(key, null);

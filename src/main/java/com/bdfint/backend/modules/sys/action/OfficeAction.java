@@ -212,7 +212,7 @@ public class OfficeAction extends BaseAction<Office> {
     public List<Map<String, Object>> treeData(@RequestParam(required = false) String extId,
                                               @RequestParam(required = false) String type,
                                               @RequestParam(required = false) Long grade,
-                                              @RequestParam(required = false) Boolean isAll) {
+                                              @RequestParam(required = false) Boolean isAll) throws Exception {
         List<Map<String, Object>> mapList = Lists.newArrayList();
         List<Office> list = officeService.getList(isAll);
         for (Office e : list) {

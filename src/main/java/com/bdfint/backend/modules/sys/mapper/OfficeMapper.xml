@@ -16,4 +16,12 @@
     </foreach>
   </delete>
 
+  <select id="getOfficeByUserId" resultType="Office">
+    SELECT
+      <include refid="Base_Column_List"/>
+    FROM sys_office a
+    WHERE a.id = #{userId}
+    ORDER BY a.code
+  </select>
+
 </mapper>

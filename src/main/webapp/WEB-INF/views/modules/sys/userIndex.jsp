@@ -7,7 +7,7 @@
     <%@ include file="/WEB-INF/views/include/treeview.jsp" %>
     <script type="text/javascript">
         function refresh() {//刷新
-            window.location = "${ctx}/sys/user";
+            window.location = "${ctx}/sys/user/index";
         }
     </script>
 </head>

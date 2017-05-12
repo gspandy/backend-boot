@@ -38,9 +38,9 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
      * @return List<Office>
      */
     @Override
-    public List<Office> getList(Boolean isAll) {
+    public List<Office> getList(Boolean isAll) throws Exception {
         if (isAll != null && isAll) {
-            return UserUtils.getOfficeAllList();
+            return getList(new Office());
         } else {
             return UserUtils.getOfficeList();
         }
@@ -53,8 +53,8 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
      * @return List<Office>
      */
     @Override
-    public List<Office> getByUserId(int userId) {
-        return null;
+    public List<Office> getOfficeByUserId(String userId) {
+        return officeMapper.getOfficeByUserId(userId);
     }
 
     /**

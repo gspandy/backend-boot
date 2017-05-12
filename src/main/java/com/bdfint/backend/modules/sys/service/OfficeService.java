@@ -24,7 +24,7 @@ public interface OfficeService extends BaseService<Office> {
      * @param isAll true：所有机构数据，false：只查询当前用户拥有的机构数据
      * @return List<Office>
      */
-    List<Office> getList(Boolean isAll);
+    List<Office> getList(Boolean isAll) throws Exception;
 
     /**
      * 根据用户ID获取机构列表
@@ -32,7 +32,7 @@ public interface OfficeService extends BaseService<Office> {
      * @param userId 用户id
      * @return List<Office>
      */
-    List<Office> getByUserId(int userId);
+    List<Office> getOfficeByUserId(String userId);
 
     /**
      * 根据parentId查询该机构下所有的子列表数据
@@ -57,4 +57,6 @@ public interface OfficeService extends BaseService<Office> {
      * @return 主键id
      */
     String save(Office object) throws Exception;
+
+
 }
