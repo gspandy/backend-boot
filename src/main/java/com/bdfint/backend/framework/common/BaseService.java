@@ -68,7 +68,7 @@ public interface BaseService<T> {
 
     /**
      * @param object 要查询的对象
-     * @param example
+     * @param example Example
      * @return PageInfo<T>
      */
     PageInfo<T> getPage(T object, Example example) throws Exception;

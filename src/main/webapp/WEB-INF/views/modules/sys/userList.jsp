@@ -155,7 +155,7 @@
                         <td>${bean.name}</td>
                         <td>${bean.mobile}</td>
                         <td>${bean.email}</td>
-                        <td>${fns:getDictLabel(bean.loginFlag, "status", "")}</td>
+                        <td>${fns:getDictLabel(bean.delFlag, "status", "")}</td>
                         <td>${fns:getDictLabel(bean.userType, "sys_user_type", "")}</td>
                         <shiro:hasPermission name="sys:user:edit">
                         <td>

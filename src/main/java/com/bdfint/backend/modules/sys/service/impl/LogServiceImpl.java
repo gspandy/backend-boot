@@ -26,6 +26,7 @@ import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -128,6 +129,8 @@ public class LogServiceImpl extends BaseServiceImpl<Log> implements LogService {
             }
             // 保存日志信息
             try {
+                log.setCreateBy(UserUtils.getUserId());
+                log.setCreateDate(new Date());
                 logMapper.insertSelective(log);
             } catch (Exception e) {
                 e.printStackTrace();
