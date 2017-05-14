@@ -24,7 +24,7 @@
                     for (var i = 0; i < nodes.length; i++) {
                         ids.push(nodes[i].id);
                     }
-                    $("#permissionIds").val(ids);
+                    $("#menuIds").val(ids);
                     loading('正在提交，请稍等...');
                     form.submit();
                 },
@@ -51,19 +51,19 @@
 
             // 用户-菜单
             var zNodes = [
-                <c:forEach items="${permissionList}" var="bean">
+                <c:forEach items="${menuList}" var="bean">
                 {
                     id: "${bean.id}",
                     pId: "${not empty bean.parentId ? bean.parentId : 0}",
-                    name: "${not empty bean.parentId ? bean.permissionName : '权限列表'}"
+                    name: "${not empty bean.parentId ? bean.name : '权限列表'}"
                 },
                 </c:forEach>];
             // 初始化树结构
-            var tree = $.fn.zTree.init($("#permissionTree"), setting, zNodes);
+            var tree = $.fn.zTree.init($("#menuTree"), setting, zNodes);
             // 不选择父节点
             tree.setting.check.chkboxType = {"Y": "ps", "N": "s"};
             // 默认选择节点
-            var ids = "${sysRole.permissionIds}".split(",");
+            var ids = "${role.menuIds}".split(",");
             for (var i = 0; i < ids.length; i++) {
                 var node = tree.getNodeByParam("id", ids[i]);
                 try {
@@ -78,11 +78,11 @@
     </script>
 </head>
 <body>
-<form:form id="inputForm" modelAttribute="sysRole" action="${ctx}/sys/role/save" method="post" class="form-horizontal">
+<form:form id="inputForm" modelAttribute="role" action="${ctx}/sys/role/save" method="post" class="form-horizontal">
     <form:hidden path="id"/>
-    <form:hidden path="permissionIds"/>
-    <input name="name" type="hidden" value="${sysRole.roleName}">
-    <div id="permissionTree" class="ztree" style="margin-top:3px;float:left;"></div>
+    <form:hidden path="menuIds"/>
+    <input name="name" type="hidden" value="${role.name}">
+    <div id="menuTree" class="ztree" style="margin-top:3px;float:left;"></div>
 </form:form>
 </body>
 </html>

@@ -26,17 +26,17 @@
     <!-- 查询条件 -->
     <div class="row">
         <div class="col-sm-12">
-            <form:form id="searchForm" modelAttribute="sysUser" action="${ctx}/sys/role/selectUser" method="post" class="form-inline">
+            <form:form id="searchForm" modelAttribute="user" action="${ctx}/sys/role/selectUser" method="post" class="form-inline">
                 <input id="pageNum" name="pageNum" type="hidden" value="${page.pageNum}"/>
                 <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-                <table:sortColumn id="orderBy" name="orderBy" value="${page.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
+                <table:sortColumn id="orderBy" name="orderBy" value="${user.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                 <div class="form-group">
                     <span>用户名：</span>
-                    <form:input path="username" htmlEscape="false" maxlength="50" class="form-control"/>
+                    <form:input path="loginName" htmlEscape="false" maxlength="50" class="form-control"/>
                     <span>姓名：</span>
-                    <form:input path="realName" htmlEscape="false" maxlength="50" class="form-control"/>
-                    <button  class="btn btn-primary btn-outline btn-sm " onclick="search()" ><i class="fa fa-search"></i> 查询</button>
-                    <button  class="btn btn-primary btn-outline btn-sm " onclick="reset()" ><i class="fa fa-refresh"></i> 重置</button>
+                    <form:input path="name" htmlEscape="false" maxlength="50" class="form-control"/>
+                    <button  class="btn btn-primary btn-outline btn-sm " onclick="searchAll()" ><i class="fa fa-search"></i> 查询</button>
+                    <button  class="btn btn-primary btn-outline btn-sm " onclick="resetAll()" ><i class="fa fa-refresh"></i> 重置</button>
                 </div>
             </form:form>
             <br/>
@@ -58,11 +58,11 @@
         <c:forEach items="${page.list}" var="bean">
             <tr>
                 <td><input type="checkbox" id="${bean.id}" class="i-checks"></td>
-                <td>${bean.username}</td>
-                <td>${bean.realName}</td>
+                <td>${bean.loginName}</td>
+                <td>${bean.name}</td>
                 <td>${bean.mobile}</td>
-                <td>${fns:getDictLabel(bean.status, "sys_user_status", "")}</td>
-                <td>${fns:getDictLabel(bean.type, "sys_user_type", "")}</td>
+                <td>${fns:getDictLabel(bean.delFlag, "sys_user_status", "")}</td>
+                <td>${fns:getDictLabel(bean.userType, "sys_user_type", "")}</td>
             </tr>
         </c:forEach>
         </tbody>

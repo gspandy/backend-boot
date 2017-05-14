@@ -34,4 +34,16 @@
         </foreach>
     </insert>
 
+    <!-- 删除用户角色关联 -->
+    <delete id="outUserInRole">
+        DELETE FROM sys_user_role WHERE role_id = #{roleId} AND user_id = #{userId}
+    </delete>
+
+    <!-- 保存角色菜单关联表 -->
+    <insert id="assignUserToRole">
+        INSERT INTO sys_user_role(user_id, role_id)
+        <foreach collection="userIds" item="userId" separator=" union all ">
+            SELECT #{userId}, #{roleId}
+        </foreach>
+    </insert>
 </mapper>

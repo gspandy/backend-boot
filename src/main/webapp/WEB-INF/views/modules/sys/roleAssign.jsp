@@ -10,14 +10,14 @@
 	<div class="wrapper wrapper-content">
 	<div class="container-fluid breadcrumb">
 		<div class="row-fluid span12">
-			<span class="span4">角色名称: <b>${sysRole.roleName}</b></span>
-			<span class="span4">角色标记: ${sysRole.roleSign}</span>
+			<span class="span4">角色名称: <b>${role.name}</b></span>
+			<span class="span4">角色标记: ${role.enname}</span>
 		</div>
 	</div>
 	<sys:message content="${message}"/>
 	<div class="breadcrumb">
 		<form id="assignRoleForm" action="${ctx}/sys/role/assignRole" method="post" class="hide">
-			<input type="hidden" name="id" value="${sysRole.id}"/>
+			<input type="hidden" name="id" value="${role.id}"/>
 			<input id="ids" type="hidden" name="ids" value=""/>
 		</form>
 		<button id="assignButton" type="submit" class="btn btn-outline btn-primary btn-sm" title="添加人员">
@@ -30,12 +30,12 @@
 					area: ['800px', '680px'],
 					title:"选择用户",
 					maxmin: true, //开启最大化最小化按钮
-					content: "${ctx}/sys/role/selectUser?id=${sysRole.id}" ,
+					content: "${ctx}/sys/role/selectUser?id=${role.id}" ,
 					btn: ['确定', '关闭'],
 					yes: function(index, layero){
 					    var ids = layero.find("iframe")[0].contentWindow.getIds();
-						if(ids == "") {
-							top.$.jBox.tip("未给角色【${sysRole.roleName}】分配新成员！", 'info');
+						if(ids === "") {
+							top.$.jBox.tip("未给角色【${role.name}】分配新成员！", 'info');
 							top.layer.close(index);
 						}else{
 							// 执行保存
@@ -66,15 +66,15 @@
 		<tbody>
 		<c:forEach items="${userList}" var="user">
 			<tr>
-				<td>${user.username}</td>
-				<td>${user.realName}</td>
+				<td>${user.loginName}</td>
+				<td>${user.name}</td>
 				<td>${user.mobile}</td>
 				<td>${user.email}</td>
 				<shiro:hasPermission name="sys:role:edit">
 				<td>
 					<a href="#"
-						onclick="return confirmx('确认要将用户<b>[${user.realName}]</b>从<b>[${sysRole.roleName}]</b>角色中移除吗？',
-                                '${ctx}/sys/role/outRole?userId=${user.id}&roleId=${sysRole.id}')">移除</a>
+						onclick="return confirmx('确认要将用户<b>[${user.name}]</b>从<b>[${role.name}]</b>角色中移除吗？',
+                                '${ctx}/sys/role/outRole?userId=${user.id}&roleId=${role.id}')">移除</a>
 				</td>
 				</shiro:hasPermission>
 			</tr>

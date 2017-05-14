@@ -94,6 +94,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
             object.setParentIds(Menu.getRootId());
         }
         if (object.getId() != null) {
+            object.preUpdate();
             super.update(object);
             // 更新子节点parentIds
             Example example = new Example(Menu.class);
@@ -107,6 +108,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
             }
         } else {
             object.setId(Encodes.uuid());
+            object.preInsert();
             super.insert(object);
         }
         // 清除用户菜单缓存

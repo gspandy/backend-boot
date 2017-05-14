@@ -134,8 +134,8 @@
                         <div class="row">
                             <div class="col-sm-4" style="margin-bottom: 10px;">
                                 <img alt="image" class="img-responsive"
-                                     src="<c:if test="${empty sysUser.photo}">${ctxStatic}/static/app/image/default.jpg</c:if>
-                                     <c:if test="${not empty sysUser.photo}">${fns:getFileAccessPath()}/${sysUser.photo}</c:if>" />
+                                     src="<c:if test="${empty user.photo}">${ctxStatic}/static/app/image/default.jpg</c:if>
+                                     <c:if test="${not empty user.photo}">${fns:getFileAccessPath()}/${user.photo}</c:if>" />
                             </div>
                             <div class="col-sm-8">
                                 <div class="table-responsive">
@@ -143,35 +143,35 @@
                                         <tbody>
                                             <tr>
                                                 <td><strong>用户名</strong></td>
-                                                <td>${sysUser.loingName}</td>
+                                                <td>${user.loingName}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>用户角色</strong></td>
-                                                <td>${sysUser.roleNames}</td>
+                                                <td>${user.roleNames}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>用户类型</strong></td>
-                                                <td>${fns:getDictLabel(sysUser.type, 'sys_user_type', '无')}</td>
+                                                <td>${fns:getDictLabel(user.userType, 'sys_user_type', '无')}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>姓名</strong></td>
-                                                <td>${sysUser.realName}</td>
+                                                <td>${user.name}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>邮箱</strong></td>
-                                                <td>${sysUser.email}</td>
+                                                <td>${user.email}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>手机</strong></td>
-                                                <td>${sysUser.mobile}</td>
+                                                <td>${user.mobile}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>备注</strong></td>
-                                                <td>${sysUser.description}</td>
+                                                <td>${user.remarks}</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <strong>上次登录</strong><fmt:formatDate value="${sysUser.createTime}" type="both" dateStyle="full"/>
+                                    <strong>上次登录</strong><fmt:formatDate value="${user.createDate}" type="both" dateStyle="full"/>
                                 </div>
                             </div>
                         </div>

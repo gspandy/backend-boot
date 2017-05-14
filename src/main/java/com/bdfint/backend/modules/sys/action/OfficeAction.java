@@ -100,27 +100,26 @@ public class OfficeAction extends BaseAction<Office> {
     @RequestMapping(value = "form")
     @RequiresPermissions("sys:office:view")
     public String form(Model model, Office office) throws Exception {
-        /*User user = UserUtils.getUser();
-        if (office.getParent()==null || office.getParent().getId()==null){
-            office.setParent(user.getOffice());
+        User user = UserUtils.getUser();
+        if (office.getParentId()==null){
+            office.setParentId(user.getOfficeId());
         }
-        office.setParent(officeService.get(office.getParent().getId()));
-        if (office.getArea()==null){
-            office.setArea(user.getOffice().getArea());
+        office.setParentId(office.getParentId());
+        if (office.getAreaId()==null){
+            office.setAreaId(officeService.get(user.getOfficeId()).getAreaId());
         }
         // 自动获取排序号
-        if (StringUtils.isBlank(office.getId())&&office.getParent()!=null){
+        if (StringUtils.isBlank(office.getId())&&office.getParentId()!=null){
             int size = 0;
-            List<Office> list = officeService.findAll();
-            for (int i=0; i<list.size(); i++){
-                Office e = list.get(i);
-                if (e.getParent()!=null && e.getParent().getId()!=null
-                        && e.getParent().getId().equals(office.getParent().getId())){
+            List<Office> list = officeService.getList(true);
+            for (Office e : list) {
+                if (e.getParentId() != null && e.getParentId().equals(office.getParentId())) {
                     size++;
                 }
             }
-            office.setCode(office.getParent().getCode() + StringUtils.leftPad(String.valueOf(size > 0 ? size+1 : 1), 3, "0"));
-        }*/
+            office.setCode(officeService.get(office.getParentId()).getCode()
+                    + StringUtils.leftPad(String.valueOf(size > 0 ? size+1 : 1), 3, "0"));
+        }
 
         if (office.getParentId() != null) {
             Office parent = officeService.get(office.getParentId());

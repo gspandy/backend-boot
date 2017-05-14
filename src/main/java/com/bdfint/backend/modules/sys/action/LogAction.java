@@ -59,7 +59,8 @@ public class LogAction extends BaseAction<Log> {
      * @param model    model
      * @param object   object
      * @param request  HttpServletRequest
-     * @param response @return String
+     * @param response HttpServletResponse
+     * @return String
      */
     @Override
     @RequestMapping(value = {"list", ""})
@@ -67,8 +68,8 @@ public class LogAction extends BaseAction<Log> {
     public String list(Model model, Log object, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Example example = new Example(Log.class, false);
         Example.Criteria criteria = example.createCriteria();
-
-        String conditions = "";
+        example.orderBy("createDate").desc();
+        String conditions = "1 = 1";
 
         //用户名称查询条件
         String createName = object.getCreateName();
@@ -83,7 +84,7 @@ public class LogAction extends BaseAction<Log> {
                         ids += user.getId() + ",";
                     }
                 }
-                conditions = "create_by in(" + ids + ")";
+                conditions = " and create_by in(" + ids + ")";
             } else {
                 return "modules/sys/logList";
             }
@@ -95,11 +96,15 @@ public class LogAction extends BaseAction<Log> {
             String[] split = createTimeRange.split(" - ");
             String start = DateUtils.formatDate(DateUtils.parseDate(split[0])) + " 00:00:00";
             String end = DateUtils.formatDate(DateUtils.parseDate(split[1])) + " 23:59:59";
-            if (StringUtils.isNotEmpty(conditions)) {
-                conditions += " and ";
-            }
-            conditions += "create_time >= '" + start + "' and create_time <= '" + end + "'";
+            conditions += " and create_date >= '" + start + "' and create_date <= '" + end + "'";
         }
+        if (StringUtils.isNotEmpty(object.getType())) {
+            conditions += " and type = '2'";
+        }
+        if (StringUtils.isNotEmpty(object.getRequestUri())) {
+            conditions += " and request_uri = '" + object.getRequestUri() + "'";
+        }
+
 
         if (StringUtils.isNotEmpty(conditions)) {
             criteria.andCondition(conditions);

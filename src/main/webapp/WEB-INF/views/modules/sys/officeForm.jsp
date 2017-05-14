@@ -45,7 +45,7 @@
 		         <td class="width-35"><sys:treeselect id="parentId" name="parentId" value="${office.parentId}" labelName="parentName" labelValue="${office.parentName}"
 					title="机构" url="/sys/office/treeData" extId="${office.id}"  cssClass="form-control" allowClear="true"/></td>
 		         <td class="width-15 active"><label class="pull-right"><span style="color: red; ">*</span>归属区域:</label></td>
-		         <td class="width-35"><sys:treeselect id="area" name="area.id" value="${office.areaId}" labelName="areaName" labelValue="${office.areaName}"
+		         <td class="width-35"><sys:treeselect id="area" name="areaId" value="${office.areaId}" labelName="areaName" labelValue="${office.areaName}"
 					title="区域" url="/sys/area/treeData" cssClass="form-control required"/></td>
 		      </tr>
 		       <tr>

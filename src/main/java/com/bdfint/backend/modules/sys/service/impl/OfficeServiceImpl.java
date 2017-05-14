@@ -66,7 +66,7 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
     @Override
     public List<Office> getByParentIdsLike(String parentIds) {
         Example example = new Example(Office.class);
-        example.createCriteria().andLike("parentIds", parentIds);
+        example.createCriteria().andLike("parentIds", "%," + parentIds + ",%");
         return officeMapper.selectByExample(example);
     }
 
@@ -121,6 +121,7 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
             object.setParentIds(Menu.getRootId());
         }
         if (StringUtils.isNotEmpty(object.getId())) {
+            object.preUpdate();
             super.update(object);
             // 更新子节点parentIds
             Example example = new Example(Office.class);
@@ -134,6 +135,7 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
             }
         } else {
             object.setId(Encodes.uuid());
+            object.preInsert();
             super.insert(object);
         }
         UserUtils.removeCache(UserUtils.CACHE_OFFICE_LIST);

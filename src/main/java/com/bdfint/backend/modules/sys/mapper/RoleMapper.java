@@ -21,4 +21,8 @@ public interface RoleMapper extends CommonMapper<Role> {
     void deleteUserRoleByRoleId(String roleId);
 
     void insertRoleMenu(@Param("roleId") String roleId, @Param("menuIds") String [] menuIds);
+
+    void outUserInRole(@Param("roleId") String roleId, @Param("userId") String userId);
+
+    void assignUserToRole(@Param("roleId") String roleId, @Param("userIds") String [] userIds);
 }

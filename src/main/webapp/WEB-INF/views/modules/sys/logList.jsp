@@ -32,10 +32,10 @@
                         <table:sortColumn id="orderBy" name="orderBy" value="${log.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                         <div class="form-group">
                             <label>操作菜单：<form:input path="title" htmlEscape="false" maxlength="50" class="form-control"/></label>
-                            <label>用户ID：<form:input path="createName" htmlEscape="false" maxlength="50" class="form-control"/></label>
+                            <label>操作用户：<form:input path="createName" htmlEscape="false" maxlength="50" class="form-control"/></label>
                             <label>URI：<form:input path="requestUri" htmlEscape="false" maxlength="50" class="form-control"/></label>
                             <label>操作日期：<form:input path="createTimeRange" htmlEscape="false" maxlength="50" class="form-control" readonly="true"/></label>
-                            <label><input id="type" name="type" class="i-checks" type="checkbox"${log.type eq '1'?' checked':''} value="1"/>只查询异常信息</label>
+                            <label><input id="type" name="type" class="i-checks" type="checkbox"${log.type eq '2'?' checked':''} value="2"/>只查询异常信息</label>
                             <button class="btn btn-primary btn-outline btn-sm" onclick="searchAll()" ><i class="fa fa-search"></i> 查询</button>
                             <button class="btn btn-primary btn-outline btn-sm" onclick="resetAll()" ><i class="fa fa-refresh"></i> 重置</button>
                         </div>

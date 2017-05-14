@@ -46,6 +46,7 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
             object.setParentIds(Menu.getRootId());
         }
         if (StringUtils.isNotEmpty(object.getId())) {
+            object.preUpdate();
             super.update(object);
             // 更新子节点parentIds
             Example example = new Example(Area.class);
@@ -67,6 +68,7 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
             }
             object.setSort(sort);
             object.setId(Encodes.uuid());
+            object.preInsert();
             super.insert(object);
         }
         UserUtils.removeCache(UserUtils.CACHE_AREA_LIST);

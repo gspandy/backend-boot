@@ -48,7 +48,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
      */
     @Override
     public void assignUserToRole(Role role, String ids) {
-        //roleMapper.assignUserToRole(saveSql);
+        roleMapper.assignUserToRole(role.getId(), ids.split(","));
     }
 
     /**
@@ -60,8 +60,8 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
      */
     @Override
     public boolean outUserInRole(Role role, User user) {
-        //删除用户角色关联
-        //mybatisDao.outUserInRole(deleteSql, null);
+        // 删除用户角色关联
+        roleMapper.outUserInRole(role.getId(), user.getId());
         return true;
     }
 
@@ -74,11 +74,12 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
     @Override
     public String save(Role object) throws Exception {
         if (object.getId() != null) {
+            object.preUpdate();
             super.update(object);
             //删除角色权限关联表
             roleMapper.deleteRoleMenuByRoleId(object.getId());
         } else {
-            object.setId(Encodes.uuid());
+            object.preInsert();
             super.insert(object);
         }
         if (StringUtils.isNotEmpty(object.getMenuIds())) {

@@ -31,9 +31,11 @@ public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictServic
     public String save(Dict object) throws Exception {
         String id = object.getId();
         if (object.getId() != null) {
+            object.preUpdate();
             super.update(object);
         } else {
             object.setId(Encodes.uuid());
+            object.preInsert();
             super.insert(object);
             id = object.getId();
         }
