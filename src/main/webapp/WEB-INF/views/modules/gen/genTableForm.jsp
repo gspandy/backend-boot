@@ -188,7 +188,7 @@
                                     <input type="text" name="columnList[${vs.index}].dictType" value="${column.dictType}" maxlength="200" class="input-mini"/>
                                 </td>
                                 <td>
-                                    <input type="text" name="columnList[${vs.index}].sortId" value="${column.sortId}" maxlength="200" class="required input-min digits"/>
+                                    <input type="text" name="columnList[${vs.index}].sortId" value="${column.sort}" maxlength="200" class="required input-min digits"/>
                                 </td>
                             </tr>
                         </c:forEach>
