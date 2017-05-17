@@ -57,13 +57,12 @@ public class DruidAutoConfiguration {
         datasource.setMaxPoolPreparedStatementPerConnectionSize(properties.getMaxPoolPreparedStatementPerConnectionSize());
         try {
             datasource.setFilters(properties.getFilters());
-            datasource.init();
+            //datasource.init();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return datasource;
     }
-
 
     @Bean
     public ServletRegistrationBean druidServlet() {
@@ -89,5 +88,4 @@ public class DruidAutoConfiguration {
         filterRegistrationBean.addInitParameter("profileEnable", "true");
         return filterRegistrationBean;
     }
-
 }

@@ -77,7 +77,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public Global sysConfigManager() {
+    public Global global() {
         Global global = new Global();
         global.setSystemProperties(systemProperties);
         return global;

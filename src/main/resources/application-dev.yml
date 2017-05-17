@@ -11,46 +11,28 @@ logging:
     com.bdfint.backend: debug
 
 druid:
-  driver-class-name: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/platform_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
-  username: root
-  password: root
-  initialSize: 1
-  minIdle: 1
-  maxActive: 20
-  maxWait: 60000
-  timeBetweenEvictionRunsMillis: 60000
-  minEvictableIdleTimeMillis: 300000
-  validationQuery: SELECT 'x'
-  testWhileIdle: true
-  testOnBorrow: false
-  testOnReturn: false
-  poolPreparedStatements: true
-  maxPoolPreparedStatementPerConnectionSize: 20
-  filters: stat
-  stat-view:
-    allow: 127.0.0.1
-    deny:
-    loginUsername: admin
-    loginPassword: admin
-
-# MyBatis
-mybatis:
-  type-aliases-package: com.bdfint.backend.modules
-  configuration:
-    map-underscore-to-camel-case: true
-
-mapper:
-  mappers:
-      - com.bdfint.backend.framework.common.CommonMapper
-  not-empty: false
-  identity: MYSQL
-
-pagehelper:
-  helperDialect: mysql
-  reasonable: true
-  supportMethodsArguments: true
-  params: count=countSql
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/platform_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    initialSize: 1
+    minIdle: 1
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat
+    stat-view:
+      allow: 127.0.0.1
+      deny:
+      loginUsername: admin
+      loginPassword: admin
 
 spring:
   mvc:
@@ -73,6 +55,26 @@ spring:
       max-redirects: 5
       #nodes: 10.82.12.30:6379,10.82.12.30:6479,10.82.12.31:6379
       nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005,127.0.0.1:7006
+
+# MyBatis
+mybatis:
+  type-aliases-package: com.bdfint.backend.modules.gen.bean,com.bdfint.backend.modules.sys.bean
+  configuration:
+    map-underscore-to-camel-case: true
+
+mapper:
+  mappers:
+      - com.bdfint.backend.framework.common.CommonMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
 
 
 #文件上传路径 空为系统默认配置

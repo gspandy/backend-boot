@@ -14,6 +14,8 @@ import com.bdfint.backend.modules.sys.service.UserService;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -131,6 +133,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
      * @param object User
      */
     @Override
+    @Transactional
     public String save(User object) throws Exception {
         if (StringUtils.isNoneEmpty(object.getId())) {
             // 如果新密码为空，则不更换密码
@@ -159,6 +162,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         }
         // 清除用户缓存
         UserUtils.clearCache(object);
+        int i = 1/0;
         return object.getId();
     }
 
