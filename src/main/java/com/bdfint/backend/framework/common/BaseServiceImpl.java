@@ -20,7 +20,7 @@ import java.util.List;
  * service基类实现类
  *
  * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 public abstract class BaseServiceImpl<T extends BaseEntity<T>> implements BaseService<T> {
 
@@ -99,7 +99,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<T>> implements BaseSe
      * 分页查询
      *
      * @param object 分页对象
-     * @param example
+     * @param example Example
      * @return Page<T>
      */
     @Override
