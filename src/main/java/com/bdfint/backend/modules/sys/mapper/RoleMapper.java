@@ -13,6 +13,7 @@ import java.util.List;
  * @version 2017/2/28
  */
 @Mapper
+@Repository
 public interface RoleMapper extends CommonMapper<Role> {
 
     List<Role> selectRoleByUserId(String userId);

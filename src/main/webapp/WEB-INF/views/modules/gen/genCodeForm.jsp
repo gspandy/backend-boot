@@ -62,7 +62,7 @@
             <div class="control-group">
                 <label class="control-label">生成包路径:</label>
                 <div class="controls">
-                    <input type="text" name="packageName" class="form-control required" value="com.platform.modules">
+                    <input type="text" name="packageName" class="form-control required" value="com.bdfint.backend.modules">
                     <span class="help-inline">建议模块包：com.platform.modules</span>
                 </div>
             </div>
@@ -76,7 +76,7 @@
             <div class="control-group hide">
                 <label class="control-label">生成子模块名:</label>
                 <div class="controls">
-                    <input type="text" name="subModuleName" class="form-control required" value="">
+                    <input type="text" name="subModuleName" class="form-control required" value="subTest">
                     <span class="help-inline">可选，分层下的文件夹，例如 </span>
                 </div>
             </div>
@@ -97,7 +97,7 @@
             <div class="control-group">
                 <label class="control-label">生成功能作者:</label>
                 <div class="controls">
-                    <input type="text" name="functionAuthor" class="form-control required" value="lufengc">
+                    <input type="text" name="functionAuthor" class="form-control required" value="fengcheng">
                     <span class="help-inline">功能开发者</span>
                 </div>
             </div>

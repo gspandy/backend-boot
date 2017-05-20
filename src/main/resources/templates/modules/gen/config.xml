@@ -6,6 +6,7 @@
 			<template>curd/action.xml</template>
 			<template>curd/service.xml</template>
 			<template>curd/serviceImpl.xml</template>
+			<template>curd/mapper.xml</template>
 			<template>curd/bean.xml</template>
 			<template>curd/viewForm.xml</template>
 			<template>curd/viewList.xml</template>
@@ -18,9 +19,6 @@
 			<template>treetable/mapper.xml</template>
 			<template>treetable/viewForm.xml</template>
 			<template>treetable/viewList.xml</template>
-		</category>
-		<category value="treeTableAndList" label="树结构表（左树右表）">
-			<template>category-ref:dao</template>
 		</category>
 	</category>
 	<!-- java类型 -->

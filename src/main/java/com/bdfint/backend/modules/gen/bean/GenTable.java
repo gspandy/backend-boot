@@ -20,7 +20,6 @@ import java.util.List;
 public class GenTable extends DataEntity<GenTable> {
 
     private static final long serialVersionUID = 1L;
-    private String id;
     private String name;    // 名称
     private String comments;        // 描述
     private String className;        // 实体类名称
@@ -40,16 +39,8 @@ public class GenTable extends DataEntity<GenTable> {
         this.id = id;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
-        return StringUtils.lowerCase(name);
+        return name;
     }
 
     public void setName(String name) {
@@ -73,7 +64,7 @@ public class GenTable extends DataEntity<GenTable> {
     }
 
     public String getParentTable() {
-        return StringUtils.lowerCase(parentTable);
+        return parentTable;
     }
 
     public void setParentTable(String parentTable) {
@@ -81,19 +72,11 @@ public class GenTable extends DataEntity<GenTable> {
     }
 
     public String getParentTableFk() {
-        return StringUtils.lowerCase(parentTableFk);
+        return parentTableFk;
     }
 
     public void setParentTableFk(String parentTableFk) {
         this.parentTableFk = parentTableFk;
-    }
-
-    public List<String> getPkList() {
-        return pkList;
-    }
-
-    public void setPkList(List<String> pkList) {
-        this.pkList = pkList;
     }
 
     public List<GenTableColumn> getColumnList() {
@@ -102,6 +85,14 @@ public class GenTable extends DataEntity<GenTable> {
 
     public void setColumnList(List<GenTableColumn> columnList) {
         this.columnList = columnList;
+    }
+
+    public List<String> getPkList() {
+        return pkList;
+    }
+
+    public void setPkList(List<String> pkList) {
+        this.pkList = pkList;
     }
 
     /**

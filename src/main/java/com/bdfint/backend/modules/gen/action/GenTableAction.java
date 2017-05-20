@@ -60,7 +60,7 @@ public class GenTableAction extends BaseAction<GenTable> {
     @RequestMapping(value = "form")
     public String form(Model model, GenTable genTable) {
         // 获取物理表列表
-        List<GenTable> tableList = genTableService.findTableListFormDb(new GenTable());
+        List<GenTable> tableList = genTableService.findTableListFormDb(genTable);
         model.addAttribute("tableList", tableList);
         // 验证表是否存在
         if (StringUtils.isBlank(genTable.getId()) && !genTableService.checkTableName(genTable.getName())) {

@@ -58,7 +58,7 @@ spring:
 
 # MyBatis
 mybatis:
-  type-aliases-package: com.bdfint.backend.modules.gen.bean,com.bdfint.backend.modules.sys.bean
+  type-aliases-package: com.bdfint.backend.modules
   configuration:
     map-underscore-to-camel-case: true
 

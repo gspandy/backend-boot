@@ -129,11 +129,11 @@
                         </thead>
                         <tbody>
                         <c:forEach items="${genTable.columnList}" var="column" varStatus="vs">
-                            <tr${column.status eq '1'?' class="error" title="已删除的列，保存之后消失！"':''}>
+                            <tr${column.delFlag eq '1'?' class="error" title="已删除的列，保存之后消失！"':''}>
                                 <td nowrap>
                                     <input type="hidden" name="columnList[${vs.index}].id" value="${column.id}"/>
-                                    <input type="hidden" name="columnList[${vs.index}].status" value="${column.status}"/>
-                                    <input type="hidden" name="columnList[${vs.index}].genTable.id" value="${column.genTable.id}"/>
+                                    <input type="hidden" name="columnList[${vs.index}].delFlag" value="${column.delFlag}"/>
+                                    <input type="hidden" name="columnList[${vs.index}].genTableId" value="${column.genTableId}"/>
                                     <input type="hidden" name="columnList[${vs.index}].name" value="${column.name}"/>${column.name}
                                 </td>
                                 <td>
@@ -188,7 +188,7 @@
                                     <input type="text" name="columnList[${vs.index}].dictType" value="${column.dictType}" maxlength="200" class="input-mini"/>
                                 </td>
                                 <td>
-                                    <input type="text" name="columnList[${vs.index}].sortId" value="${column.sort}" maxlength="200" class="required input-min digits"/>
+                                    <input type="text" name="columnList[${vs.index}].sort" value="${column.sort}" maxlength="200" class="required input-min digits"/>
                                 </td>
                             </tr>
                         </c:forEach>

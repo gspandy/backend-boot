@@ -84,7 +84,7 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTable> implements Ge
      * @return List<GenTable>
      */
     public List<GenTable> findTableListFormDb(GenTable genTable) {
-        return genTableMapper.findTableList(genTable.getName().toUpperCase());
+        return genTableMapper.findTableList(genTable.getName() != null ? genTable.getName().toUpperCase() : null);
     }
 
     /**

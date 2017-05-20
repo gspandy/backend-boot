@@ -22,7 +22,6 @@ import java.util.List;
 public class GenTableColumn extends DataEntity<GenTableColumn> {
 
     private static final long serialVersionUID = 1L;
-    private String id;
     private String genTableId;
     private String name;        // 列名
     private String comments;    // 描述
@@ -38,7 +37,7 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
     private String queryType;    // 查询方式（等于、不等于、大于、小于、范围、左LIKE、右LIKE、左右LIKE）
     private String showType;    // 字段生成方案（文本框、文本域、下拉框、复选框、单选框、字典选择、人员选择、部门选择、区域选择）
     private String dictType;    // 字典类型
-    private BigInteger sortId;        // 排序（升序）
+    private BigInteger sort;        // 排序（升序）
 
     @Transient
     private GenTable genTable;    // 归属表
@@ -179,12 +178,12 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
         this.dictType = dictType;
     }
 
-    public BigInteger getSortId() {
-        return sortId;
+    public BigInteger getSort() {
+        return sort;
     }
 
-    public void setSortId(BigInteger sortId) {
-        this.sortId = sortId;
+    public void setSort(BigInteger sort) {
+        this.sort = sort;
     }
 
     /**

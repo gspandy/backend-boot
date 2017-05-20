@@ -13,7 +13,7 @@ package ${packageName}.${moduleName}.bean<#if subModuleName != "">.${subModuleNa
 import ${i};
 </#list>
 
-import com.platform.framework.common.BaseEntity;
+import com.bdfint.backend.framework.common.DataEntity;
 
 /**
  * ${functionName}Entity
@@ -21,7 +21,7 @@ import com.platform.framework.common.BaseEntity;
  * @author ${functionAuthor}
  * @version ${functionVersion}
  */
-public class ${ClassName} extends BaseEntity<${ClassName}> {
+public class ${ClassName} extends DataEntity<${ClassName}> {
 	
 	private static final long serialVersionUID = 1L;
 	<#-- 生成字段属性 -->

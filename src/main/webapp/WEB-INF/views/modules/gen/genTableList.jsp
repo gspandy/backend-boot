@@ -77,8 +77,9 @@
                     <th class="sort-column name">表名</th>
                     <th>说明</th>
                     <th class="sort-column class_name">类名</th>
-                    <th class="sort-column parent_table">父表</th>
+                    <shiro:hasPermission name="gen:genTable:edit">
                     <th>操作</th>
+                    </shiro:hasPermission>
                 </tr>
                 </thead>
                 <tbody>
@@ -90,11 +91,7 @@
                         </td>
                         <td>${bean.comments}</td>
                         <td>${bean.className}</td>
-                        <td title="点击查询子表">
-                            <a href="#" onclick="$('#parentTable').val('${bean.parentTable}');$('#searchForm').submit();">
-                               ${bean.parentTable}</a>
-                        </td>
-                        <shiro:hasPermission name="sys:user:edit">
+                        <shiro:hasPermission name="gen:genTable:edit">
                         <td>
                             <a href="#" onclick="genCodeForm('${bean.id}')" class="btn btn-link btn-xs">
                                 <i class="fa fa-folder-o"></i> 生成代码

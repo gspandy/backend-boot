@@ -15,7 +15,6 @@ import com.bdfint.backend.framework.common.DataEntity;
 public class GenScheme extends DataEntity<GenScheme> {
 
     private static final long serialVersionUID = 1L;
-    private String id;
     private String name;    // 名称
     private String category;        // 分类
     private String packageName;        // 生成包路径

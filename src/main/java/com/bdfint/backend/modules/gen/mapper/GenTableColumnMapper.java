@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
  * @version 2017/2/28
  */
 @Mapper
+@Repository
 public interface GenTableColumnMapper extends CommonMapper<GenTableColumn> {
 
 }

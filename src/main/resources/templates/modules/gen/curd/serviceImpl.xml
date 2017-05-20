@@ -13,12 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.platform.framework.common.BaseServiceImpl;
-import com.platform.framework.common.MybatisDao;
-import com.platform.framework.util.Encodes;
-import com.platform.framework.util.StringUtils;
+import com.bdfint.backend.framework.common.BaseServiceImpl;
+import com.bdfint.backend.framework.util.Encodes;
+import com.bdfint.backend.framework.util.StringUtils;
 import ${packageName}.${moduleName}.bean<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
 import ${packageName}.${moduleName}.service<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Service;
+import ${packageName}.${moduleName}.mapper<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Mapper;
 
 /**
  * ${functionName}Service实现类
@@ -30,17 +30,18 @@ import ${packageName}.${moduleName}.service<#if subModuleName != "">.${subModule
 public class ${ClassName}ServiceImpl extends BaseServiceImpl<${ClassName}> implements ${ClassName}Service {
 
 	@Autowired
-    private MybatisDao mybatisDao;
+    private ${ClassName}Mapper ${ClassName}Mapper;
 
     @Override
 	public String save(${ClassName} object) throws Exception {
-        if (StringUtils.isBlank(object.getId())) {
-            object.setId(Encodes.uuid());
-            mybatisDao.insert(object);
+        if (StringUtils.isEmpty(object.getId())) {
+            object.preUpdate();
+            super.update(object);
         } else {
-            mybatisDao.update(object);
+            object.preInsert();
+            super.insert(object);
         }
-        return object.getId().toString();
+        return object.getId();
 	}
 	
 }]]>

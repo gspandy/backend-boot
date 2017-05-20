@@ -5,7 +5,7 @@
 	<fileName>${ClassName}Action.java</fileName>
 	<content><![CDATA[
 /**
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright &copy; <a href="http://www.bdfint.com">bdfint</a> All rights reserved.
  */
 package ${packageName}.${moduleName}.web<#if subModuleName != "">.${subModuleName}</#if>;
 
@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.platform.framework.util.StringUtils;
-import com.platform.modules.sys.bean.Param;
-import com.platform.framework.common.Page;
-import com.platform.framework.common.BaseAction;
+import com.bdfint.backend.framework.util.StringUtils;
+import com.bdfint.backend.modules.sys.bean.Param;
+import com.bdfint.backend.framework.common.Page;
+import com.bdfint.backend.framework.common.BaseAction;
 import ${packageName}.${moduleName}.bean<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
 import ${packageName}.${moduleName}.service<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Service;
 
@@ -43,16 +43,12 @@ public class ${ClassName}Action extends BaseAction<${ClassName}> {
 
     /**
      * 数据绑定
-     *
-     * @param id id
-     * @return SysDict
-     * @throws Exception
      */
 	@Override
 	@ModelAttribute
 	public ${ClassName} get(@RequestParam(required=false) String id) throws Exception {
 		${ClassName} entity = null;
-		if (StringUtils.isNotBlank(id)){
+		if (StringUtils.isNotEmpty(id)){
 			entity = ${className}Service.get(id);
 		}
 		if (entity == null){
@@ -65,11 +61,13 @@ public class ${ClassName}Action extends BaseAction<${ClassName}> {
      * 分页列表
      *
      * @return view
-     * @throws Exception
      */
+    @Override
 	@RequestMapping(value = {"list", ""})
+	@RequiresPermissions("${permissionPrefix}:view")
 	public String list(Model model, ${ClassName} object, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Page<${ClassName}> page = ${className}Service.getPage(new Page<${ClassName}>(request, response), object, "");
+	    Example example = new Example(${ClassName}.class);
+		PageInfo<${ClassName}> page = ${className}Service.getPage(object, example);
 		model.addAttribute("page", page);
 		return "${lastPackageName}/${viewPrefix}List";
 	}
@@ -82,6 +80,7 @@ public class ${ClassName}Action extends BaseAction<${ClassName}> {
      */
     @Override
 	@RequestMapping(value = "form")
+	@RequiresPermissions("${permissionPrefix}:view")
 	public String form(Model model, ${ClassName} object) throws Exception {
 		return "${lastPackageName}/${viewPrefix}Form";
 	}

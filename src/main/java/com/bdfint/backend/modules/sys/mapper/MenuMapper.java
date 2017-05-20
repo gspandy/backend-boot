@@ -13,6 +13,7 @@ import java.util.List;
  * @version 2017/2/28
  */
 @Mapper
+@Repository
 public interface MenuMapper extends CommonMapper<Menu> {
 
     List<Menu> selectMenuByUserId(String userId);
