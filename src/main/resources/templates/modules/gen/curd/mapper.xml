@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>service</name>
+	<filePath>src/main/java/${packageName}/${moduleName}/mapper/${subModuleName}</filePath>
+	<fileName>${ClassName}Mapper.java</fileName>
+	<content><![CDATA[
+/*
+ * Copyright &copy; <a href="http://www.bdfint.com">bdfint</a> All rights reserved.
+ */
+package ${packageName}.${moduleName}.mapper<#if subModuleName != "">.${subModuleName}</#if>;
+
+import com.bdfint.backend.framework.common.CommonMapper;
+import ${packageName}.${moduleName}.bean<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
+/**
+ * ${functionName}Mapper
+ *
+ * @author ${functionAuthor}
+ * @version ${functionVersion}
+ */
+@Mapper
+@Repository
+public interface ${ClassName}Mapper extends CommonMapper<${ClassName}> {
+
+	
+}]]>
+	</content>
+</template>

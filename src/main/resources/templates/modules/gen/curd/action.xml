@@ -4,7 +4,7 @@
 	<filePath>src/main/java/${packageName}/${moduleName}/web/${subModuleName}</filePath>
 	<fileName>${ClassName}Action.java</fileName>
 	<content><![CDATA[
-/**
+/*
  * Copyright &copy; <a href="http://www.bdfint.com">bdfint</a> All rights reserved.
  */
 package ${packageName}.${moduleName}.web<#if subModuleName != "">.${subModuleName}</#if>;
@@ -12,6 +12,8 @@ package ${packageName}.${moduleName}.web<#if subModuleName != "">.${subModuleNam
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bdfint.backend.framework.common.Param;
+import com.github.pagehelper.PageInfo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,11 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bdfint.backend.framework.util.StringUtils;
-import com.bdfint.backend.modules.sys.bean.Param;
-import com.bdfint.backend.framework.common.Page;
 import com.bdfint.backend.framework.common.BaseAction;
 import ${packageName}.${moduleName}.bean<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
 import ${packageName}.${moduleName}.service<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Service;
+import tk.mybatis.mapper.entity.Example;
 
 /**
  * ${functionName}Controller
@@ -76,7 +77,6 @@ public class ${ClassName}Action extends BaseAction<${ClassName}> {
      * 表单页面
      *
      * @return String
-     * @throws Exception
      */
     @Override
 	@RequestMapping(value = "form")
@@ -89,7 +89,6 @@ public class ${ClassName}Action extends BaseAction<${ClassName}> {
      * 保存
      *
      * @return String
-     * @throws Exception
      */
 	@Override
 	@RequestMapping(value = "save")
@@ -107,7 +106,6 @@ public class ${ClassName}Action extends BaseAction<${ClassName}> {
      * 删除
      *
      * @return String
-     * @throws Exception
      */
     @Override
 	@RequestMapping(value = "delete")

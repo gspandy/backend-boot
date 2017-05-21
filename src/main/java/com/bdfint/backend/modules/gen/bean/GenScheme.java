@@ -62,7 +62,12 @@ public class GenScheme extends DataEntity<GenScheme> {
     }
 
     public String getSubModuleName() {
-        return subModuleName;
+        if (subModuleName == null) {
+            return "";
+        } else {
+
+            return subModuleName;
+        }
     }
 
     public void setSubModuleName(String subModuleName) {

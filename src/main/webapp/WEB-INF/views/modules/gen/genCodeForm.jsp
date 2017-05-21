@@ -76,21 +76,21 @@
             <div class="control-group hide">
                 <label class="control-label">生成子模块名:</label>
                 <div class="controls">
-                    <input type="text" name="subModuleName" class="form-control required" value="subTest">
+                    <input type="text" name="subModuleName" class="form-control required" value="">
                     <span class="help-inline">可选，分层下的文件夹，例如 </span>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">生成功能描述:</label>
                 <div class="controls">
-                    <input type="text" name="functionName" class="form-control required" value="测试">
+                    <input type="text" name="functionName" class="form-control required" value="测试描述">
                     <span class="help-inline">将设置到类描述</span>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">生成功能名:</label>
                 <div class="controls">
-                    <input type="text" name="functionNameSimple" class="form-control required" value="测试">
+                    <input type="text" name="functionNameSimple" class="form-control required" value="测试功能名">
                     <span class="help-inline">用作功能提示，如：保存“某某”成功</span>
                 </div>
             </div>
