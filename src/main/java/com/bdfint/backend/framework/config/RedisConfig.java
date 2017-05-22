@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
+ */
+
 package com.bdfint.backend.framework.config;
 
 import com.bdfint.backend.framework.util.StringUtils;
@@ -14,8 +18,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author lufengc
- * @version 2016/11/10
+ * @author fengcheng
+ * @version 2017/2/28
  */
 @Configuration
 @ConfigurationProperties(prefix = "spring.redis")

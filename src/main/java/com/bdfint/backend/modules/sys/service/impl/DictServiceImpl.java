@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.sys.service.impl;
@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 /**
  * 字典表service实现类
  *
- * @author lufengc
- * @version 2016/1/16 14:05
+ * @author fengcheng
+ * @version 2016/7/28
  */
 @Service
 public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictService {

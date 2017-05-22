@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.security;
@@ -23,7 +23,7 @@ import java.util.LinkedList;
  * 并发登录人数控制
  *
  * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 public class KickoutSessionControlFilter extends AccessControlFilter {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.sys.action;
@@ -40,8 +40,8 @@ import java.util.UUID;
 /**
  * 用户管理
  *
- * @author lufengc
- * @version 2016-01-15 09:56:22
+ * @author fengcheng
+ * @version 2016/7/28
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/user")

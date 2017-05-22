@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.util;
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 线程相关工具类
  *
- * @author lufengc
+ * @author lufengcheng
  * @date 2016-01-15 09:56:22
  */
 public class Threads {
@@ -21,9 +21,7 @@ public class Threads {
     public static void sleep(long millis) {
         try {
             Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            // Ignore.
-            return;
+        } catch (InterruptedException ignored) {
         }
     }
 
@@ -33,9 +31,7 @@ public class Threads {
     public static void sleep(long duration, TimeUnit unit) {
         try {
             Thread.sleep(unit.toMillis(duration));
-        } catch (InterruptedException e) {
-            // Ignore.
-            return;
+        } catch (InterruptedException ignored) {
         }
     }
 

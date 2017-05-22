@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
+ */
+
 package com.bdfint.backend.framework.config;
 
 import com.bdfint.backend.framework.common.Global;
@@ -17,8 +21,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * @author lufengc
- * @date 2016/11/10
+ * @author fengcheng
+ * @version 2017/2/28
  */
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {

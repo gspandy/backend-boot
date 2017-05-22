@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.util;
@@ -195,8 +195,6 @@ public class Servlets {
 
     /**
      * 是否是Ajax异步请求
-     *
-     * @param request
      */
     public static boolean isAjaxRequest(HttpServletRequest request) {
 
@@ -205,7 +203,7 @@ public class Servlets {
         SecurityRealm.Principal principal = null;
         try {
             principal = UserUtils.getPrincipal();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
 
@@ -217,8 +215,6 @@ public class Servlets {
 
     /**
      * 获取当前请求对象
-     *
-     * @return
      */
     public static HttpServletRequest getRequest() {
         try {
@@ -230,8 +226,6 @@ public class Servlets {
 
     /**
      * 判断访问URI是否是静态文件请求
-     *
-     * @throws Exception
      */
     public static boolean isStaticFile(String uri) {
         if (staticFiles == null) {
@@ -242,11 +236,8 @@ public class Servlets {
                 e.printStackTrace();
             }
         }
-        if (StringUtils.endsWithAny(uri, staticFiles) && !StringUtils.endsWithAny(uri, urlSuffix)
-                && !StringUtils.endsWithAny(uri, ".jsp") && !StringUtils.endsWithAny(uri, ".java")) {
-            return true;
-        }
-        return false;
+        return StringUtils.endsWithAny(uri, staticFiles) && !StringUtils.endsWithAny(uri, urlSuffix)
+                && !StringUtils.endsWithAny(uri, ".jsp") && !StringUtils.endsWithAny(uri, ".java");
     }
 }
 

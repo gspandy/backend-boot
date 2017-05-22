@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.gen.service.impl;
@@ -24,8 +24,8 @@ import java.util.Map;
 /**
  * 业务表Service实现类
  *
- * @author lufengc
- * @version 2016/7/29 0:33
+ * @author fengcheng
+ * @version 2016/7/28
  */
 @Service
 public class GenTableServiceImpl extends BaseServiceImpl<GenTable> implements GenTableService {

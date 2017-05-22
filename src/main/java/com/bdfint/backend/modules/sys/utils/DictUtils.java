@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.sys.utils;
@@ -20,8 +20,8 @@ import java.util.Map;
 /**
  * 字典工具类
  *
- * @author lufengc
- * @version 2016/1/16 9:37
+ * @author fengcheng
+ * @version 2016/7/28
  */
 public class DictUtils {
 
@@ -52,7 +52,7 @@ public class DictUtils {
      * 根据多个字典值和字典名获取对应的标签（多个以逗号分隔）
      *
      * @param values       字典名对应的值（多个以逗号分隔）
-     * @param type       字典名
+     * @param type         字典名
      * @param defaultValue 默认值
      * @return 字典标签
      */
@@ -71,7 +71,7 @@ public class DictUtils {
      * 根据某个字典label和字典类型获取值
      *
      * @param label        字典名对应的标签
-     * @param type       字典名
+     * @param type         字典名
      * @param defaultLabel 默认标签
      * @return 字典值
      */

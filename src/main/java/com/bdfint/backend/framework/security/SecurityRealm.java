@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.security;
@@ -39,8 +39,8 @@ import java.util.Objects;
 /**
  * 用户身份验证,授权 Realm 组件
  *
- * @author lufengc
- * @date 2015-6-16
+ * @author lufengcheng
+ * @version 2015-6-16
  **/
 @Service
 public class SecurityRealm extends AuthorizingRealm {

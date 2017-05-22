@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.sys.action;
@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 标签Action
  *
- * @author lufengc
- * @version 2016年4月12日 21:03:02
+ * @author fengcheng
+ * @version 2016/7/28
  */
 @Controller
 @RequestMapping(value = "${adminPath}/tag")
@@ -29,12 +29,12 @@ public class TagAction {
      */
     @RequestMapping(value = "treeselect")
     public String treeselect(HttpServletRequest request, Model model) {
-        model.addAttribute("url", request.getParameter("url")); 	// 树结构数据URL
+        model.addAttribute("url", request.getParameter("url"));    // 树结构数据URL
         model.addAttribute("extId", request.getParameter("extId")); // 排除的编号ID
         model.addAttribute("checked", request.getParameter("checked")); // 是否可复选
         model.addAttribute("selectIds", request.getParameter("selectIds")); // 指定默认选中的ID
-        model.addAttribute("isAll", request.getParameter("isAll")); 	// 是否读取全部数据，不进行权限过滤
-        model.addAttribute("module", request.getParameter("module"));	// 过滤栏目模型（仅针对CMS的Category树）
+        model.addAttribute("isAll", request.getParameter("isAll"));    // 是否读取全部数据，不进行权限过滤
+        model.addAttribute("module", request.getParameter("module"));    // 过滤栏目模型（仅针对CMS的Category树）
         return "modules/sys/tagTreeselect";
     }
 

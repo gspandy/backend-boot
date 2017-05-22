@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.gen.bean;
@@ -14,8 +14,8 @@ import java.util.List;
 /**
  * 业务表Entity
  *
- * @author ThinkGem
- * @version 2013-10-15
+ * @author fengcheng
+ * @version 2016/7/28
  */
 public class GenTable extends DataEntity<GenTable> {
 

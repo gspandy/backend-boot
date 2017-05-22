@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.util.excel;
@@ -29,7 +29,7 @@ import java.util.*;
 /**
  * 导出Excel文件（导出“XLSX”格式，支持大数据量导出）
  *
- * @author lufengc
+ * @author lufengcheng
  * @version 2016-01-15
  * @see org.apache.poi.ss.SpreadsheetVersion
  */
@@ -60,7 +60,7 @@ public class ExportExcel {
     /**
      * 注解列表（Object[]{ ExcelField, Field/Method }）
      */
-    List<Object[]> annotationList = Lists.newArrayList();
+    private List<Object[]> annotationList = Lists.newArrayList();
 
     /**
      * 构造函数
@@ -130,14 +130,7 @@ public class ExportExcel {
             }
         }
         // Field sorting
-        Collections.sort(annotationList, new Comparator<Object[]>() {
-            public int compare(Object[] o1, Object[] o2) {
-                return new Integer(((ExcelField) o1[0]).sort()).compareTo(
-                        new Integer(((ExcelField) o2[0]).sort()));
-            }
-
-            ;
-        });
+        annotationList.sort(Comparator.comparing(o -> (((ExcelField) o[0]).sort())));
         // Initialize
         List<String> headerList = Lists.newArrayList();
         for (Object[] os : annotationList) {
@@ -350,7 +343,7 @@ public class ExportExcel {
             }
         } catch (Exception ex) {
             log.info("Set cell value [" + row.getRowNum() + "," + column + "] error: " + ex.toString());
-            cell.setCellValue(val.toString());
+            cell.setCellValue(val != null ? val.toString() : null);
         }
         cell.setCellStyle(style);
         return cell;
@@ -390,7 +383,7 @@ public class ExportExcel {
                     val = "";
                 }
                 this.addCell(row, colunm++, val, ef.align(), ef.fieldType());
-                sb.append(val + ", ");
+                sb.append(val).append(", ");
             }
             log.debug("Write success: [" + row.getRowNum() + "] " + sb.toString());
         }

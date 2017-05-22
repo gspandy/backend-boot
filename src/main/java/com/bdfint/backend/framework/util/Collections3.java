@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.util;
@@ -148,9 +148,7 @@ public class Collections3 {
      */
     public static <T> List<T> subtract(final Collection<T> a, final Collection<T> b) {
         List<T> list = new ArrayList<T>(a);
-        for (T element : b) {
-            list.remove(element);
-        }
+        list.removeAll(b);
 
         return list;
     }

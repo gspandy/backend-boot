@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.sys.service.impl;
@@ -163,7 +163,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         }
         // 清除用户缓存
         UserUtils.clearCache(object);
-        int i = 1/0;
         return object.getId();
     }
 

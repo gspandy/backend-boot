@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.util;
@@ -11,7 +11,7 @@ import java.io.StringWriter;
 /**
  * 关于异常的工具类
  *
- * @author lufengc
+ * @author lufengcheng
  * @date 2016-01-15
  */
 public class Exceptions {
@@ -59,8 +59,8 @@ public class Exceptions {
     /**
      * 在request中获取异常类
      *
-     * @param request
-     * @return
+     * @param request HttpServletRequest
+     * @return Throwable
      */
     public static Throwable getThrowable(HttpServletRequest request) {
         Throwable ex = null;

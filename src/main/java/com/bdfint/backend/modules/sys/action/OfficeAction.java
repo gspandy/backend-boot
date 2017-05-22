@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.modules.sys.action;
 
@@ -35,8 +35,8 @@ import java.util.Objects;
 /**
  * 机构Controller
  *
- * @author lufengc
- * @version 2013-5-15
+ * @author fengcheng
+ * @version 2016/7/28
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/office")
@@ -101,15 +101,15 @@ public class OfficeAction extends BaseAction<Office> {
     @RequiresPermissions("sys:office:view")
     public String form(Model model, Office office) throws Exception {
         User user = UserUtils.getUser();
-        if (office.getParentId()==null){
+        if (office.getParentId() == null) {
             office.setParentId(user.getOfficeId());
         }
         office.setParentId(office.getParentId());
-        if (office.getAreaId()==null){
+        if (office.getAreaId() == null) {
             office.setAreaId(officeService.get(user.getOfficeId()).getAreaId());
         }
         // 自动获取排序号
-        if (StringUtils.isBlank(office.getId())&&office.getParentId()!=null){
+        if (StringUtils.isBlank(office.getId()) && office.getParentId() != null) {
             int size = 0;
             List<Office> list = officeService.getList(true);
             for (Office e : list) {
@@ -118,7 +118,7 @@ public class OfficeAction extends BaseAction<Office> {
                 }
             }
             office.setCode(officeService.get(office.getParentId()).getCode()
-                    + StringUtils.leftPad(String.valueOf(size > 0 ? size+1 : 1), 3, "0"));
+                    + StringUtils.leftPad(String.valueOf(size > 0 ? size + 1 : 1), 3, "0"));
         }
 
         if (office.getParentId() != null) {

@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.gen.utils;
@@ -24,8 +24,8 @@ import java.util.Map;
 /**
  * 代码生成工具类
  *
- * @author ThinkGem
- * @version 2013-11-16
+ * @author fengcheng
+ * @version 2016/7/28
  */
 public class GenUtils {
 

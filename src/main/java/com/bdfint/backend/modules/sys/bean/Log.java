@@ -1,5 +1,5 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.modules.sys.bean;
 
@@ -15,8 +15,8 @@ import java.util.Map;
 /**
  * 日志Entity
  *
- * @author lufengc
- * @version 2016/1/16 9:41
+ * @author fengcheng
+ * @version 2016/7/28
  */
 @Table(name = "sys_log")
 public class Log extends BaseEntity<Log> {

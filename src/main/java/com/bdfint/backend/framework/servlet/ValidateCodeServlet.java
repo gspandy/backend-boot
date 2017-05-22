@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.servlet;
@@ -22,7 +22,7 @@ import java.util.Random;
  * 生成随机验证码
  *
  * @author lufengc
- * @date 2016-01-15
+ * @version 2016-01-15
  */
 public class ValidateCodeServlet extends HttpServlet {
 

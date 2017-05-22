@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.util;
@@ -188,20 +188,21 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
         boolean flag = true;
         // 列出源目录下的所有文件名和子目录名
         File[] files = srcDir.listFiles();
-        for (int i = 0; i < files.length; i++) {
+        assert files != null;
+        for (File file : files) {
             // 如果是一个单个文件，则直接复制
-            if (files[i].isFile()) {
-                flag = FileUtils.copyFile(files[i].getAbsolutePath(),
-                        descDirName + files[i].getName());
+            if (file.isFile()) {
+                flag = FileUtils.copyFile(file.getAbsolutePath(),
+                        descDirName + file.getName());
                 // 如果拷贝文件失败，则退出循环
                 if (!flag) {
                     break;
                 }
             }
             // 如果是子目录，则继续复制目录
-            if (files[i].isDirectory()) {
-                flag = FileUtils.copyDirectory(files[i]
-                        .getAbsolutePath(), descDirName + files[i].getName());
+            if (file.isDirectory()) {
+                flag = FileUtils.copyDirectory(file
+                        .getAbsolutePath(), descDirName + file.getName());
                 // 如果拷贝目录失败，则退出循环
                 if (!flag) {
                     break;
@@ -279,18 +280,19 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
         boolean flag = true;
         // 列出全部文件及子目录
         File[] files = dirFile.listFiles();
-        for (int i = 0; i < files.length; i++) {
+        assert files != null;
+        for (File file : files) {
             // 删除子文件
-            if (files[i].isFile()) {
-                flag = FileUtils.deleteFile(files[i].getAbsolutePath());
+            if (file.isFile()) {
+                flag = FileUtils.deleteFile(file.getAbsolutePath());
                 // 如果删除文件失败，则退出循环
                 if (!flag) {
                     break;
                 }
             }
             // 删除子目录
-            else if (files[i].isDirectory()) {
-                flag = FileUtils.deleteDirectory(files[i]
+            else if (file.isDirectory()) {
+                flag = FileUtils.deleteDirectory(file
                         .getAbsolutePath());
                 // 如果删除子目录失败，则退出循环
                 if (!flag) {

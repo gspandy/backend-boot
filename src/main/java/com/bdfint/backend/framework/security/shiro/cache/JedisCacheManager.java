@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.security.shiro.cache;
@@ -31,7 +31,7 @@ public class JedisCacheManager implements CacheManager {
 
     @Override
     public <K, V> Cache<K, V> getCache(String name) throws CacheException {
-        return new JedisCache<K, V>(cacheKeyPrefix + name);
+        return new JedisCache<>(cacheKeyPrefix + name);
     }
 
     public String getCacheKeyPrefix() {
@@ -42,12 +42,6 @@ public class JedisCacheManager implements CacheManager {
         this.cacheKeyPrefix = cacheKeyPrefix;
     }
 
-    /**
-     * 自定义授权缓存管理类
-     *
-     * @author ThinkGem
-     * @version 2014-7-20
-     */
     public class JedisCache<K, V> implements Cache<K, V> {
 
         private Logger logger = LoggerFactory.getLogger(getClass());
@@ -70,7 +64,7 @@ public class JedisCacheManager implements CacheManager {
                 return null;
             }
 
-            V v = null;
+            V v;
             HttpServletRequest request = Servlets.getRequest();
             if (request != null) {
                 v = (V) request.getAttribute(cacheKeyName);

@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.security.shiro.cache;
@@ -26,7 +26,7 @@ import java.util.Set;
  * 自定义shiro Session缓存类
  *
  * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @version 2016-01-15 09:56:22
  */
 public class SessionCacheManager implements CacheManager {
 
@@ -71,7 +71,7 @@ public class SessionCacheManager implements CacheManager {
                 return null;
             }
 
-            V v = null;
+            V v;
             HttpServletRequest request = Servlets.getRequest();
             if (request != null) {
                 v = (V) request.getAttribute(cacheKeyName);
@@ -80,7 +80,7 @@ public class SessionCacheManager implements CacheManager {
                 }
             }
 
-            V value = null;
+            V value;
             value = (V) getSession().getAttribute(cacheKeyName);
             logger.debug("get {} {} {}", cacheKeyName, key, request != null ? request.getRequestURI() : "");
 
@@ -110,7 +110,7 @@ public class SessionCacheManager implements CacheManager {
         @Override
         public V remove(K key) throws CacheException {
 
-            V value = null;
+            V value;
             value = (V) getSession().removeAttribute(cacheKeyName);
             logger.debug("remove {} {}", cacheKeyName, key);
 

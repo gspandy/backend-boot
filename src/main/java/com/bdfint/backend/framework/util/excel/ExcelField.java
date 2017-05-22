@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.util.excel;
@@ -12,8 +12,8 @@ import java.lang.annotation.Target;
 /**
  * Excel注解定义
  *
- * @author lufengc
- * @date 2016-01-15
+ * @author lufengcheng
+ * @version 2016-01-15
  */
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

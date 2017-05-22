@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.util;
@@ -164,7 +164,6 @@ public class Reflections {
                 return field;
             } catch (NoSuchFieldException e) {//NOSONAR
                 // Field不在当前类定义,继续向上转型
-                continue;// new add
             }
         }
         return null;
@@ -189,7 +188,6 @@ public class Reflections {
                 return method;
             } catch (NoSuchMethodException e) {
                 // Method不在当前类定义,继续向上转型
-                continue;// new add
             }
         }
         return null;

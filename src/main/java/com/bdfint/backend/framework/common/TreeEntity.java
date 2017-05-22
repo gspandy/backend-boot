@@ -1,13 +1,13 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.framework.common;
 
 /**
  * 数据Entity类
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author lufengcheng
+ * @version 2016-05-16
  */
 public abstract class TreeEntity<T> extends DataEntity<T> {
 

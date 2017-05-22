@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
+ */
+
 package com.bdfint.backend.framework.config;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -5,8 +9,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author lufengc
- * @date 2016/11/3
+ * @author fengcheng
+ * @version 2017/2/28
  */
 @Configuration
 @ConfigurationProperties

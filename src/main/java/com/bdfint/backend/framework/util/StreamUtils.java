@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.framework.util;
 
@@ -250,7 +250,7 @@ public class StreamUtils {
      * 以字节为单位（非 unicode ）
      *
      * @param filepath
-     * @param append true:文件以追加方式打开,false:则覆盖原文件的内容
+     * @param append   true:文件以追加方式打开,false:则覆盖原文件的内容
      * @return
      */
     public static FileOutputStream getFileOutputStream(String filepath, boolean append) {

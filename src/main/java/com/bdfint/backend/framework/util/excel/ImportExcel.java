@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.util.excel;
@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * 导入Excel文件（支持“XLS”和“XLSX”格式）
  *
- * @author lufengc
+ * @author lufengcheng
  * @version 2016-01-15
  */
 public class ImportExcel {
@@ -56,8 +56,6 @@ public class ImportExcel {
      *
      * @param fileName  导入文件，读取第一个工作表
      * @param headerNum 标题行号，数据行号=标题行号+1
-     * @throws InvalidFormatException
-     * @throws IOException
      */
     public ImportExcel(String fileName, int headerNum)
             throws InvalidFormatException, IOException {
@@ -69,8 +67,6 @@ public class ImportExcel {
      *
      * @param file      导入文件对象，读取第一个工作表
      * @param headerNum 标题行号，数据行号=标题行号+1
-     * @throws InvalidFormatException
-     * @throws IOException
      */
     public ImportExcel(File file, int headerNum)
             throws InvalidFormatException, IOException {
@@ -83,8 +79,6 @@ public class ImportExcel {
      * @param fileName   导入文件
      * @param headerNum  标题行号，数据行号=标题行号+1
      * @param sheetIndex 工作表编号
-     * @throws InvalidFormatException
-     * @throws IOException
      */
     public ImportExcel(String fileName, int headerNum, int sheetIndex)
             throws InvalidFormatException, IOException {
@@ -97,8 +91,6 @@ public class ImportExcel {
      * @param file       导入文件对象
      * @param headerNum  标题行号，数据行号=标题行号+1
      * @param sheetIndex 工作表编号
-     * @throws InvalidFormatException
-     * @throws IOException
      */
     public ImportExcel(File file, int headerNum, int sheetIndex)
             throws InvalidFormatException, IOException {
@@ -111,8 +103,6 @@ public class ImportExcel {
      * @param multipartFile 导入文件对象
      * @param headerNum     标题行号，数据行号=标题行号+1
      * @param sheetIndex    工作表编号
-     * @throws InvalidFormatException
-     * @throws IOException
      */
     public ImportExcel(MultipartFile multipartFile, int headerNum, int sheetIndex)
             throws InvalidFormatException, IOException {
@@ -125,8 +115,6 @@ public class ImportExcel {
      * @param fileName   导入文件对象
      * @param headerNum  标题行号，数据行号=标题行号+1
      * @param sheetIndex 工作表编号
-     * @throws InvalidFormatException
-     * @throws IOException
      */
     public ImportExcel(String fileName, InputStream is, int headerNum, int sheetIndex)
             throws InvalidFormatException, IOException {
@@ -150,8 +138,8 @@ public class ImportExcel {
     /**
      * 获取行对象
      *
-     * @param rownum
-     * @return
+     * @param rownum 行数
+     * @return 行对象
      */
     public Row getRow(int rownum) {
         return this.sheet.getRow(rownum);
@@ -160,7 +148,7 @@ public class ImportExcel {
     /**
      * 获取数据行号
      *
-     * @return
+     * @return 行号
      */
     public int getDataRowNum() {
         return headerNum + 1;
@@ -169,7 +157,7 @@ public class ImportExcel {
     /**
      * 获取最后一个数据行号
      *
-     * @return
+     * @return 行号
      */
     public int getLastDataRowNum() {
         return this.sheet.getLastRowNum() + headerNum;
@@ -178,7 +166,7 @@ public class ImportExcel {
     /**
      * 获取最后一个列号
      *
-     * @return
+     * @return 列号
      */
     public int getLastCellNum() {
         return this.getRow(headerNum).getLastCellNum();
@@ -350,7 +338,7 @@ public class ImportExcel {
                         Reflections.invokeMethod(e, mthodName, new Class[]{valType}, new Object[]{val});
                     }
                 }
-                sb.append(val + ", ");
+                sb.append(val).append(", ");
             }
             dataList.add(e);
             log.debug("Read success: [" + i + "] " + sb.toString());

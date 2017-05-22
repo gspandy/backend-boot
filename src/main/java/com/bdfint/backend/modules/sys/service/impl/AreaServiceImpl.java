@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.sys.service.impl;
@@ -21,8 +21,8 @@ import java.util.List;
 /**
  * 区域Service
  *
- * @author jeeplus
- * @version 2014-05-16
+ * @author fengcheng
+ * @version 2016/7/28
  */
 @Service
 public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaService {

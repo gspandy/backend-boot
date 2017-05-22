@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.gen.bean;
@@ -13,29 +13,30 @@ import java.util.List;
 
 /**
  * 生成方案Entity
- * @author ThinkGem
- * @version 2013-10-15
+ *
+ * @author fengcheng
+ * @version 2016/7/28
  */
-@XmlRootElement(name="category")
+@XmlRootElement(name = "category")
 public class GenCategory extends Dict {
-	
-	private static final long serialVersionUID = 1L;
-	private List<String> template;			// 主表模板
-	
-	public static String CATEGORY_REF = "category-ref:";
 
-	public GenCategory() {
-		super();
-	}
+    private static final long serialVersionUID = 1L;
+    private List<String> template;            // 主表模板
 
-	@XmlElement(name = "template")
-	public List<String> getTemplate() {
-		return template;
-	}
+    public static String CATEGORY_REF = "category-ref:";
 
-	public void setTemplate(List<String> template) {
-		this.template = template;
-	}
+    public GenCategory() {
+        super();
+    }
+
+    @XmlElement(name = "template")
+    public List<String> getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(List<String> template) {
+        this.template = template;
+    }
 
 }
 

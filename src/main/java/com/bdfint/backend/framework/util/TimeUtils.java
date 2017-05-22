@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.framework.util;
 
@@ -235,8 +235,6 @@ public class TimeUtils {
 
     /**
      * 获得时间字段的分隔符
-     *
-     * @return
      */
     public String getTimeSeparator() {
         return timeSeparator;
@@ -280,12 +278,12 @@ public class TimeUtils {
         }
         char[] chs = t.toCharArray();
         int n = 0;
-        for (int i = 0; i < chs.length; i++) {
-            if (chs[i] <= ' ') {
+        for (char ch : chs) {
+            if (ch <= ' ') {
                 continue;
             }
-            if (chs[i] >= '0' && chs[i] <= '9') {
-                n = n * 10 + chs[i] - '0';
+            if (ch >= '0' && ch <= '9') {
+                n = n * 10 + ch - '0';
                 continue;
             }
             parseTimeException(time);
@@ -329,10 +327,7 @@ public class TimeUtils {
         if (getClass() != obj.getClass())
             return false;
         final TimeUtils other = (TimeUtils) obj;
-        if (!Arrays.equals(fields, other.fields)) {
-            return false;
-        }
-        return true;
+        return Arrays.equals(fields, other.fields);
     }
 
 }

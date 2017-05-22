@@ -1,5 +1,5 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.modules.sys.bean;
 
@@ -12,8 +12,8 @@ import java.util.List;
 /**
  * 机构Entity
  *
- * @author ThinkGem
- * @version 2013-05-15
+ * @author fengcheng
+ * @version 2016/7/28
  */
 @Table(name = "sys_office")
 public class Office extends TreeEntity<Office> {

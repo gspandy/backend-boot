@@ -1,5 +1,5 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.modules.sys.bean;
 
@@ -7,7 +7,6 @@ import com.bdfint.backend.framework.common.DataEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -17,8 +16,8 @@ import java.util.Objects;
 /**
  * 菜单Entity
  *
- * @author ThinkGem
- * @version 2013-05-15
+ * @author fengcheng
+ * @version 2016/7/28
  */
 @Table(name = "sys_menu")
 public class Menu extends DataEntity<Menu> {

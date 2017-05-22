@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.sys.utils;
@@ -16,13 +16,12 @@ import org.apache.shiro.subject.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 用户工具类
  *
- * @author lufengcheng
- * @version 2016-01-15 09:56:22
+ * @author fengcheng
+ * @version 2016/7/28
  */
 public class UserUtils {
 
@@ -248,9 +247,10 @@ public class UserUtils {
 
     /**
      * 清除指定用户缓存
+     *
      * @param user 当前用户
      */
-    public static void clearCache(User user){
+    public static void clearCache(User user) {
         JedisUtils.delObject(USER_CACHE_ + USER_CACHE_ID_ + user.getId());
         JedisUtils.delObject(USER_CACHE_ + USER_CACHE_LOGIN_NAME_ + user.getLoginName());
         JedisUtils.delObject(USER_CACHE_ + USER_CACHE_LOGIN_NAME_ + user.getOldLoginName());

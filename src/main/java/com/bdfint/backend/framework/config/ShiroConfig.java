@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
+ */
+
 package com.bdfint.backend.framework.config;
 
 import com.bdfint.backend.framework.security.FormAuthenticationFilter;
@@ -24,8 +28,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @author lufengc
- * @version 2016/11/10
+ * @author fengcheng
+ * @version 2017/2/28
  */
 @Configuration
 public class ShiroConfig {
@@ -121,14 +125,14 @@ public class ShiroConfig {
     }
 
     /**
-     * AOP式方法级权限检查
+     * AOP式方法级权限检查（导致事物失效，难受～）
      */
-    @Bean
-    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
-        DefaultAdvisorAutoProxyCreator daap = new DefaultAdvisorAutoProxyCreator();
-        daap.setProxyTargetClass(true);
-        return daap;
-    }
+//    @Bean
+//    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+//        DefaultAdvisorAutoProxyCreator daap = new DefaultAdvisorAutoProxyCreator();
+//        daap.setProxyTargetClass(true);
+//        return daap;
+//    }
 
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {

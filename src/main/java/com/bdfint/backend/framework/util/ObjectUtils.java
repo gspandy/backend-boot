@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.util;
@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * 对象操作工具类, 继承org.apache.commons.lang3.ObjectUtils类
  *
- * @author lufengc
+ * @author lufengcheng
  * @date 2016-01-15
  */
 public class ObjectUtils extends org.apache.commons.lang3.ObjectUtils {
@@ -133,9 +133,7 @@ public class ObjectUtils extends org.apache.commons.lang3.ObjectUtils {
             obj = ois.readObject();
             ois.close();
             bis.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
+        } catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
         return obj;

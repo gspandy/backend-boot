@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.sys.action;
@@ -12,7 +12,6 @@ import com.bdfint.backend.modules.sys.bean.Log;
 import com.bdfint.backend.modules.sys.bean.User;
 import com.bdfint.backend.modules.sys.service.LogService;
 import com.bdfint.backend.modules.sys.service.UserService;
-import com.bdfint.backend.modules.sys.utils.UserUtils;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +30,8 @@ import java.util.List;
 /**
  * 日志action
  *
- * @author lufengc
- * @version 2016-01-15 09:56:22
+ * @author fengcheng
+ * @version 2016/7/28
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/log")

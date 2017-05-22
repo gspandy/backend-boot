@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
+ */
+
 package com.bdfint.backend.framework.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
@@ -57,7 +61,7 @@ public class DruidAutoConfiguration {
         datasource.setMaxPoolPreparedStatementPerConnectionSize(properties.getMaxPoolPreparedStatementPerConnectionSize());
         try {
             datasource.setFilters(properties.getFilters());
-            //datasource.init();
+            datasource.init();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

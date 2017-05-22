@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.framework.common;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * service基类
  *
- * @author lufengc
- * @date 2016-01-15 09:56:22
+ * @author lufengcheng
+ * @version 2016-01-15 09:56:22
  */
 public interface BaseService<T> {
 

@@ -1,7 +1,10 @@
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
+ */
+
 package com.bdfint.backend.modules.gen.mapper;
 
 import com.bdfint.backend.framework.common.CommonMapper;
-import com.bdfint.backend.modules.gen.bean.GenTable;
 import com.bdfint.backend.modules.gen.bean.GenTableColumn;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
