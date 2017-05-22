@@ -9,6 +9,7 @@ import com.bdfint.backend.framework.util.BeanValidators;
 import com.bdfint.backend.framework.util.DateUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -233,7 +234,7 @@ public abstract class BaseAction<T> {
      *
      * @return ModelAndView
      */
-    @ExceptionHandler({AuthenticationException.class})
+    @ExceptionHandler({AuthenticationException.class, UnauthorizedException.class})
     public String authenticationException() {
         return "error/403";
     }
