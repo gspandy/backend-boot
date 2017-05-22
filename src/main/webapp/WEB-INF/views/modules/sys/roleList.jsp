@@ -58,7 +58,7 @@
                         <td>${bean.enname}</td>
                         <td>${bean.remarks}</td>
                         <td>${fns:getUserById(bean.createBy).name}</td>
-                        <td>${bean.createDate}</td>
+                        <td><fmt:formatDate value="${bean.createDate}" type="both"/></td>
                         <shiro:hasPermission name="sys:role:edit">
                         <td>
                                 <a href="#"
