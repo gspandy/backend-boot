@@ -6,7 +6,7 @@
     <meta name="decorator" content="default"/>
 </head>
 <body class="gray-bg">
-<div class="wrapper wrapper-content">
+<div class="wrapper wrapper-content animated zoomIn">
     <div class="ibox">
         <div class="ibox-title">
             <h5>角色列表 </h5>

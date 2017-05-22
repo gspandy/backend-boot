@@ -35,7 +35,7 @@
     </script>
 </head>
 <body class="gray-bg">
-<div class="wrapper wrapper-content">
+<div class="wrapper wrapper-content animated zoomIn">
     <div class="ibox">
         <div class="ibox-title">
             <h5>区域列表 </h5>

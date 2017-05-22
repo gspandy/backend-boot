@@ -13,7 +13,7 @@
 </head>
 <body class="gray-bg">
 
-<div class="wrapper wrapper-content">
+<div class="wrapper wrapper-content animated zoomIn">
     <div class="ibox">
         <div class="ibox-content">
             <sys:message content="${message}"/>
@@ -24,7 +24,7 @@
                     </a>
                     <div id="ztree" class="ztree"></div>
                 </div>
-                <div id="right" class="col-sm-11 animated fadeInRight">
+                <div id="right" class="col-sm-11">
                     <iframe id="officeContent" name="officeContent" src="${ctx}/sys/office/list?id=&parentIds=" width="100%" height="91%" frameborder="0"></iframe>
                 </div>
             </div>

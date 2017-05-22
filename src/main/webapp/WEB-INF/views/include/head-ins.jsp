@@ -1,11 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="author" content="http://www.zlgx.com/"/>
+<meta name="author" content="http://www.lufengc.com/"/>
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta http-equiv="Expires" content="0">
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta http-equiv="Cache-Control" content="no-store">
 
 <link rel="shortcut icon" href="${ctxStatic}/static/app/image/favicon.ico">
 <link rel="stylesheet" href="${ctxStatic}/static/plugins/jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css">
