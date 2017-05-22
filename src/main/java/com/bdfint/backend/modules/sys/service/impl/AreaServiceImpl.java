@@ -14,6 +14,7 @@ import com.bdfint.backend.modules.sys.service.AreaService;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
@@ -37,6 +38,7 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
      * @return 主键ID
      */
     @Override
+    @Transactional
     public String save(Area object) throws Exception {
         String oldParentIds = object.getParentIds();
         Area parent = get(object.getParentId());
@@ -82,6 +84,7 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
      * @return String
      */
     @Override
+    @Transactional
     public int delete(String ids) throws Exception {
         super.delete(ids);
         UserUtils.removeCache(UserUtils.CACHE_AREA_LIST);

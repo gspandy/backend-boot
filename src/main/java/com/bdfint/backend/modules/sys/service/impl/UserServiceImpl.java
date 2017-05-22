@@ -70,6 +70,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
      * @param currentUser 当前用户
      */
     @Override
+    @Transactional
     public void updateUserInfo(User currentUser) throws Exception {
         super.update(currentUser);
         UserUtils.clearCache();
@@ -93,6 +94,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
      * 更新用户状态
      */
     @Override
+    @Transactional
     public int updateStatus(String ids, User user) throws Exception {
         String[] split = ids.split(",");
         for (String id : split) {
@@ -112,6 +114,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
      * @param password 需要初始化的密码
      */
     @Override
+    @Transactional
     public int initPassword(String ids, String password) throws Exception {
         String entryptPassword = Encodes.encryptPassword(password);
         User user;
@@ -172,6 +175,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
      * @param ids 要删除的ID
      */
     @Override
+    @Transactional
     public int delete(String ids) throws Exception {
         User user;
         String[] split = ids.split(",");

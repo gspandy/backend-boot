@@ -13,6 +13,7 @@ import com.bdfint.backend.modules.sys.service.MenuService;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
@@ -66,6 +67,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
     }
 
     @Override
+    @Transactional
     public void updateMenuSort(String[] ids, Integer[] sorts) throws Exception {
         for (int i = 0; i < ids.length; i++) {
             Menu menu = new Menu(ids[i]);
@@ -85,6 +87,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
      * @return 保存的ID
      */
     @Override
+    @Transactional
     public String save(Menu object) throws Exception {
         String oldParentIds = object.getParentIds();
         Menu parent = get(object.getParentId());
@@ -125,6 +128,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
      * @throws Exception
      */
     @Override
+    @Transactional
     public int delete(String id) throws Exception {
         StringBuilder ids = new StringBuilder(id);
         //获取子节点集合

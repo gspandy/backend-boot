@@ -14,6 +14,7 @@ import com.bdfint.backend.modules.sys.service.RoleService;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -47,6 +48,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
      * @param ids  要分配的用户ids
      */
     @Override
+    @Transactional
     public void assignUserToRole(Role role, String ids) {
         roleMapper.assignUserToRole(role.getId(), ids.split(","));
     }
@@ -59,6 +61,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
      * @return boolean
      */
     @Override
+    @Transactional
     public boolean outUserInRole(Role role, User user) {
         // 删除用户角色关联
         roleMapper.outUserInRole(role.getId(), user.getId());
@@ -72,6 +75,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
      * @return 保存的ID
      */
     @Override
+    @Transactional
     public String save(Role object) throws Exception {
         if (object.getId() != null) {
             object.preUpdate();
@@ -97,6 +101,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
      * @param ids 删除的ID
      */
     @Override
+    @Transactional
     public int delete(String ids) throws Exception {
         //删除角色表
         super.delete(ids);
