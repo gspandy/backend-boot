@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="keywords" content="400">
     <meta name="description" content="400">
-    <title>400 - 请求出错</title>
+    <title>400</title>
     <link rel="stylesheet" href="${ctxStatic}/static/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${ctxStatic}/static/app/css/ins.css">
 </head>
@@ -18,7 +18,6 @@
 <div class="text-center middle-box">
     <div class="page-header"><h2>参数有误,服务器无法解析！</h2></div>
     <div><a href="javascript:" onclick="history.go(-1);" class="btn">返回上一页</a></div>
-    <script>try{top.$.jBox.closeTip();} catch (e) {}</script>
 </div>
 </body>
 </html>

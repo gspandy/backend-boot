@@ -19,7 +19,7 @@
 <div class="text-center middle-box">
     <h1>404</h1>
     <h3>页面未找到！</h3>
-    <div>抱歉，页面好像去火星了~</div>
+    <div><a href="javascript:" onclick="history.go(-1);" class="btn">返回上一页</a></div>
 </div>
 </body>
 </html>

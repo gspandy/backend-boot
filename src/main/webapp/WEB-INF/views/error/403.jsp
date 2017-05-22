@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="keywords" content="404">
     <meta name="description" content="404">
-    <title>500</title>
+    <title>403</title>
     <link rel="stylesheet" href="${ctxStatic}/static/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${ctxStatic}/static/app/css/ins.css">
 </head>
@@ -20,7 +20,6 @@
     <h1>403</h1>
     <h3>操作权限不足！</h3>
     <div><a href="javascript:" onclick="history.go(-1);" class="btn">返回上一页</a></div>
-    <script>try{top.$.jBox.closeTip();}catch(e){}</script>
 </div>
 </body>
 </html>

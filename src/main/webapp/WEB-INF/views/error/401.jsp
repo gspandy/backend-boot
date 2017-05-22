@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="keywords" content="404">
     <meta name="description" content="404">
-    <title>404</title>
+    <title>401</title>
     <link rel="stylesheet" href="${ctxStatic}/static/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${ctxStatic}/static/app/css/ins.css">
 </head>
@@ -18,6 +18,7 @@
 <div class="text-center middle-box">
     <h1>401</h1>
     <h3>未授权错误！</h3>
+    <div><a href="javascript:" onclick="history.go(-1);" class="btn">返回上一页</a></div>
 </div>
 </body>
 </html>

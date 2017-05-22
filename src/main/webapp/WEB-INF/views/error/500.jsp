@@ -20,7 +20,6 @@
     <h1>500</h1>
     <h3>服务器内部错误！</h3>
     <div><a href="javascript:" onclick="history.go(-1);" class="btn">返回上一页</a></div>
-    <script>try{top.$.jBox.closeTip();} catch (e) {}</script>
 </div>
 </body>
 </html>
