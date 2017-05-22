@@ -15,6 +15,7 @@ import com.bdfint.backend.modules.gen.service.GenTableService;
 import com.bdfint.backend.modules.gen.utils.GenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Arrays;
@@ -47,6 +48,7 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTable> implements Ge
     }
 
     @Override
+    @Transactional
     public String save(GenTable object) throws Exception {
         if (StringUtils.isBlank(object.getId())) {
             object.setId(Encodes.uuid());
@@ -69,6 +71,7 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTable> implements Ge
     }
 
     @Override
+    @Transactional
     public int delete(String ids) throws Exception {
         super.delete(ids);
         Example example = new Example(GenTableColumn.class);
