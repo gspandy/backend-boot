@@ -30,6 +30,7 @@ public class SystemProperties {
     private boolean userKickoutAfter;
     private int userMaxSession;
     private boolean notAllowRefreshIndex;
+    private boolean allowStartupEmptyCache;
     private String casServerUrl;
     private String casProjectUrl;
 
@@ -119,6 +120,14 @@ public class SystemProperties {
 
     public void setNotAllowRefreshIndex(boolean notAllowRefreshIndex) {
         this.notAllowRefreshIndex = notAllowRefreshIndex;
+    }
+
+    public boolean isAllowStartupEmptyCache() {
+        return allowStartupEmptyCache;
+    }
+
+    public void setAllowStartupEmptyCache(boolean allowStartupEmptyCache) {
+        this.allowStartupEmptyCache = allowStartupEmptyCache;
     }
 
     public String getCasServerUrl() {

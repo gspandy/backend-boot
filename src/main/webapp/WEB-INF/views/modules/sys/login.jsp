@@ -53,7 +53,7 @@
 
 <body class="light-login">
     <div class="row">
-        <div class="middle-box text-center animated pulse">
+        <div class="middle-box text-center animated zoomIn">
             <h3 class="login-title">用户登录</h3>
             <form id="loginForm" class="form-group" method="post" action="${ctx}/login">
                 <div class="form-group">
@@ -82,10 +82,6 @@
                     </label>
                 </div>
                 <button type="submit" class="btn btn-primary btn-group-justified">登录</button>
-                <p class="text-muted text-center">
-                    <a href="#"><small>忘记密码？</small> </a> |
-                    <a href="#">注册一个新账号</a>
-                </p>
             </form>
         </div>
     </div>

@@ -15,6 +15,7 @@ import com.bdfint.backend.modules.sys.bean.User;
 import com.bdfint.backend.modules.sys.service.OfficeService;
 import com.bdfint.backend.modules.sys.service.RoleService;
 import com.bdfint.backend.modules.sys.service.UserService;
+import com.bdfint.backend.modules.sys.utils.UploadUtils;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
@@ -350,19 +351,10 @@ public class UserAction extends BaseAction<User> {
     @RequestMapping(value = "imageUpload")
     public String imageUpload(HttpServletRequest request, MultipartFile file) throws Exception {
         User currentUser = UserUtils.getUser();
+        String fileName = UploadUtils.uploadImage(file, 1);
         // 判断文件是否为空
-        if (!file.isEmpty()) {
-            String uploadFileName = file.getOriginalFilename();
-            String filetype = uploadFileName.substring(uploadFileName.lastIndexOf(".") + 1);
-            // 文件保存路径
-            String path = Global.getFileUploadPath();
-            String realPath = "userid_" + UserUtils.getPrincipal() + "/images/"
-                    + DateUtils.formatDate(new Date()) + "/";
-            String fileName = UUID.randomUUID().toString().replace("-", "") + "." + filetype;
-            // 转存文件
-            FileUtils.createDirectory(path + realPath);
-            file.transferTo(new File(path + realPath + fileName));
-            currentUser.setPhoto(realPath + fileName);
+        if (StringUtils.isNotEmpty(fileName)) {
+            currentUser.setPhoto(fileName);
             userService.updateUserInfo(currentUser);
         }
         return "modules/sys/userImageEdit";

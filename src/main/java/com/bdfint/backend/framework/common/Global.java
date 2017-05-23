@@ -92,7 +92,8 @@ public class Global {
     public static String getFileUploadPath() {
         String dir = systemProperties.getFileUploadPath();
         if (StringUtils.isBlank(dir)) {
-            dir = getSysRootPath() + "/uploads/";
+            dir = getProjectPath() + File.separator + "src" + File.separator + "main"
+                    + File.separator + "webapp" + File.separator + "uploads/";
         }
         return dir;
     }
