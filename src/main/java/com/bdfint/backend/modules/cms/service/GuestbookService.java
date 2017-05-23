@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.cms.service;
@@ -9,10 +9,10 @@ import com.bdfint.backend.framework.common.BaseService;
 import com.bdfint.backend.modules.cms.bean.Guestbook;
 
 /**
- * 系统角色service
+ * 留言板service
  *
- * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @author fengcheng
+ * @version 2016-09-12
  */
 public interface GuestbookService extends BaseService<Guestbook> {
 

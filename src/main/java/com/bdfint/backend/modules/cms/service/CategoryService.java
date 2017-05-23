@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.cms.service;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * 栏目Service
  *
- * @author lufengc
- * @version 2013-5-31
+ * @author fengcheng
+ * @version 2016-09-12
  */
 public interface CategoryService extends BaseService<Category> {
 
@@ -24,7 +24,7 @@ public interface CategoryService extends BaseService<Category> {
 
     List<Category> getByIds(String ids) throws Exception;
 
-    void updateSort(Integer[] ids, Integer[] sortIds);
+    void updateSort(String[] ids, Integer[] sortIds) throws Exception;
 
     List<Category> getByParentIdsLike(String parentIds);
 }

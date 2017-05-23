@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.modules.cms.service.impl;
 
@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * 栏目Service实现类
  *
- * @author lufengc
+ * @author fengcheng
  * @version 2016-09-12
  */
 @Service
@@ -149,11 +149,12 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
     }
 
     @Override
-    public void updateSort(Integer[] ids, Integer[] sorts) {
-        String sql;
+    public void updateSort(String[] ids, Integer[] sorts) throws Exception {
         for (int i = 0; i < ids.length; i++) {
-            sql = "UPDATE sys_permission SET sort = " + sorts[i] + " WHERE id = " + ids[i];
-            //mybatisDao.updateBySql(sql, Category.class);
+            Category category = new Category();
+            category.setId(ids[i]);
+            category.setSort(sorts[i]);
+            super.update(category);
         }
         UserUtils.removeCache(CACHE_CATEGORY_LIST);
         CmsUtils.removeCacheLike("mainNavList_");

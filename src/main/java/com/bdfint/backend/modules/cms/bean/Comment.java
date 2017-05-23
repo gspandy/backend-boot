@@ -1,128 +1,130 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.modules.cms.bean;
 
-import com.bdfint.backend.framework.common.DataEntity;
+import com.bdfint.backend.framework.common.BaseEntity;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
  * 评论Entity
- * @author ThinkGem
- * @version 2013-05-15
+ *
+ * @author fengcheng
+ * @version 2016/7/28
  */
-public class Comment extends DataEntity<Comment> {
+@Table(name = "cms_comment")
+public class Comment extends BaseEntity<Comment> {
 
-	private static final long serialVersionUID = 1L;
-	private String categoryId;// 分类编号
-	private String contentId;	// 归属分类内容的编号（Article.id、Photo.id、Download.id）
-	private String title;	// 归属分类内容的标题（Article.title、Photo.title、Download.title）
-	private String content; // 评论内容
-	private String name; 	// 评论姓名
-	private String ip; 		// 评论IP
-	private Date createDate;// 评论时间
-	private String auditUserId; // 审核人
-	private Date auditDate;	// 审核时间
-	private String delFlag;	// 删除标记删除标记（0：正常；1：删除；2：审核）
+    private static final long serialVersionUID = 1L;
+    private String categoryId;// 分类编号
+    private String contentId;    // 归属分类内容的编号（Article.id、Photo.id、Download.id）
+    private String title;    // 归属分类内容的标题（Article.title、Photo.title、Download.title）
+    private String content; // 评论内容
+    private String name;    // 评论姓名
+    private String ip;        // 评论IP
+    private Date createDate;// 评论时间
+    private String auditUserId; // 审核人
+    private Date auditDate;    // 审核时间
+    private String delFlag;    // 删除标记删除标记（0：正常；1：删除；2：审核）
 
-	public Comment() {
-		super();
-		this.delFlag = DEL_FLAG_AUDIT;
-	}
-	
-	public Comment(String id){
-		this();
-		this.id = id;
-	}
+    public Comment() {
+        super();
+    }
 
-	@NotNull
-	public String getCategoryId() {
-		return categoryId;
-	}
+    public Comment(String id) {
+        this();
+        this.id = id;
+    }
 
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
-	}
+    @NotNull
+    public String getCategoryId() {
+        return categoryId;
+    }
 
-	@NotNull
-	public String getContentId() {
-		return contentId;
-	}
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
 
-	public void setContentId(String contentId) {
-		this.contentId = contentId;
-	}
+    @NotNull
+    public String getContentId() {
+        return contentId;
+    }
 
-	@Length(min=1, max=255)
-	public String getContent() {
-		return content;
-	}
+    public void setContentId(String contentId) {
+        this.contentId = contentId;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
-	
-	@Length(min=1, max=255)
-	public String getTitle() {
-		return title;
-	}
+    @Length(min = 1, max = 255)
+    public String getContent() {
+        return content;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	
-	@Length(min=1, max=100)
-	public String getName() {
-		return name;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Length(min = 1, max = 255)
+    public String getTitle() {
+        return title;
+    }
 
-	public String getAuditUserId() {
-		return auditUserId;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setAuditUserId(String auditUserId) {
-		this.auditUserId = auditUserId;
-	}
+    @Length(min = 1, max = 100)
+    public String getName() {
+        return name;
+    }
 
-	public Date getAuditDate() {
-		return auditDate;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setAuditDate(Date auditDate) {
-		this.auditDate = auditDate;
-	}
+    public String getAuditUserId() {
+        return auditUserId;
+    }
 
-	public String getIp() {
-		return ip;
-	}
+    public void setAuditUserId(String auditUserId) {
+        this.auditUserId = auditUserId;
+    }
 
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
+    public Date getAuditDate() {
+        return auditDate;
+    }
 
-	@NotNull
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public void setAuditDate(Date auditDate) {
+        this.auditDate = auditDate;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public String getIp() {
+        return ip;
+    }
 
-	@Length(min=1, max=1)
-	public String getDelFlag() {
-		return delFlag;
-	}
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
 
-	public void setDelFlag(String delFlag) {
-		this.delFlag = delFlag;
-	}
+    @NotNull
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    @Length(min = 1, max = 1)
+    public String getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(String delFlag) {
+        this.delFlag = delFlag;
+    }
 
 }

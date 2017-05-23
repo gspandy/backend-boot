@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.cms.action;
@@ -98,7 +98,7 @@ public class ArticleAction extends BaseAction<Article> {
     @RequiresPermissions("cms:article:view")
     public String list(Model model, Article object, HttpServletRequest request, HttpServletResponse response) throws Exception {
         articleService.updateWeight();
-        String conditions = "status <> 0";
+        String conditions = "del_flag <> 1";
         //根据当前组织机构ID查询数据
         if (StringUtils.isNotEmpty(object.getCategoryId())) {
             String ids = object.getCategoryId();

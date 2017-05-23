@@ -27,14 +27,14 @@
     <!-- 查询条件 -->
     <div class="row">
         <div class="col-sm-12">
-            <form:form id="searchForm" modelAttribute="cmsArticle" action="${ctx}/cms/article/selectList" method="post" class="form-inline">
-                <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
+            <form:form id="searchForm" modelAttribute="article" action="${ctx}/cms/article/selectList" method="post" class="form-inline">
+                <input id="pageNum" name="pageNum" type="hidden" value="${page.pageNum}"/>
                 <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-                <table:sortColumn id="orderBy" name="orderBy" value="${page.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
+                <table:sortColumn id="orderBy" name="orderBy" value="${article.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                 <div class="form-group">
                     <span>栏目：</span>
-                    <sys:treeselect id="categoryId" name="categoryId" value="${cmsArticle.categoryId}" labelName="categoryName"
-                                    labelValue="${cmsArticle.categoryName}" title="栏目" url="/cms/category/treeData"
+                    <sys:treeselect id="categoryId" name="categoryId" value="${article.categoryId}" labelName="categoryName"
+                                    labelValue="${article.categoryName}" title="栏目" url="/cms/category/treeData"
                                     module="article" notAllowSelectRoot="false" cssClass="form-control"/>
                     <span>标题：</span>
                     <form:input path="title" htmlEscape="false" maxlength="50" class="form-control"/>
@@ -62,14 +62,12 @@
         <c:forEach items="${page.list}" var="article">
             <tr>
                 <td><input type="checkbox" id="${article.id}" class="i-checks"></td>
-                <td><a href="javascript:" onclick="$('#categoryId').val('${article.categoryId}');$('#categoryName').val('${article.categoryName}');$('#searchForm').submit();return false;">
-                        ${article.categoryName}</a></td>
-                <td><a href="#" onclick="openDialogView('查看', '${ctx}/cms/article/form?id=${article.id}')">
-                    ${fns:abbr(article.title,40)}</a></td>
+                <td>${article.categoryName}</td>
+                <td>${fns:abbr(article.title,40)}</td>
                 <td>${article.weight}</td>
                 <td>${article.hits}</td>
                 <td>${article.createBy}</td>
-                <td><fmt:formatDate value="${article.updateTime}" type="both"/></td>
+                <td><fmt:formatDate value="${article.updateDate}" type="both"/></td>
             </tr>
         </c:forEach>
         </tbody>

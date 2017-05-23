@@ -40,7 +40,7 @@
     </script>
 </head>
 <body>
-<form:form id="inputForm" modelAttribute="cmsArticle" action="${ctx}/cms/article/save" method="post"
+<form:form id="inputForm" modelAttribute="article" action="${ctx}/cms/article/save" method="post"
            class="form-horizontal">
     <form:hidden path="id"/>
     <sys:message content="${message}"/>
@@ -48,9 +48,9 @@
         <label class="control-label">归属栏目:</label>
         <div class="controls">
             <div class="pull-left m-r-sm">
-                <sys:treeselect id="categoryId" name="categoryId" value="${cmsArticle.categoryId}"
+                <sys:treeselect id="categoryId" name="categoryId" value="${article.categoryId}"
                                 labelName="categoryName"
-                                labelValue="${cmsArticle.categoryName}" title="栏目" url="/cms/category/treeData"
+                                labelValue="${article.categoryName}" title="栏目" url="/cms/category/treeData"
                                 module="article" selectScopeModule="true" notAllowSelectRoot="false"
                                 notAllowSelectParent="true" cssClass="form-control input-xxlarge required"/>&nbsp;
             </div>
@@ -101,17 +101,17 @@
             &nbsp;过期时间：
             <input id="weightDate" name="weightDate" type="text" readonly="readonly" maxlength="20"
                    class="form-control input-medium"
-                   value="<fmt:formatDate value="${cmsArticle.weightDate}"/>"/>
+                   value="<fmt:formatDate value="${article.weightDate}"/>"/>
             <span class="help-inline">数值越大排序越靠前，过期时间可为空，过期后取消置顶。</span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">缩略图:</label>
         <div class="controls">
-            <input type="hidden" id="image" name="image" value="${cmsArticle.image}"/>
+            <input type="hidden" id="image" name="image" value="${article.image}"/>
             <div>
-                <img src="<c:if test="${empty cmsArticle.image}">${ctxStatic}/static/app/image/default.jpg</c:if>
-                    <c:if test="${not empty cmsArticle.image}">${fns:getFileAccessPath()}/${cmsArticle.image}</c:if>"
+                <img src="<c:if test="${empty article.image}">${ctxStatic}/static/app/image/default.jpg</c:if>
+                    <c:if test="${not empty article.image}">${fns:getFileAccessPath()}/${article.image}</c:if>"
                      id="thumbImg" style="max-width: 100px; max-height: 100px; line-height: 20px;"/>
             </div>
             <input type="file" class="default" name="upload" onchange="imgUpload(this.value);" id="fileId"
@@ -121,50 +121,50 @@
     <div class="control-group">
         <label class="control-label">来源:</label>
         <div class="controls">
-            <form:input path="cmsArticleData.copyfrom" htmlEscape="false" maxlength="200"
+            <form:input path="articleData.copyfrom" htmlEscape="false" maxlength="200"
                         cssClass="form-control input-xxlarge"/>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">相关文章:</label>
         <div class="controls">
-            <form:hidden id="cmsArticleDataRelation" path="cmsArticleData.relation" htmlEscape="false" maxlength="200"
+            <form:hidden id="articleDataRelation" path="articleData.relation" htmlEscape="false" maxlength="200"
                          cssClass="form-control input-xlarge"/>
-            <ol id="cmsArticleSelectList" style="margin-left: -12px;"></ol>
+            <ol id="articleSelectList" style="margin-left: -12px;"></ol>
             <a id="relationButton" href="javascript:" class="btn">添加相关</a>
             <script type="text/javascript">
-                var cmsArticleSelect = [];
-                function cmsArticleSelectAddOrDel(id, title) {
+                var articleSelect = [];
+                function articleSelectAddOrDel(id, title) {
                     var isExtents = false, index = 0;
-                    for (var i = 0; i < cmsArticleSelect.length; i++) {
-                        if (cmsArticleSelect[i][0] == id) {
+                    for (var i = 0; i < articleSelect.length; i++) {
+                        if (articleSelect[i][0] == id) {
                             isExtents = true;
                             index = i;
                         }
                     }
                     if (isExtents) {
-                        cmsArticleSelect.splice(index, 1);
+                        articleSelect.splice(index, 1);
                     } else {
-                        cmsArticleSelect.push([id, title]);
+                        articleSelect.push([id, title]);
                     }
-                    cmsArticleSelectRefresh();
+                    articleSelectRefresh();
                 }
-                function cmsArticleSelectRefresh() {
-                    $("#cmsArticleDataRelation").val("");
-                    $("#cmsArticleSelectList").children().remove();
-                    for (var i = 0; i < cmsArticleSelect.length; i++) {
-                        $("#cmsArticleSelectList").append("<li>" + cmsArticleSelect[i][1] +
-                                "&nbsp;&nbsp;<a href=\"javascript:\" onclick=\"cmsArticleSelectAddOrDel('"
-                                + cmsArticleSelect[i][0] + "','" + cmsArticleSelect[i][1] + "');\">×</a></li>");
-                        $("#cmsArticleDataRelation").val($("#cmsArticleDataRelation").val() + cmsArticleSelect[i][0] + ",");
+                function articleSelectRefresh() {
+                    $("#articleDataRelation").val("");
+                    $("#articleSelectList").children().remove();
+                    for (var i = 0; i < articleSelect.length; i++) {
+                        $("#articleSelectList").append("<li>" + articleSelect[i][1] +
+                                "&nbsp;&nbsp;<a href=\"javascript:\" onclick=\"articleSelectAddOrDel('"
+                                + articleSelect[i][0] + "','" + articleSelect[i][1] + "');\">×</a></li>");
+                        $("#articleDataRelation").val($("#articleDataRelation").val() + articleSelect[i][0] + ",");
                     }
                 }
                 function getData() {
-                    $.getJSON("${ctx}/cms/article/findByIds", {ids: $("#cmsArticleDataRelation").val()}, function (data) {
+                    $.getJSON("${ctx}/cms/article/findByIds", {ids: $("#articleDataRelation").val()}, function (data) {
                         for (var i = 0; i < data.length; i++) {
-                            cmsArticleSelect.push([data[i][1], data[i][2]]);
+                            articleSelect.push([data[i][1], data[i][2]]);
                         }
-                        cmsArticleSelectRefresh();
+                        articleSelectRefresh();
                     });
                 }
 
@@ -182,7 +182,7 @@
                                 top.$.jBox.tip("未添加相关文章！", 'info');
                                 top.layer.close(index);
                             } else {
-                                $('#cmsArticleDataRelation').val(ids);
+                                $('#articleDataRelation').val(ids);
                                 getData();
                                 top.layer.close(index);
                             }
@@ -197,7 +197,7 @@
     <div class="control-group">
         <label class="control-label">是否允许评论:</label>
         <div class="controls">
-            <form:radiobuttons path="cmsArticleData.allowComment" items="${fns:getDictList('yes_no')}"
+            <form:radiobuttons path="articleData.allowComment" items="${fns:getDictList('yes_no')}"
                                itemLabel="label" itemValue="value" htmlEscape="false"/>
         </div>
     </div>
@@ -213,14 +213,14 @@
         <div class="controls">
             <input id="createDate" name="createDate" type="text" readonly="readonly" maxlength="20"
                    class="form-control input-medium"
-                   value="<fmt:formatDate value="${cmsArticle.createTime}"/>"/>
+                   value="<fmt:formatDate value="${article.createDate}"/>"/>
         </div>
     </div>
     <shiro:hasPermission name="cms:article:edit">
         <div class="control-group">
             <label class="control-label">发布状态:</label>
             <div class="controls">
-                <form:radiobuttons path="status" items="${fns:getDictList('cms_status')}" itemLabel="label"
+                <form:radiobuttons path="delFlag" items="${fns:getDictList('cms_del_flag')}" itemLabel="label"
                                    itemValue="value" htmlEscape="false" cssClass="required"/>
                 <span class="help-inline"></span>
             </div>
@@ -232,7 +232,7 @@
                     <form:option value="" label="默认视图"/>
                     <form:options items="${contentViewList}" htmlEscape="false"/>
                 </form:select>
-                <span class="help-inline">自定义内容视图名称必须以"${cmsArticle_DEFAULT_TEMPLATE}"开始</span>
+                <span class="help-inline">自定义内容视图名称必须以"${article_DEFAULT_TEMPLATE}"开始</span>
             </div>
         </div>
         <div class="control-group">
@@ -252,16 +252,16 @@
     <div class="control-group">
         <label class="control-label">正文:</label>
         <div class="controls">
-            <form:textarea id="content" htmlEscape="true" path="cmsArticleData.content" rows="16" maxlength="200"
+            <form:textarea id="content" htmlEscape="true" path="articleData.content" rows="16" maxlength="200"
                            cssClass="form-control"/>
         </div>
     </div>
-    <c:if test="${not empty cmsArticle.id}">
+    <c:if test="${not empty article.id}">
         <div class="control-group">
             <label class="control-label">查看评论:</label>
             <div class="controls">
                 <input id="btnComment" class="btn" type="button" value="查看评论"
-                       onclick="viewComment('${ctx}/cms/comment/?module=cmsArticle&contentId=${cmsArticle.id}&status=0')"/>
+                       onclick="viewComment('${ctx}/cms/comment/?module=article&contentId=${article.id}&status=0')"/>
                 <script type="text/javascript">
                     function viewComment(href) {
                         top.$.jBox.open('iframe:' + href, '查看评论', $(top.document).width() - 220, $(top.document).height() - 180, {

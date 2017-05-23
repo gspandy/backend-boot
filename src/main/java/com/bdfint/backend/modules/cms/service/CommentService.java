@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.cms.service;
@@ -11,8 +11,8 @@ import com.bdfint.backend.modules.cms.bean.Comment;
 /**
  * 评论Service
  *
- * @author lufengc
- * @version 2013-01-15
+ * @author fengcheng
+ * @version 2016-09-12
  */
 public interface CommentService extends BaseService<Comment> {
 

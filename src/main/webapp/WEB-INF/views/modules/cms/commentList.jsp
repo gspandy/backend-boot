@@ -17,15 +17,15 @@
             <!-- 查询条件 -->
             <div class="row">
                 <div class="col-sm-12">
-                    <form:form id="searchForm" modelAttribute="cmsComment" action="${ctx}/cms/comment/" method="post" class="form-inline">
-                        <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
+                    <form:form id="searchForm" modelAttribute="comment" action="${ctx}/cms/comment/" method="post" class="form-inline">
+                        <input id="pageNum" name="pageNum" type="hidden" value="${page.pageNum}"/>
                         <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-                        <table:sortColumn id="orderBy" name="orderBy" value="${page.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
+                        <table:sortColumn id="orderBy" name="orderBy" value="${comment.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                         <div class="form-group">
                             <span>文档标题：</span>
                             <form:input path="title" htmlEscape="false" maxlength="50" class="form-control"/>
                             <span>状态：</span>
-                            <form:radiobuttons onclick="$('#searchForm').submit();" path="delFlag" items="${fns:getDictList('status')}"
+                            <form:radiobuttons onclick="$('#searchForm').submit();" path="delFlag" items="${fns:getDictList('del_flag')}"
                                                itemLabel="label" itemValue="value" htmlEscape="false"/>
                             <button  class="btn btn-primary btn-outline btn-sm " onclick="searchAll()" ><i class="fa fa-search"></i> 查询</button>
                             <button  class="btn btn-primary btn-outline btn-sm " onclick="resetAll()" ><i class="fa fa-refresh"></i> 重置</button>

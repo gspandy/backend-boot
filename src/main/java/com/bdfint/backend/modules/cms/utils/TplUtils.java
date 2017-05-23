@@ -1,5 +1,8 @@
-package com.bdfint.backend.modules.cms.utils;
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
+ */
 
+package com.bdfint.backend.modules.cms.utils;
 
 
 import com.bdfint.backend.framework.util.StringUtils;
@@ -8,9 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * User: songlai
- * Date: 13-8-22
- * Time: 上午10:23
+ * @author fengcheng
+ * @version 2016-09-12
  */
 public class TplUtils {
     /**
@@ -20,7 +22,6 @@ public class TplUtils {
      * @param prefix   模板前缀  例如“frontViewArticle”
      * @param include  需包含的模板  例如“/WEB-INF/views/modules/cms/front/themes/jeesite/articleSelectList.jsp”
      * @param excludes 需去除的模板  例如“frontViewArticle”
-     * @return
      */
     public static List<String> tplTrim(List<String> list, String prefix, String include, String... excludes) {
         List<String> result = new ArrayList<String>();
@@ -53,9 +54,8 @@ public class TplUtils {
     /**
      * 检查tpl是否存在于excludes里面。
      *
-     * @param excludes
-     * @param tpl
-     * @return
+     * @param excludes 需去除的模板  例如“frontViewArticle”
+     * @param tpl      模版
      */
     private static boolean tplContain(String[] excludes, String tpl) {
         int start = tpl.lastIndexOf("/");

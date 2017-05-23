@@ -125,7 +125,6 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
      * 删除权限信息
      *
      * @param id 删除的ID
-     * @throws Exception
      */
     @Override
     @Transactional

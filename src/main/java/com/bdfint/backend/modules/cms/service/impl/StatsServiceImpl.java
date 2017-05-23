@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.modules.cms.service.impl;
 
@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * 统计Service
  *
- * @author lufengc
+ * @author fengcheng
  * @version 2016-09-12
  */
 @Service

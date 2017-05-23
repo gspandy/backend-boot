@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.cms.service;
@@ -11,10 +11,10 @@ import com.bdfint.backend.modules.cms.bean.ArticleData;
 import java.util.List;
 
 /**
- * 系统角色service
+ * 文章service
  *
- * @author lufengcheng
- * @date 2016-01-15 09:56:22
+ * @author fengcheng
+ * @version 2016-09-12
  */
 public interface ArticleService extends BaseService<Article> {
 

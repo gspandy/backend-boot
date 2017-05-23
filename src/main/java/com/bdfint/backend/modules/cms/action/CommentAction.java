@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.cms.action;
@@ -44,7 +44,6 @@ public class CommentAction extends BaseAction<Comment> {
      *
      * @param id ID
      * @return Comment
-     * @throws Exception
      */
     @Override
     @ModelAttribute
@@ -64,8 +63,8 @@ public class CommentAction extends BaseAction<Comment> {
      * @param model    Model
      * @param object   object
      * @param request  request
-     * @param response @return view
-     * @throws Exception
+     * @param response HttpServletResponse
+     * @return view
      */
     @Override
     @RequestMapping(value = {"list", ""})
@@ -73,6 +72,14 @@ public class CommentAction extends BaseAction<Comment> {
     public String list(Model model, Comment object, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Example example = new Example(Comment.class);
         example.setOrderByClause("create_date desc");
+
+        Example.Criteria criteria = example.createCriteria();
+        if (object.getTitle() != null) {
+            criteria.andLike("title", "%" + object.getTitle() + "%");
+        }
+        if (object.getDelFlag() != null) {
+            criteria.andEqualTo("delFlag", object.getDelFlag());
+        }
         PageInfo<Comment> page = commentService.getPage(object, example);
         model.addAttribute("page", page);
         return "modules/cms/commentList";
@@ -84,7 +91,6 @@ public class CommentAction extends BaseAction<Comment> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "form")
@@ -99,7 +105,6 @@ public class CommentAction extends BaseAction<Comment> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "save")
@@ -124,7 +129,6 @@ public class CommentAction extends BaseAction<Comment> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "delete")

@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.cms.action;
@@ -9,6 +9,7 @@ import com.bdfint.backend.framework.common.Param;
 import com.bdfint.backend.framework.util.CookieUtils;
 import com.bdfint.backend.modules.cms.bean.Site;
 import com.bdfint.backend.modules.cms.service.SiteService;
+import com.bdfint.backend.modules.sys.bean.User;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang.StringUtils;
@@ -43,7 +44,6 @@ public class SiteAction extends BaseAction<Site> {
      *
      * @param id ID
      * @return Site
-     * @throws Exception
      */
     @Override
     @ModelAttribute
@@ -63,14 +63,19 @@ public class SiteAction extends BaseAction<Site> {
      * @param model    Model
      * @param object   object
      * @param request  request
-     * @param response @return view
-     * @throws Exception
+     * @param response HttpServletResponse
+     * @return view
      */
     @Override
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("cms:site:view")
     public String list(Model model, Site object, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        PageInfo<Site> page = siteService.getPage(object, new Example(Site.class));
+        Example example = new Example(Site.class);
+        Example.Criteria criteria = example.createCriteria();
+        if (object.getName() != null) {
+            criteria.andLike("name", "%" + object.getName() + "%");
+        }
+        PageInfo<Site> page = siteService.getPage(object, example);
         model.addAttribute("page", page);
         return "modules/cms/siteList";
     }
@@ -81,7 +86,6 @@ public class SiteAction extends BaseAction<Site> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "form")
@@ -96,7 +100,6 @@ public class SiteAction extends BaseAction<Site> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "save")
@@ -116,7 +119,6 @@ public class SiteAction extends BaseAction<Site> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "delete")
@@ -134,8 +136,7 @@ public class SiteAction extends BaseAction<Site> {
     /**
      * 选择站点
      *
-     * @param id
-     * @return
+     * @param id 站点id
      */
     @RequestMapping(value = "select")
     @RequiresPermissions("cms:site:edit")

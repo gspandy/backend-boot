@@ -1,19 +1,21 @@
-/**
- * \ * Copyright &copy; 2012-2013 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.modules.cms.bean;
 
 import com.bdfint.backend.framework.common.DataEntity;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.NotNull;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * 链接Entity
- * @author ThinkGem
- * @version 2013-05-15
+ *
+ * @author fengcheng
+ * @version 2016/7/28
  */
+@Table(name = "cms_link")
 public class Link extends DataEntity<Link> {
 
     private static final long serialVersionUID = 1L;

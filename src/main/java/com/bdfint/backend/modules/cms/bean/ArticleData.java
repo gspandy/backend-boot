@@ -1,22 +1,25 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.modules.cms.bean;
 
+import com.bdfint.backend.framework.common.BaseEntity;
 import com.bdfint.backend.framework.common.DataEntity;
 import com.bdfint.backend.framework.common.Global;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
  * 文章Entity
  *
- * @author ThinkGem
- * @version 2013-01-15
+ * @author fengcheng
+ * @version 2016/7/28
  */
-public class ArticleData extends DataEntity<ArticleData> {
+@Table(name = "cms_article_Data")
+public class ArticleData extends BaseEntity<ArticleData> {
 
     private static final long serialVersionUID = 1L;
     private String id;        // 编号
@@ -30,7 +33,6 @@ public class ArticleData extends DataEntity<ArticleData> {
 
     public ArticleData() {
         super();
-        this.allowComment = Global.YES;
     }
 
     public ArticleData(String id) {

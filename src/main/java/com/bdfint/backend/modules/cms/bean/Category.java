@@ -1,5 +1,5 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+/*
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package com.bdfint.backend.modules.cms.bean;
 
@@ -9,15 +9,17 @@ import com.bdfint.backend.modules.cms.utils.CmsUtils;
 import com.google.common.collect.Lists;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.List;
 
 /**
  * 栏目Entity
  *
- * @author ThinkGem
- * @version 2013-05-15
+ * @author fengcheng
+ * @version 2016/7/28
  */
+@Table(name = "cms_category")
 public class Category extends TreeEntity<Category> {
 
     public static final String DEFAULT_TEMPLATE = "frontList";
@@ -40,7 +42,9 @@ public class Category extends TreeEntity<Category> {
     private String customContentView;    // 自定义内容视图
     private String viewConfig;    // 视图参数
 
+    @Transient
     private String cnt;//信息量
+    @Transient
     private String hits;//点击量
 
     @Transient
@@ -52,14 +56,7 @@ public class Category extends TreeEntity<Category> {
 
     public Category() {
         super();
-        this.module = "";
-        this.sort = 30;
-        this.inMenu = Global.HIDE;
-        this.inList = Global.SHOW;
-        this.showModes = "0";
-        this.allowComment = Global.NO;
         this.delFlag = DEL_FLAG_NORMAL;
-        this.isAudit = Global.NO;
     }
 
     public Category(String id) {

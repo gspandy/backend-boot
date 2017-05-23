@@ -1,11 +1,12 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.cms.action;
 
 import com.bdfint.backend.framework.common.BaseAction;
 import com.bdfint.backend.framework.common.Param;
+import com.bdfint.backend.framework.common.TreeEntity;
 import com.bdfint.backend.modules.cms.bean.Article;
 import com.bdfint.backend.modules.cms.bean.Category;
 import com.bdfint.backend.modules.cms.bean.Site;
@@ -30,7 +31,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * 栏目Action
@@ -56,7 +60,6 @@ public class CategoryAction extends BaseAction<Category> {
      *
      * @param id 主键
      * @return Category
-     * @throws Exception
      */
     @Override
     @ModelAttribute
@@ -76,7 +79,6 @@ public class CategoryAction extends BaseAction<Category> {
      * @param request  request
      * @param response HttpServletResponse
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = {"list", ""})
@@ -84,18 +86,7 @@ public class CategoryAction extends BaseAction<Category> {
     public String list(Model model, Category object, HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Category> sourcelist = categoryService.getByUser(true, null);
         List<Category> list = Lists.newArrayList();
-        Collections.sort(sourcelist,  new Comparator<Category>() {
-            public int compare(Category o1, Category o2) {
-                // 按sortId升序排序
-                if (o1.getSort() > o2.getSort()) {
-                    return 1;
-                } else if (Objects.equals(o1.getSort(), o2.getSort())) {
-                    return 0;
-                } else {
-                    return -1;
-                }
-            }
-        });
+        sourcelist.sort(Comparator.comparing(TreeEntity::getSort));
         Category.sortList(list, sourcelist, "1");
         model.addAttribute("list", list);
         return "modules/cms/categoryList";
@@ -107,7 +98,6 @@ public class CategoryAction extends BaseAction<Category> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "form")
@@ -161,7 +151,6 @@ public class CategoryAction extends BaseAction<Category> {
      * @param object             object
      * @param redirectAttributes RedirectAttributes
      * @return ModelAndView
-     * @throws Exception
      */
     @Override
     protected String save(Model model, Category object, RedirectAttributes redirectAttributes) throws Exception {
@@ -179,7 +168,6 @@ public class CategoryAction extends BaseAction<Category> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "delete")
@@ -198,7 +186,7 @@ public class CategoryAction extends BaseAction<Category> {
      */
     @RequestMapping(value = "updateSort")
     @RequiresPermissions("sys:category:edit")
-    public String updateSort(Integer[] ids, Integer[] sortIds, RedirectAttributes redirectAttributes) {
+    public String updateSort(String[] ids, Integer[] sortIds, RedirectAttributes redirectAttributes) throws Exception {
         categoryService.updateSort(ids, sortIds);
         addMessage(redirectAttributes, "保存排序成功!");
         return "redirect:" + adminPath + "/sys/category/";
@@ -207,7 +195,7 @@ public class CategoryAction extends BaseAction<Category> {
     /**
      * 栏目树数据
      *
-     * @param extId      id
+     * @param extId id
      * @return List
      */
     @ResponseBody

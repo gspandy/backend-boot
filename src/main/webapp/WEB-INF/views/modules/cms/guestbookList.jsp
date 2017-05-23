@@ -17,22 +17,23 @@
             <!-- 查询条件 -->
             <div class="row">
                 <div class="col-sm-12">
-                    <form:form id="searchForm" modelAttribute="cmsGuestbook" action="${ctx}/cms/guestbook/" method="post" class="form-inline">
-                        <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
+                    <form:form id="searchForm" modelAttribute="guestbook" action="${ctx}/cms/guestbook/" method="post" class="form-inline">
+                        <input id="pageNum" name="pageNum" type="hidden" value="${page.pageNum}"/>
                         <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-                        <table:sortColumn id="orderBy" name="orderBy" value="${page.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
+                        <table:sortColumn id="orderBy" name="orderBy" value="${guestbook.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                         <div class="form-group">
                             <span>分类：</span>
                             <form:select id="type" path="type" class="form-control">
-                                <form:option value="" items="${fns:getDictList('cms_guestbook')}" itemValue="value"
-                                             itemLabel="label" htmlEscape="false"/></form:select>
+                                <form:option value="" label=""/>
+                                <form:options items="${fns:getDictList('cms_guestbook')}" htmlEscape="false" itemValue="value"/>
+                            </form:select>
                             <span>内容：</span>
                             <form:input path="content" htmlEscape="false" maxlength="50" class="form-control"/>
                             <span>状态：</span>
-                            <form:radiobuttons onclick="$('#searchForm').submit();" path="status" items="${fns:getDictList('status')}"
+                            <form:radiobuttons onclick="$('#searchForm').submit();" path="delFlag" items="${fns:getDictList('del_flag')}"
                                                itemLabel="label" itemValue="value" htmlEscape="false"/>
-                            <button  class="btn btn-primary btn-outline btn-sm " onclick="search()" ><i class="fa fa-search"></i> 查询</button>
-                            <button  class="btn btn-primary btn-outline btn-sm " onclick="reset()" ><i class="fa fa-refresh"></i> 重置</button>
+                            <button  class="btn btn-primary btn-outline btn-sm " onclick="searchAll()" ><i class="fa fa-search"></i> 查询</button>
+                            <button  class="btn btn-primary btn-outline btn-sm " onclick="resetAll()" ><i class="fa fa-refresh"></i> 重置</button>
                         </div>
                     </form:form>
                     <br/>
@@ -59,6 +60,7 @@
             <table id="contentTable" class="table table-bordered table-hover">
                 <thead>
                 <tr>
+                    <th><input type="checkbox" class="i-checks"></th>
                     <th>留言分类</th>
                     <th>留言内容</th>
                     <th>留言人</th>

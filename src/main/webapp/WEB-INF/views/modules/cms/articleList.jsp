@@ -19,14 +19,14 @@
             <!-- 查询条件 -->
             <div class="row">
                 <div class="col-sm-12">
-                    <form:form id="searchForm" modelAttribute="cmsArticle" action="${ctx}/cms/article/list" method="post" class="form-inline">
-                        <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
+                    <form:form id="searchForm" modelAttribute="article" action="${ctx}/cms/article/list" method="post" class="form-inline">
+                        <input id="pageNum" name="pageNum" type="hidden" value="${page.pageNum}"/>
                         <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-                        <table:sortColumn id="orderBy" name="orderBy" value="${page.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
+                        <table:sortColumn id="orderBy" name="orderBy" value="${article.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                         <div class="form-group">
                             <span>栏目：</span>
-                            <sys:treeselect id="categoryId" name="categoryId" value="${cmsArticle.categoryId}" labelName="categoryName"
-                                            labelValue="${cmsArticle.categoryName}" title="栏目" url="/cms/category/treeData"
+                            <sys:treeselect id="categoryId" name="categoryId" value="${article.categoryId}" labelName="categoryName"
+                                            labelValue="${article.categoryName}" title="栏目" url="/cms/category/treeData"
                                             module="article" notAllowSelectRoot="false" cssClass="form-control"/>
                             <span>标题：</span>
                             <form:input path="title" htmlEscape="false" maxlength="50" class="form-control"/>
@@ -65,7 +65,7 @@
                         <th class="sort-column weight">权重</th>
                         <th class="sort-column hits">点击数</th>
                         <th class="sort-column keywords">关键字</th>
-                        <th class="sort-column updateTime">更新时间</th>
+                        <th class="sort-column updateDate">更新时间</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -73,13 +73,12 @@
                 <c:forEach items="${page.list}" var="bean">
                     <tr>
                         <td><input type="checkbox" id="${bean.id}" class="i-checks"></td>
-                        <td><a href="javascript:" onclick="$('#categoryId').val('${bean.categoryId}');$('#categoryName').val('${bean.categoryName}');$('#searchForm').submit();return false;">
-                            ${bean.categoryName}</a></td>
-                        <td><a href="#" onclick="openDialogView('查看', '${ctx}/cms/article/form?id=${bean.id}')">${fns:abbr(bean.title,40)}</a></td>
+                        <td>${bean.categoryName}</td>
+                        <td><a href="${ctx}/cms/article/form?id=${bean.id}">${fns:abbr(bean.title,40)}</a></td>
                         <td>${bean.weight}</td>
                         <td>${bean.hits}</td>
                         <td>${bean.keywords}</td>
-                        <td><fmt:formatDate value="${bean.updateTime}" type="both"/></td>
+                        <td><fmt:formatDate value="${bean.updateDate}" type="both"/></td>
                         <td>
                             <a href="${pageContext.request.contextPath}${fns:getFrontPath()}/view-${bean.categoryId}-${bean.id}.html"
                                target="_blank"><i class="fa fa-street-view"></i>访问</a>

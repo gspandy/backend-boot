@@ -1,5 +1,5 @@
 /*
- * Copyright &copy; <a href="http://www.zsteel.cc">zsteel</a> All rights reserved.
+ * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
 package com.bdfint.backend.modules.cms.action;
@@ -44,7 +44,6 @@ public class GuestbookAction extends BaseAction<Guestbook> {
      *
      * @param id ID
      * @return Guestbook
-     * @throws Exception
      */
     @Override
     @ModelAttribute
@@ -63,7 +62,6 @@ public class GuestbookAction extends BaseAction<Guestbook> {
      * @param object   object
      * @param request  request
      * @param response @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = {"list", ""})
@@ -71,6 +69,17 @@ public class GuestbookAction extends BaseAction<Guestbook> {
     public String list(Model model, Guestbook object, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Example example = new Example(Guestbook.class);
         example.setOrderByClause("create_date desc");
+        Example.Criteria criteria = example.createCriteria();
+        if (object.getContent() != null) {
+            criteria.andLike("content", "%" + object.getContent() + "%");
+        }
+        if (object.getType() != null) {
+            criteria.andEqualTo("type", object.getType());
+        }
+        if (object.getDelFlag() != null) {
+            criteria.andEqualTo("delFlag", object.getDelFlag());
+        }
+
         PageInfo<Guestbook> page = guestbookService.getPage(object, example);
         model.addAttribute("page", page);
         return "modules/cms/guestbookList";
@@ -82,7 +91,6 @@ public class GuestbookAction extends BaseAction<Guestbook> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "form")
@@ -97,7 +105,6 @@ public class GuestbookAction extends BaseAction<Guestbook> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "save")
@@ -122,7 +129,6 @@ public class GuestbookAction extends BaseAction<Guestbook> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @Override
     @RequestMapping(value = "delete")
