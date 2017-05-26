@@ -33,7 +33,7 @@ backend-boot是基于多个优秀的开源项目，高度整合封装而成的�
 
 ## 开发环境
 * Mac OS
-* Intellij IDEA
+* IntelliJ IDEA 2017.1
 * jdk 1.8
 * Maven 3.3.9
 * Tomcat 8.5
